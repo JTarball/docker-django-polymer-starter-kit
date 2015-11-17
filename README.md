@@ -1,7 +1,37 @@
+[![Circle CI](https://circleci.com/gh/JTarball/docker-django-polymer-starter-kit.svg?style=svg)](https://circleci.com/gh/JTarball/docker-django-polymer-starter-kit)
+
 # docker-django-polymer
 This is a docker file for django polymer web project.
 
-# How to deploy to Amazon Web Services
+## Intro
+
+## Cheatsheet
+### Rebuild and Upload base image 
+
+
+### Useful Commands
+
+> docker login
+  - you will need to login into docker hub (set up an account if you dont have one)
+> docker build -t "<IMAGE>" .
+  - this will build the Dockerfile in the current directory and tag it with "jtarball/docker-base:latest"
+> docker push "<IMAGE>"
+  - push to docker hub
+
+> docker-compose up 
+ - this command will create and start containers
+
+> docker rm $(docker ps -a -q); docker rmi $(docker images -q);
+ - kill and remove all docker images and containers
+
+> docker rmi $(docker images -q --filter "dangling=true")
+ - Ckean up un-tagged docker images
+
+
+
+
+## How to use
+### How to deploy to Amazon Web Services
 
 To deploy this project to AWS you must set the following environment variables:
 
@@ -20,6 +50,36 @@ export AWS_VPC_ID=xxxx
 
  run `create-docker-machine-aws.sh  <MACHINE_NAME>` where MACHINE_NAME is the name for the machine you want created 
  run `python build-tag-push.py` which will build the docker app, push it to docker hub and a new compose yml file (you will need to be logged in  `docker login`)
+
+
+
+
+## Directory Structure
+
+
+## License
+
+View [license information](https://github.com/JTarball/docker-base/blob/master/LICENSE) for the software contained in this image.
+
+## User Feedback
+
+Any feedback or comments  would be greatly appreciated: <james.tarball@gmail.com>
+
+### Issues
+
+If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/JTarball/docker-base/issues).
+
+You can also reach me by email. I would be happy to help  <james.tarball@gmail.com>
+
+## Developer Notes
+#### How to upgrade base directory
+#### Considerations / Future Work
+
+
+
+
+
+
 
 
 
@@ -117,31 +177,6 @@ EXPOSE 1337
  - app  manual updates
 
 
-
-# Rebuild and Upload base image 
-
-- Automated build via docker hub. Easy set up. As we need to create a new docker-compose file for production use script instead (see below)
-
-or
-
-> docker login
-  - you will need to login into docker hub (set up an account if you dont have one)
-> docker build -t "jtarball/docker-base:latest" .
-  - this will build the Dockerfile in the current directory and tag it with "jtarball/docker-base:latest"
-> docker push "jtarball/docker-base:latest"
-  - push to docker hub
-
-
-# Useful Commands
-
-> docker-compose up 
- - this command will create and start containers
-
-> docker rm $(docker ps -a -q); docker rmi $(docker images -q);
- - kill and remove all docker images and containers
-
-> docker rmi $(docker images -q --filter "dangling=true")
- - Ckean up un-tagged docker images
 
 
 
