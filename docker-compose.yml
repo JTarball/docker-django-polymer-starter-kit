@@ -6,7 +6,7 @@ app:
   restart: always
   build: docker/app
   env_file:
-    - env
+    - env_example
   volumes:
     - ./docker/app/app:/app
   ports:
@@ -29,6 +29,6 @@ postgres:
   volumes:
      - /var/lib/postgresql
   env_file:
-    - env
+    - env_example
   ports:
     - "5432:5432"

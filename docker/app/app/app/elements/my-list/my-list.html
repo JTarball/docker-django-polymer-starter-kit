@@ -7,52 +7,43 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="my-list">
-  <style>
-    :host {
-      display: block;
-    }
-  </style>
   <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
     <ul>
-    <django-ajax result='{{items}}' url="{{url}}"></django-ajax>
-      <template is="dom-repeat" items="{{ _toArray(items.fields) }}">
-
-      <li><label for="{{addID(item.name)}}" >[[item.name]]</label>
-    <input id="{{ addID(item.name) }}" type="text" name="{{item.name}}" maxlength="100" /></li>
-
-
-
-      
+      <template is="dom-repeat" items="{{items}}">
+        <li><span class="paper-font-body1">{{item}}</span></li>
       </template>
     </ul>
   </template>
 
   <script>
     (function () {
+      'use strict';
+
       Polymer({
         is: 'my-list',
         properties: {
           items: {
             type: Array,
             notify: true,
-          },
-          url: { type: String, value: "http://192.168.99.100:8000/blog/post/new"}
-        },
-        _toArray: function(obj) {
-          console.log(obj);
-        
-            return Object.keys(obj).map(function(key) {
-              return {name: key, value: obj[key]};
-            });
-          
-        },
-        addID: function(val){
-          return "id_" + val
+          }
         },
         ready: function() {
-          //this.url = "http://192.168.99.100:8000/blog/post/new";
+          this.items = [
+            'Responsive Web App boilerplate',
+            'Iron Elements and Paper Elements',
+            'End-to-end Build Tooling (including Vulcanize)',
+            'Unit testing with Web Component Tester',
+            'Routing with Page.js',
+            'Offline support with the Platinum Service Worker Elements'
+          ];
         }
       });
     })();
