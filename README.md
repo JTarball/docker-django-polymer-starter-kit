@@ -272,6 +272,20 @@ The settings files are split for better separate of roles:
 
 > optional files created by *generator-polymer* 
 
+
+
+
+
+
+
+### Developer Notes
+
+#### How to update base docker image 'docker-base'
+From `docker` directory run:
+```
+git submodule update --remote --merge 
+```
+
 ### Considerations / Future
 In the future I might consider incorporating ideas from the following projects:
 
