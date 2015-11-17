@@ -1,0 +1,50 @@
+- need to fix related_save on admin.py
+
+
+find highest match - has to be at least percent 
+- cant find then alert user
+- remove? 
+
+
+
+
+assume likelihood of a match within post -- unlikely
+
+
+
+
+- only display published posts 
+
+- search capability
+- include + excluding tag capability 
+- comments how to link to paragraphs
+- search show autocomplete then results with x to close
+- table of contents (on save - calculation - like polymer)
+- add table of updates like table of contents
+- write tests for utils.py
+
+secondary
+- personal page  (active coding)
+   - add card (code / link / words(cool font))
+- admin email
+- login for guests
+
+
+
+- Note
+- Note needs field synced to Post Content
+
+- how to save / merge
+- PostRevision very important
+
+
+
+
+------------------------------------------------------------------------------
+- breadcrumbs - Basically Done  (NEEDS TEMPLATE / TIDYING CODE)
+- auto tagging done (BASIC BUT WORKS)
+- search - need to explain how redis works sorted set
+	need to double check with multiple model Posts that are stored in set (ids are different so should work)
+	
+
+

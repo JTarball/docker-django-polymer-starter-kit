@@ -1,0 +1,21 @@
+// Django Ajax Call 
+// Based of iron-ajax with some django specify modifications to 
+// support CORS
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="django-ajax-spinner">
+// debounce-duration="300"
+<template>
+    <paper-spinner id="loading" active="{{loading}}"></paper-spinner-spinner>
+</template>
+
+<script>
+    Polymer({
+        is: "django-ajax-spinner",
+        properties: {
+            loading: { type: Boolean, value: true},
+        },
+
+    });
+</script>
+</dom-module>

@@ -1,0 +1,470 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block title %}{{post.title}}{% endblock  %}
+
+<!--
+    {% load pygmentify %}
+    {% pygment %}
+    <pre lang="html">
+
+
+
+  <a class="btn  btn-lg btn-info">Add a Code Example</a>
+
+<div class="grid">
+    </pre>
+    {% endpygment %}
+
+-->
+
+
+
+
+
+
+{% block content %}
+  {% load navbar_tags %}
+  <div class="breaded"> {% render_breadcrumbs "navbar.html" %}</div>
+  <h2>Summary.</h2><hr>
+  <h2>{{post.title }}.</h2><hr>
+  <div id="content-main">
+
+    {{post.content | safe }}
+  </div>
+
+
+
+
+
+
+<link rel="stylesheet" href="/static/redis_search/css/style.css" />
+<input id="search" type="search" placeholder="Search Questions in Real-Time from the app" autocomplete="off" />
+
+
+<table id="results" >
+</table>
+
+
+
+
+
+  <div id="editor">function foo(items) {
+      var x = "All this is syntax highlighted";
+      return x;
+  }</div>
+
+
+{% endblock %}
+
+
+
+{% block extracontent %}
+
+{% if post.content_codeexamples %}
+  <h2>Code Examples.</h2><hr>
+  <div id="content-code-examples">
+    {{post.content_codeexamples | safe }}
+  </div>
+{% endif %}
+
+
+
+
+
+
+
+
+  <a class="btn  btn-lg btn-info">Add a Code Example</a>
+
+<div class="grid">
+
+  <div class="preview-card">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/>
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+    <div class="info">
+      <form id="ember2313" class="ember-view comment">
+        <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+      </form>
+    </div>
+    <hr>
+    <div class="stats">
+      <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span>
+      <i class="fa fa-eye fa-1x"></i><span>100K</span>
+      <i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+
+
+  <div class="post-card-basic">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/><h4>The pros and cons of open sourcing your code</h4><div class="summary"><i class="fa fa-quote-left fa-2x"></i>&nbsp;Despite starting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard development practices and practically no one questions its value anymore.djalkjda jdlk jalkjdlj alkjdljalk jdlalkjdlka l jsjdjsaadjk alkdjlkajljdlkas jlkdj lsakjdlk jsaklj dlk jsakld as</div></div>
+    
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+
+    <form id="ember2313" class="ember-view comment">
+      <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+    </form>
+    <hr>
+    <div class="comments-list">
+      <ul>
+       <!-- 
+       <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.arting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard dev</p></li>
+        -->
+      <ul>
+      <i class="fa fa-ellipsis-h fa-2x load-more"><span>LOAD MORE</span></i>
+    </div>
+    <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span><i class="fa fa-eye fa-1x"></i><span>100K</span><i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="post-card-basic">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/><h4>The pros and cons of open sourcing your code</h4><div class="summary"><i class="fa fa-quote-left fa-2x"></i>&nbsp;Despite starting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard development practices and practically no one questions its value anymore.djalkjda jdlk jalkjdlj alkjdljalk jdlalkjdlka l jsjdjsaadjk alkdjlkajljdlkas jlkdj lsakjdlk jsaklj dlk jsakld as</div></div>
+    
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+
+    <form id="ember2313" class="ember-view comment">
+      <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+    </form>
+    <hr>
+    <div class="comments-list">
+      <ul>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.arting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard dev</p></li>
+      <ul>
+      <i class="fa fa-ellipsis-h fa-2x"><span>LOAD MORE</span></i>
+    </div>
+    <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span><i class="fa fa-eye fa-1x"></i><span>100K</span><i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+  <div class="post-card-basic">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/><h4>The pros and cons of open sourcing your code</h4><div class="summary"><i class="fa fa-quote-left fa-2x"></i>&nbsp;Despite starting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard development practices and practically no one questions its value anymore.djalkjda jdlk jalkjdlj alkjdljalk jdlalkjdlka l jsjdjsaadjk alkdjlkajljdlkas jlkdj lsakjdlk jsaklj dlk jsakld as</div></div>
+    
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+
+    <form id="ember2313" class="ember-view comment">
+      <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+    </form>
+    <hr>
+    <!--<div class="comments-list">
+      <ul>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.arting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard dev</p></li>
+      <ul>
+      <i class="fa fa-ellipsis-h fa-2x"><span>LOAD MORE</span></i>
+    </div>-->
+    <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span><i class="fa fa-eye fa-1x"></i><span>100K</span><i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+
+    <div class="post-card-basic">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/><h4>The pros and cons of open sourcing your code</h4><div class="summary"><i class="fa fa-quote-left fa-2x"></i>&nbsp;Despite starting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard development practices and practically no one questions its value anymore.djalkjda jdlk jalkjdlj alkjdljalk jdlalkjdlka l jsjdjsaadjk alkdjlkajljdlkas jlkdj lsakjdlk jsaklj dlk jsakld as</div></div>
+    
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+
+    <form id="ember2313" class="ember-view comment">
+      <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+    </form>
+    <hr>
+    <!--<div class="comments-list">
+      <ul>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.arting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard dev</p></li>
+      <ul>
+      <i class="fa fa-ellipsis-h fa-2x"><span>LOAD MORE</span></i>
+    </div>-->
+    <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span><i class="fa fa-eye fa-1x"></i><span>100K</span><i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+  <div class="post-card-basic">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/><h4>The pros and cons of open sourcing your code</h4><div class="summary"><i class="fa fa-quote-left fa-2x"></i>&nbsp;Despite starting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard development practices and practically no one questions its value anymore.djalkjda jdlk jalkjdlj alkjdljalk jdlalkjdlka l jsjdjsaadjk alkdjlkajljdlkas jlkdj lsakjdlk jsaklj dlk jsakld as</div></div>
+    
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+
+    <form id="ember2313" class="ember-view comment">
+      <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+    </form>
+    <hr>
+    <!--<div class="comments-list">
+      <ul>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.arting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard dev</p></li>
+      <ul>
+      <i class="fa fa-ellipsis-h fa-2x"><span>LOAD MORE</span></i>
+    </div>-->
+    <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span><i class="fa fa-eye fa-1x"></i><span>100K</span><i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+<div class='loadmorebutton'>
+  <a class="btn  btn-mdm btn-info" data-loading-text="Loading...">Load More ...</a>
+
+</div>
+
+
+
+
+{% if post.content_gotchas %}
+  <h2>Gotchas.</h2><hr>
+  <div id="content-gotchas">
+    {{post.content_gotchas | safe }}
+  </div>
+{% endif %}
+
+{% if post.content_trickstips %}
+  <h2>Tricks and Tips.</h2><hr>
+  <div id="content-trickstips">
+    {{post.content_trickstips | safe }}
+  </div>
+{% endif %}
+
+{% if post.content_designdecisions %}
+  <h2>Design Decisions.</h2><hr>
+  <div id="content-design-decisions">
+    {{post.content_designdecisions | safe }}
+  </div>
+{% endif %}
+
+{% if post.content_furtherlearning %}
+  <h2>Further Learning.</h2><hr>
+  <div id="content-further-learning">
+    {{post.content_furtherlearning | safe }}
+  </div>
+{% endif %}
+
+{% if post.content_demo %}
+  <h2>Demo.</h2><hr>
+  <div id="content-demo">
+    {{post.content_demo | safe }}
+  </div>
+{% endif %}
+
+
+
+
+<hr>
+{% endblock%}
+
+
+
+
+
+{% block scripts %}
+  <script type="text/javascript" src="{{STATIC_URL}}js/marked.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/ace.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/mddeditor.js"></script>
+
+<script type="text/javascript">
+
+  $( document ).ready( function() {
+  // Markdown Editor part - ACE 
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/javascript");
+
+
+
+//editor.setValue("the new text here");
+
+        });
+
+
+
+      var search = $('.mdd-input-editor');
+      console.log('caching search')
+    search.keyup( function() {
+      console.time('keyup');console.log(encodeURIComponent( search .val()) );
+      
+    
+      //search.html('').load("{% url 'accounts:auth_login' %}q=" + encodeURIComponent( search .val()) );
+
+      console.timeEnd('keyup');
+    });
+
+
+
+
+
+
+    $('#mdd-save-button').click(function(){
+      console.log('clicked')
+             // $.post({
+   
+             //        url: "http://0.0.0.0:8080/home/tree/python/data-structures/hello-world",//q=" + encodeURIComponent('this is a test'),
+             //        csrfmiddlewaretoken: '{{ csrf_token }}'
+             //    });
+
+
+    
+
+
+    });
+
+
+
+
+  });
+</script> 
+
+
+
+
+<script>
+  $(document).ready(function(){
+
+  $('.likes').hover(function(){
+    $(this).removeClass('fa-meh-o').addClass('fa-smile-o');
+    $(this).parent().parent().find('input').attr("placeholder", "Like this!");
+    $(this).parent().parent().find('input').css('border-width', '0');
+    //$(this).parent().parent().find('input').css("border", "solid 3px #ccc;");
+
+    
+  },
+  function(){
+    $(this).removeClass('fa-smile-o').addClass('fa-meh-o');
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  }
+  );
+
+  $('.broken').hover(function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Report broken URL");
+    $(this).parent().parent().find('input').css('border-width', '0');
+  },
+  function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  });
+
+  $('.delete').hover(function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Delete this post!");
+    $(this).parent().parent().find('input').css('border-width', '0');
+  },
+  function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  });
+
+  $('.comments').hover(function(){
+    $(this).parent().parent().find('input').attr("placeholder", "View comments");
+    $(this).parent().parent().find('input').css('border-width', '0');
+  },
+  function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  });
+
+
+
+  $('[data-loading-text]').click(function () {
+    var btn = $(this)
+    btn.button('loading')
+    //$.ajax(...).always(function () {
+    //  btn.button('reset')
+    //});
+  });
+
+  $('.post-card-basic .actions .comments').click(function () {
+    console.log('fired',  $(this).parent().parent().find('.comments-list'));
+    $(this).parent().parent().find('.comments-list').toggleClass('active');
+  });
+
+
+
+
+
+  });
+
+
+
+
+
+
+</script>
+{% endblock %}
+
+
+

@@ -1,0 +1,349 @@
+{% load url from future %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-pjax-version" content="v123">
+        <title>{% block title %} {% endblock %} {{project_name}}</title>
+
+        <!-- Stylesheets ------------------------------------------------- -->
+        <link href="{{STATIC_URL}}/bootstrap-source/dist/css/bootstrap.css" rel="stylesheet"> 
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown2/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+        <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap/plugins/tocify/css/jquery.tocify.css" />
+        <link href="{{STATIC_URL}}css/slidemenu/stylesheets/slidemenu.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}css/font-awesome.css" rel="stylesheet">
+       <script type="text/javascript" src="http://typecast.com/project_css/kpCR697q6N/2041874a006ede.js"></script>
+       <!--<script type="text/javascript" src="http://typecast.com/project_css/kpCR697q6N/2047128db64391.js"></script>-->
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+        <!-- End of Stylesheets ------------------------------------------ -->
+
+
+
+    </head>
+    <body>
+    <!-- Modal Definition -->
+
+ <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<! --  block navbar -->
+
+<!-- Navigation -->
+<nav id="slide-menu">
+  <ul>
+    <li class="timeline">Timeline</li>
+    <li class="events">Events</li>
+    <li class="calendar">Calendar</li>
+    <li class="sep settings">Settings</li>
+    <li class="logout">Logout</li>
+  </ul>
+</nav>
+{% load navbar_tags %}
+
+
+
+
+
+<!-- Content panel -->
+<div id="content">
+
+<div id="top">
+    <div class="menu-trigger"></div>
+    <!--    <div class="navbar-header navbar-fixed-top">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+           <img id="logoimg" src="{{STATIC_URL}}logo_darkbrown_500_500.png" float="center" height="45" width="45" onhover="{{STATIC_URL}}logo_darkbrown_100_100.png" />
+          <div id="logotext" href="#">codewheel.io</div>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">what is codewheel.io?</a></li>
+            <li>            <button type="button" class="btn-outline">Register</button></li>
+      <li>   <button type="button" class="btn-small btn-warning">Login</button>
+</li>
+   
+          </ul>
+        </div>
+      </div>-->
+ <!-- <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     
+    </div>
+ <img src="{{STATIC_URL}}logo_red_500_500.png" float="center" height="50" width="50" onhover="{{STATIC_URL}}logo_darkbrown_100_100.png" />
+       
+        <a class="logoio">.io</a>
+ 
+
+        <a href="https://github.com/twbs/bootstrap" class="btn btn-underline btn-lg">What is codewheel.io?</a>
+               <input type="text" class="alert-danger form-control" placeholder="Real-Time Search">
+
+        <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg"> Developer Mode<div class="make-switch" data-on="success" data-off="danger" data-on-label="ON" >
+                <input type="checkbox" checked>
+            </div></a>
+  
+             <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg">Register</a>
+       <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg">Login</a>
+  </div>
+</header>-->
+
+
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+
+    <div class="row">
+        <div class="col-xs-6 col-md-4"></div>
+        <div class="col-xs-12 col-md-8"> 
+
+
+
+       <img src="{{STATIC_URL}}logo_red_500_500.png" float="center" height="50" width="50" onhover="{{STATIC_URL}}logo_darkbrown_100_100.png" />
+       
+        <a class="logoio">.io</a>
+ 
+
+        <a href="https://github.com/twbs/bootstrap" class="btn btn-underline btn-lg">What is codewheel.io?</a>
+               <input type="text" class="alert-danger form-control" placeholder="Real-Time Search">
+
+        <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg"> Developer Mode<div class="make-switch" data-on="success" data-off="danger" data-on-label="ON" >
+                <input type="checkbox" checked>
+            </div></a>
+  
+             <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg">Register</a>
+       <a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg">Login</a>
+
+                   <!--  <form role="search">
+                    <input type="text" class="alert-danger form-control" placeholder="Real-Time Search">
+        
+                </form>  
+  
+
+
+<div class="breaded">
+{% render_breadcrumbs "navbar.html" %}
+
+      
+    </div>
+<h1>Hello world</h1>
+
+<p class="titlehr">SUMMARY                                     <a>home / theory  / python / hello-world</a></p>
+
+
+       
+
+          <!-- MAIN CONTENT -->
+            {% block content %}{% endblock content %}
+            {% block extracontent %}{% endblock extracontent %}
+
+<hr>
+
+</div>
+
+
+
+<! -- endblock navbar --> 
+
+
+<! -- Menu Block - For Quick Page Navigation-- >
+
+
+<footer>
+    <p class='text-center'>COPYRIGHT © 2014. ALL RIGHTS RESERVED.</p>
+    <div class="row">
+        <div class="col-md-3 footercol">
+            <div><a class="text-center ">About</a></div>
+        </div>
+        <div class="col-md-3 footercol">
+            <div><a class="text-center ">FAQ</a></div>
+        </div>
+        <div class="col-md-3 footercol">
+            <div><a class="text-center ">Back to Top</a></div>
+        </div>
+        <div class="col-md-3 footercol">
+            <a class="text-center">Contact Us</a>
+        </div>
+    </div>
+</footer>
+        </div>
+    </div>
+      
+
+
+
+
+
+      
+        </div>
+    
+
+                                             
+
+                     <!-- <div id="toc"></div> -->
+                     <!--/.well -->
+      
+      </div>
+    </div> <!-- /container -->
+
+
+
+        <!-- Javascripts ------------------------------------------------- -->
+        <script src="{{STATIC_URL}}/js/jquery-2.0.3.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery.pjax.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery-ui.js"></script>
+        <script src="{{STATIC_URL}}/bootstrap-source/dist/js/bootstrap.js"></script>
+        <!--<script src="{{STATIC_URL}}/js/markdown.js"></script>-->
+        <!--<script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown2/js/bootstrap-markdown.js"></script>-->
+         <script src="{{STATIC_URL}}/js/jquery.cookie.js"></script>
+        <script src="{{STATIC_URL}}/js/csrf.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/tocify/js/jquery.tocify.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/js/bootstrap-switch.js"></script> 
+
+
+
+
+        <script>
+            $(function() {
+
+                var toc = $("#toc").tocify({
+                  selectors: "h2,h3,h4,h5"
+                }).data("toc-tocify");
+
+                $(".optionName").popover({ trigger: "hover" });
+
+            });
+        </script>
+             <script>
+$(document).ready(function(){
+    $("[data-toggle=tooltip]").tooltip({ placement: 'right'});
+    
+});
+
+
+
+$(document).ready(function(){
+
+    function showToggle(){
+
+ $("#userMen").slideToggle(10, function() { $('#userMenuCaret').toggleClass('fa-caret-up')});
+
+}
+
+
+   // $("[data-toggle=hideShowToggle]").showToggle();
+
+
+// $("#target-editor").markdown({  
+//     editable: true,
+//     savable: true,
+//     onSave: function(e) {
+//         console.log('onsave', e.getContent());
+//         $( "#mainSave" ).append('<input id="id_title" maxlength="255" name="title" type="text" value="'+ e.getContent() + '">');
+//         $( "#mainSave" ).submit();
+//         //e.hidePrevi();
+     
+//   }
+  
+// })
+
+
+    
+    
+});
+    
+
+
+
+    </script>
+
+
+
+        <script>
+
+/*
+  Slidemenu
+*/
+(function() {
+  var $body = document.body
+  , $menu_trigger = $body.getElementsByClassName('menu-trigger')[0];
+
+  if ( typeof $menu_trigger !== 'undefined' ) {
+    $menu_trigger.addEventListener('click', function() {
+      $body.className = ( $body.className == 'menu-active' )? '' : 'menu-active';
+    });
+  }
+
+}).call(this);
+
+
+
+  $('#loading-example-btn').click(function () {
+    var btn = $(this)
+    btn.button('loading')
+    //$.ajax(...).always(function () {
+    //  btn.button('reset')
+    //});
+  });
+
+          
+
+      $( document ).ready(function() {
+         $(".js-directory-link").attr("href", function(){ return $("tbody").data('url') + $(this).attr("href")})
+         $(document).pjax('a', '[data-pjax]')
+         console.log('ready')
+      });
+
+
+
+
+
+          $('#userSettings').click(function() 
+          {
+            //console.log('clicked')
+            //q = $('#q').val();
+            
+            $("#myModal").modal('toggle');
+          });
+
+
+
+
+        function toggleSettings(){
+            $("#myModal").modal('toggle');
+        }          
+
+
+            function toggleNavbar()
+            {
+                console.log('toggling NavBar')
+                $('.navbar').toggle()
+                $('.navbar').toggleClass("navbar-fixed-top navbar-static-top")
+                $('.navbar').toggle()
+                //$('#navbartoggle').html('poo')
+            }
+        </script>
+
+
+
+        <!-- End of Javascripts ------------------------------------------ -->
+    </body>
+</html>

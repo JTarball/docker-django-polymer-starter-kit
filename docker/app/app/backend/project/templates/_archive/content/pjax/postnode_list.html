@@ -1,0 +1,15 @@
+
+	<h1>Blog Posts - Welcome to my blog. </h1>
+  <ul>
+	{% for node in postnode_list %}
+		<li><a href="{{ node.slug }}">{{node.name}} {{node.description}} {{node.updated_at}}</a></li>
+		{% empty %}
+		{{no_post_msg}}
+	{% endfor %}
+
+	{% for post in post_list %}
+		<li><a href="{{ post.slug }}">{{post.title}}</a></li>
+	{% endfor %}
+  </ul>
+
+

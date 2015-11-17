@@ -1,0 +1,64 @@
+# 
+# redis-stat.yml
+# ==============
+#
+# Redis Stat YML Config
+# This is a simple YAML configuration file
+# Add New Stats here / Adjust RRD buckers
+
+
+BUCKETS:
+  rrd1:
+    - rows: tbd
+    - steps: tbd
+    - aggregration: tbd
+
+
+# List of known stats
+STATS:
+  user_logging:
+    - description: "fsjfshdfkjsahfd"
+    - method: "add"
+  stat2:
+    - description: "dsjljflkdjslkj flkdjsjfdlsjfdlsjl fd"
+
+
+
+
+
+
+
+stat:
+  restart: always
+  build: docker/app
+  env_file:
+    - env
+  volumes:
+    - ./docker/app/app:/app
+  ports:
+    - "8000:8000"
+    - "3000:3000"
+    - "3001:3001"
+  links:
+    - postgres:postgres
+    - redis:redis
+
+redis:
+  restart: always
+  image: redis:latest
+  ports:
+    - "6379:6379"
+
+data:
+  restart: always
+  image: postgres:latest
+  volumes:
+    - /var/lib/postgresql
+
+postgres:
+  restart: always
+  image: postgres:latest
+  volumes_from:
+    - data
+  ports:
+    - "5432:5432"

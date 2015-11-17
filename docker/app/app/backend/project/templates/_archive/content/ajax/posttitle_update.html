@@ -1,0 +1,46 @@
+  <ul>
+  {% for hide,postreply,post in posts %}
+    {% if hide %}
+      <li>
+    {% else %}
+      <li class="hide">
+    {% endif %}
+    <i class="{{ icon }}">{{post.date_ago}} <p>by Danvir</p></i>
+    <p class="truncate">{{post.comment}}   </p> 
+ 
+
+    <span class="badge pull-right">   
+      <i class="fa fa-chevron-right fa-2x"></i>
+      {% if postreply != 0 %}
+        {{postreply}}
+        <i class="fa fa-pencil fa-2x replies"></i>
+      {% endif %}
+    </span>
+
+    {% if editable %}
+    <!-- In Future Remove logic from this template -->
+    <div class="actions">
+      <a href="dfs" class="report">report</a>
+      <a href="dfs" class="reply">reply</a>
+      <a href="dfs" class="delete">delete</a>
+    </div>
+    {% endif %}
+
+
+    </li>
+
+
+    <!-- if post.length > 115 
+        <div href="#js-programmatic-api" class="bigclick"><a class="alert-link">...</a></div>
+     endif -->
+
+  {% endfor %}
+  <div class='loadmorebutton'><a class="btn btn-sm btn-inverse" data-loading-text="Loading...">{{ load_more_text }}</a></div>
+  
+  {% if input_placeholder %}
+    <hr>
+    <form><input placeholder="{{ input_placeholder }}" maxlength="250" name="{{ input_name }}" type="{{input_type}}"></form>
+  {% endif %}
+</ul>
+
+ <script type="text/javascript" src="{{STATIC_URL}}/js/apps/content/postextra_update.js"></script>

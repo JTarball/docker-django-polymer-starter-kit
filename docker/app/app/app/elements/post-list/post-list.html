@@ -1,0 +1,39 @@
+// post-list.html
+// Displays a list of posts
+<link rel="import" href="../django-ajax/django-ajax.html">
+<dom-module id="post-list">
+    /* Shadow DOM CSS Cheat Sheet */
+    /* http://robdodson.me/blog/2014/04/10/shadow-dom-css-cheat-sheet */
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <django-ajax result='{{posts}}' url="{{ getURL() }}"></django-ajax>
+        <ul id="list">
+            <template is="dom-repeat" items="{{posts}}">
+                <li>
+                  <div class="post">
+                        <post-detail slug="[[item.slug]]"></post-detail>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </template>
+
+    <script>
+        (function () {
+          Polymer({
+            is: 'post-list',
+            properties: {
+                posts: { type: Array, }
+            },
+            getURL: function(slug) { 
+                return 'http://192.168.99.100:8000/blog/';
+            },
+        });
+      })();
+    </script>
+</dom-module>

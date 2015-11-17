@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block title %}{{post.title}}{% endblock  %}
+
+
+{% block menu %}
+
+
+
+
+
+
+
+    <! -- tocify Bar !-- >
+    <div class="alert-sticky alertrt-info">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <div id="toc"></div> 
+    </div>
+    <! -- End of tocify Bar -- >
+{% endblock menu %}
+
+
+{% block content %}
+    <!--<h1> {{post.title}} </h1>-->
+    
+<!--
+
+    tooltip:
+            <button type="button" class="btn-small btn-warning" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-warning" ></i><i class="fa fa-bug" ></i> Add an Issue</button>
+-->
+
+<!--           <div class="page-header" style="margin-top: 5px;">
+
+
+            <!-- <h2 id="js-overview">Overview</h2>
+            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-warning" ></i><i class="fa fa-bug" ></i> Add an Issue</button>
+            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-warning" ></i><i class="fa fa-bug" ></i> Ask for Help</button>
+            <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+                  <a class="btn btn-primary btn-large" href="https://github.com/gfranko/jquery.tocify.js" target="_blank"><i class="fa fa-github" ></i> Fork on Github »</a>
+          </div> -->
+
+
+    <!--<h1> {{post.title}} </h1> -->
+        <div class="summary">
+
+          <div class="Grid-cell u-size3of4">
+            <div class="ProfileCanopy-nav">
+              
+  <div class="ProfileNav" role="navigation" data-user-id="185260477">
+    <ul class="ProfileNav-list">
+<li class="ProfileNav-item ProfileNav-item--tweets is-active">
+          <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav" data-nav="tweets" tabindex="0" data-original-title="5,673 Tweets">
+            <span class="ProfileNav-label">Updates</span>
+            <span class="ProfileNav-value" data-is-compact="false">5,673</span>
+          </a>
+        </li><li class="ProfileNav-item ProfileNav-item--media">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor" data-nav="media" href="/BarRefaeli/media" data-original-title="1,013 Photos/Videos">
+          <span class="ProfileNav-label">Dependencies</span>
+          <span class="ProfileNav-value" data-is-compact="false">1,013</span>
+        </a>
+      </li><li class="ProfileNav-item ProfileNav-item--following">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-openSignupDialog js-nonNavigable u-textUserColor" data-nav="following" href="/BarRefaeli/following" data-original-title="227 Following">
+          <span class="ProfileNav-label">Issues</span>
+          <span class="ProfileNav-value" data-is-compact="false">227</span>
+        </a>
+      </li><li class="ProfileNav-item ProfileNav-item--followers" data-more-item=".ProfileNav-dropdownItem--followers">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-openSignupDialog js-nonNavigable u-textUserColor" data-nav="followers" href="/BarRefaeli/followers" data-original-title="596,770 Followers">
+          <span class="ProfileNav-label">Troubleshooting</span>
+          <span class="ProfileNav-value" data-is-compact="true">597K</span>
+        </a>
+      </li><li class="ProfileNav-item ProfileNav-item--favorites" data-more-item=".ProfileNav-dropdownItem--favorites">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-openSignupDialog js-nonNavigable u-textUserColor" data-nav="favorites" href="/BarRefaeli/favorites" data-original-title="35 Favorites">
+          <span class="ProfileNav-label">Comments/Reviews</span>
+          <span class="ProfileNav-value" data-is-compact="false">35</span>
+        </a>
+      </li>
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="btn-small btn-warning"><i class="fa fa-warning fa-fw" ></i>Add an Issue</button>
+            <button type="button" class="btn-small btn-danger">Ask for Help</button>
+            <button type="button" class="btn-small btn-success"><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+         
+    </ul>
+  </div>
+
+
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+               <!--<h2 id="js-overview">Overview</h2>-->
+                           <!-- Nav tabs -->
+            <!--<ul class="nav nav-tabs">
+              <li class="active"><a href="#home" data-toggle="tab">Update History<span class="badge badge-updates">42</span></a></li>
+              <li><a href="#profile" data-toggle="tab">Prerequisites/Dependencies <span class="badge badge-dependencies">42</span></a></li>
+              <li><a href="#settings" data-toggle="tab">Issues <span class="badge badge-issues">42</span></a></li>
+              <li><a href="#settings" data-toggle="tab">Troubleshooting <span class="badge badge-troubleshooting">42</span></a></li>
+              <li><a href="#settings" data-toggle="tab">Comments/Reviews <span class="badge badge-comments">42</span></a></li>
+            </ul>-->
+  
+              
+              <ul class="summaryresults">
+
+              <li>Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+                      
+      <li>Holy guacamole!</strong> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+            <li> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+<div class='loadmorebutton'>
+            <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-default">
+  Load More ...
+</button>
+
+
+
+</div>
+            </ul>
+
+<!-- <hr> -->
+<!--  -->
+              <!--     <a class="btn btn-primary btn-large" href="https://github.com/gfranko/jquery.tocify.js" target="_blank"><i class="fa fa-github" ></i> Fork on Github »</a>
+ -->
+
+
+
+</div>
+<p class="titlehr">HELLO WORLD                                     <a>home / theory  / python / hello-world</a></p>
+
+          <h3 id="js-individual-compiled">Individual or compiled</h3>
+
+          auto scroll to miss looking at navigation bar
+
+          colours for numbers in badge
+
+<div data-provide="markdown-editable">
+ {{post.content | linebreaks}}
+</div>
+
+          {{post.content | linebreaks}}
+
+
+
+          <p>Plugins can be included individually (using Bootstrap's individual <code>*.js</code> files), or all at once (using <code>bootstrap.js</code> or the minified <code>bootstrap.min.js</code>).</p>
+
+            <div class="bs-callout bs-callout-danger">
+              <h4>Do not attempt to include both.</h4>
+              <p>Both <code>bootstrap.js</code> and <code>bootstrap.min.js</code> contain all plugins in a single file.</p>
+            </div>
+
+            <div class="bs-callout bs-callout-danger">
+              <h4>Plugin dependencies</h4>
+              <p>Some plugins and CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs. Also note that all plugins depend on jQuery (this means jQuery must be included <strong>before</strong> the plugin files). <a href="https://github.com/twbs/bootstrap/blob/v3.0.3/bower.json">Consult our <code>bower.json</code></a> to see which versions of jQuery are supported.</p>
+            </div>
+
+          <h2>Section 1</h2>
+          <h2>Section 2</h2>
+          <h3>Subsection a</h3>
+          <h3>Included CSS and HTML files</h3>
+          <h2>Section 3</h2>
+          <h2>Section 4</h2>
+          <h2>Section 5</h2>
+          <h2>Section 6</h2>
+          <h1>Section 7</h1>
+          <h1>Section 8</h1>
+
+
+{% endblock %}
+<hr>
+{% block extracontent %}
+<h2> Code Examples <span class="badge badge-code-examples">42</span></h2>
+<div class="gridbox"></div><div class="gridbox"></div><div class="gridbox"></div><div class="gridbox"></div><div class='loadmorebutton'>
+            <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-default">
+  Load More ...
+</button>
+
+
+
+</div>
+<hr>
+<h2> Design Decisions </h2>
+<hr>
+<h2> Further Learning </h2>
+{% endblock%}

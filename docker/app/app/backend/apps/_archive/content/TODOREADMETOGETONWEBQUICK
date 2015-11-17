@@ -1,0 +1,101 @@
+
+
+PRODUCTION READY LIST (numbering in arbitrary order)
+
+1.) Header
+----------------------------------
+
+- Buy a domain 
+- - - ---------------------- - - - 
+codewheel.io
+codedeveloper.io
+progammerlibrary.io
+programmerbrain.io
+codearchitect.io
+designcode.io
+codedesigner.io
+bicyclecode.io
+codebike.io
+codebicycle.io
+unicyclecode.io
+codecog.io
+flattirecode.io
+programmerswheel.io
+professionallyprogrammer.
+devwheel.io
+developerswheel.io
+wheelcode.io
+wheeldeveloper.io
+devwheel
+developerwheel
+codewheel
+bitwheel
+softwarewheel.io
+
+----------------------------------
+- Create logo and name for domain
+- add to header 
+- create navbar for header (About / Help ... / Get help on something )
+
+1b.) Footer
+-----------------------------------
+- tidy html and look of footer
+- create static pages for all links
+
+
+2.) Accounts App
+------------------------------------
+- - Need to be able to register/login
+- - settings page via sidebar
+- - settings (possibly modal) should be editable/savable
+
+
+
+3.) Content App
+-------------------------------------
+- If superuser editable with editor 
+- - compile latest release of editor with django (so can pull update easily?)
+
+- If logged in / superuser add to page 
+- - grid like pinterest (modal add link/image etc)
+- - loading (load more)
+
+- Fix tree nav link structure (the thing above the title)
+
+- Developer mode
+- - switch on -> page
+- - page is editable if logged in else see superadmin link for example
+
+- quick side navbar should be part of the fixed column with search etc.
+
+- Update History/ Dependencies / Issues / Tracking need to link to models.
+- - get loading working like grid.
+- - add functionality to buttons "Post a comment / Review", "Ask for help", "Add an Issue"
+
+
+3.) Search App
+-------------------------------------
+- Real time search 
+--  top 10 hits
+--  add to list via models 
+
+
+
+4.) Ready for Net
+-------------------------------------
+- Make homepage just a login and a welcome page
+- only superuser can enter
+- need a script to save database
+- test delete database and reload saved version 
+
+
+
+5.) Stats
+---------------------------------------
+- Homegrown stats or Google chrome
+
+
+
+6.) Start Using
+----------------------------------------
+- self explanatory -- use have interviews coming up

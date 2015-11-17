@@ -1,0 +1,37 @@
+
+
+<script type="text/javascript">
+
+  $( document ).ready( function() {
+      var search = $('#search');
+      console.log('caching search')
+    search.keyup( function() {
+      console.time('keyup')
+   
+      //search = $( '#search' ).val();
+      //$( '.results' ).get(search)
+      //var a = $.get('{% url ajax_search %}?q=' + encodeURIComponent( search ) )
+      //console.log(a)
+      search.html('').load('{% url ajax_search %}?q=' + encodeURIComponent( search .val()) );
+
+      console.timeEnd('keyup');
+    });
+  });
+</script> 
+
+<link rel="stylesheet" href="/static/redis_search/css/style.css" />
+<input id="search" type="search" placeholder="Search Questions in Real-Time from the app" autocomplete="off" />
+
+
+<table id="results" >
+</table>
+
+
+
+
+
+
+
+
+
+

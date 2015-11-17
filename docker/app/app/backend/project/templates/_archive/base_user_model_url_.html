@@ -1,0 +1,359 @@
+{% load url from future %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-pjax-version" content="v123">
+        <title>{% block title %} {% endblock %} {{project_name}}</title>
+
+        <!-- Stylesheets ------------------------------------------------- -->
+        <link href="{{STATIC_URL}}/bootstrap-source/dist/css/bootstrap.css" rel="stylesheet"> 
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown2/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+        <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap/plugins/tocify/css/jquery.tocify.css" />
+        <link href="{{STATIC_URL}}css/font-awesome.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+        <!-- End of Stylesheets ------------------------------------------ -->
+
+    </head>
+    <body>
+    <!-- Modal Definition -->
+
+ <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<! --  block navbar -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">CodeWheel.com</a>
+    </div>
+    <div >sdfsdf</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div >
+        {% load navbar_tags %} <!--   NECESSARY: this is from the content app (templatetags automatically have to take from app) Cant do it from project folder easily! --> 
+      
+                  
+
+
+    <ul class="nav navbar-nav navbar-right">
+
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<! -- endblock navbar --> 
+
+
+<! -- Menu Block - For Quick Page Navigation-- >
+
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+
+            {% if user.is_authenticated %}
+            <!--- Login -->
+            <div class="btn-group-vertical">
+       
+
+        
+
+
+           <button class="btn btn-default" href="#">
+                
+            <div class="form-group">
+                <form role="search">
+                    <input type="text" class="alert-danger form-control" placeholder="Real-Time Search">
+                <!--<input id="searchinput" type="text" class="alert-danger form-control" placeholder="Real-Time Search">-->
+                <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                </form>  
+            </div>
+
+            </button>
+
+           <button class="btn btn-success" href="#"><i class="fa fa-edit fa-small"></i> Developer Mode
+           
+                        <div class="make-switch" data-on="success" data-off="danger" data-on-label="ON" >
+                <input type="checkbox" checked>
+            </div>
+            </button>
+    
+
+                <button class="btn btn-primary" onclick="showToggle()" data-toggle="hideShowToggle" href="#"><i class="fa fa-user fa-fw"></i>{{ user.username }}</button>
+                <button class="btn btn-primary" onclick="showToggle()" data-toggle="hideShowToggle" href="#"><span id="userMenuCaret"class="fa fa-caret-down"></span></button>
+                <div class="btn-group-vertical" id="userMen">
+                <button class="btn btn-danger" href="#"><i class="fa fa-trash-o fa-lg"></i> Delete Post</button>
+                <button id="userSettings" class="btn btn-success"  href="#"><i class="fa fa-pencil fa-fw"></i> Edit</button>
+                <button id="userSettings" class="btn btn-default"  data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."> <i class="fa fa-cog" ></i> Settings</button>
+                <button class="btn btn-default" href="#"><i class="i"></i> Logout</button>
+            </div>
+                
+                
+
+
+
+
+
+
+
+              <!--   <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="fa fa-caret-down"></span>
+            
+
+             <ul class="dropdown-menu"> 
+                    <li><button class="btn btn-danger" href="#"><i class="fa fa-trash-o fa-lg"></i> Delete Post</button></li>
+                  <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+                  <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+                  <li><a href="#"><i class="fa fa-ban fa-fw"></i> Ban</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><i class="i"></i> Make admin</a></li>
+                  <li><a href="#"><i class="i"></i> Logout</a></li>
+                </ul>
+            </a>
+         -->
+
+         <!--        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="fa fa-caret-down"></span></a>
+                <ul class="dropdown-menu"> 
+                    <li><button class="btn btn-danger" href="#"><i class="fa fa-trash-o fa-lg"></i> Delete Post</button></li>
+                  <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+                  <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+                  <li><a href="#"><i class="fa fa-ban fa-fw"></i> Ban</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><i class="i"></i> Make admin</a></li>
+                  <li><a href="#"><i class="i"></i> Logout</a></li>
+                </ul> -->
+          
+  
+              <!--<button id="userSettings" class="btn btn-default"  data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."> <i class="fa fa-cog" ></i> Settings</button>-->
+              </div>
+              
+
+              <!-- End of Login -->
+              {% else %}
+                <div class="form-group">
+                  <div class="input-group margin-bottom-sm">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                    <input class="form-control" type="text" placeholder="Email address">
+                  </div>
+
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                    <input class="form-control" type="password" placeholder="Password">
+                  </div>
+                </div>
+                <div class="page-header"><h2 id="js-overview">Why Log In?</h2></div>
+                Not logged in
+              {% endif %}
+
+
+<!-- <div id="icon-wrapper">
+
+        <a href="feedback.html">
+          <div class="icons4">
+            <div class="icon-slide-container">
+              <img class="slide-icon"  alt="The Kite Map Logo" height="100" src="http://thekitemap.com/images/slide/feedback.jpg">
+              </div>
+            </div>
+          </a>
+    </div>
+<div id="icon-wrapper">
+
+        <a href="feedback.html">
+          <div class="icons4">
+            <div class="icon-slide-container">
+              <img class="slide-icon"  alt="The Kite Map Logo" height="100" src="http://thekitemap.com/images/slide/feedback.jpg">
+              </div>
+            </div>
+          </a>
+    </div>
+ -->
+
+
+            {% block menu %}{% endblock menu %}</div>
+        <div class="col-xs-12 col-md-8"> 
+
+             {% render_breadcrumbs "navbar.html" %}
+ <hr>
+          
+            {% block content %}{% endblock content %}
+            {% block extracontent %}{% endblock extracontent %}
+
+<hr>
+<footer>
+    <p class='text-center'>COPYRIGHT © 2014. ALL RIGHTS RESERVED.</p>
+    <div class="row">
+        <div class="col-md-3 footercol">
+            <div><a class="text-center ">About</a></div>
+        </div>
+        <div class="col-md-3 footercol">
+            <div><a class="text-center ">FAQ</a></div>
+        </div>
+        <div class="col-md-3 footercol">
+            <div><a class="text-center ">Back to Top</a></div>
+        </div>
+        <div class="col-md-3 footercol">
+            <a class="text-center">Contact Us</a>
+        </div>
+    </div>
+</footer>
+        </div>
+    </div>
+      
+
+
+
+
+
+      
+        </div>
+    
+
+                                             
+
+                     <!-- <div id="toc"></div> -->
+                     <!--/.well -->
+      
+      </div>
+    </div> <!-- /container -->
+
+
+
+        <!-- Javascripts ------------------------------------------------- -->
+        <script src="{{STATIC_URL}}/js/jquery-2.0.3.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery.pjax.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery-ui.js"></script>
+        <script src="{{STATIC_URL}}/bootstrap-source/dist/js/bootstrap.js"></script>
+        <!--<script src="{{STATIC_URL}}/js/markdown.js"></script>-->
+        <!--<script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown2/js/bootstrap-markdown.js"></script>-->
+         <script src="{{STATIC_URL}}/js/jquery.cookie.js"></script>
+        <script src="{{STATIC_URL}}/js/csrf.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/tocify/js/jquery.tocify.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/js/bootstrap-switch.js"></script> 
+
+
+
+
+        <script>
+            $(function() {
+
+                var toc = $("#toc").tocify({
+                  selectors: "h2,h3,h4,h5"
+                }).data("toc-tocify");
+
+                $(".optionName").popover({ trigger: "hover" });
+
+            });
+        </script>
+             <script>
+$(document).ready(function(){
+    $("[data-toggle=tooltip]").tooltip({ placement: 'right'});
+    
+});
+
+
+
+$(document).ready(function(){
+
+    function showToggle(){
+
+ $("#userMen").slideToggle(10, function() { $('#userMenuCaret').toggleClass('fa-caret-up')});
+
+}
+
+
+   // $("[data-toggle=hideShowToggle]").showToggle();
+
+
+// $("#target-editor").markdown({  
+//     editable: true,
+//     savable: true,
+//     onSave: function(e) {
+//         console.log('onsave', e.getContent());
+//         $( "#mainSave" ).append('<input id="id_title" maxlength="255" name="title" type="text" value="'+ e.getContent() + '">');
+//         $( "#mainSave" ).submit();
+//         //e.hidePrevi();
+     
+//   }
+  
+// })
+
+
+    
+    
+});
+    
+
+
+
+    </script>
+
+
+
+        <script>
+
+
+  $('#loading-example-btn').click(function () {
+    var btn = $(this)
+    btn.button('loading')
+    //$.ajax(...).always(function () {
+    //  btn.button('reset')
+    //});
+  });
+
+          
+
+      $( document ).ready(function() {
+         $(".js-directory-link").attr("href", function(){ return $("tbody").data('url') + $(this).attr("href")})
+         $(document).pjax('a', '[data-pjax]')
+         console.log('ready')
+      });
+
+
+
+
+
+          $('#userSettings').click(function() 
+          {
+            //console.log('clicked')
+            //q = $('#q').val();
+            //$('.modal-content').load("{% url 'accounts:update_user_modal' user.pk %}");
+            $("#myModal").modal('toggle');
+          });
+
+
+
+
+        function toggleSettings(){
+            $("#myModal").modal('toggle');
+        }          
+
+
+            function toggleNavbar()
+            {
+                console.log('toggling NavBar')
+                $('.navbar').toggle()
+                $('.navbar').toggleClass("navbar-fixed-top navbar-static-top")
+                $('.navbar').toggle()
+                //$('#navbartoggle').html('poo')
+            }
+        </script>
+
+
+
+        <!-- End of Javascripts ------------------------------------------ -->
+    </body>
+</html>

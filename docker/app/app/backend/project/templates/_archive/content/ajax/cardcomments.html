@@ -1,0 +1,47 @@
+{% for hide, comment in comments %}
+    <ul>
+      <hr>
+      {% if hide %}
+        <li class="hide">
+      {% else %}
+        <li>
+      {% endif %}
+      <a>{{comment.author}}:</a> <p class='truncate'>{{comment.comment}}<p>
+      </li>
+    </ul>
+
+{% endfor %}
+
+{% if load_more %}
+  <div class='loadmorebutton'>
+    <btn class="more" data-loading-text="Loading...">Load More Comments</btn>
+  </div>
+{% endif %}
+
+<form id="cardform-{{card.id}}">
+  <input placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+</form>
+
+<script type="text/javascript">
+  $('#cardform-{{card.id}} input').bind('keypress', function(e){
+    var code = e.keyCode || e.which;
+    if(code == 13) { //Enter keycode
+      e.preventDefault();
+      console.log('enter');
+      //  $.ajax({
+      //    type:"POST",
+      //    url:"{% url 'content:card_add_comment' slug=card.slug %}",
+      //    data: {'value': $(this)[0].value},
+      //});
+      $('#cardform-{{card.id}} .edit').load("{% url 'content:card_add_comment' slug=card.slug %}", {'value': $(this)[0].value});
+
+  }});
+
+
+  $('#cardform-{{card.id}} .loadmorebutton').click(function(){
+    console.log('click')
+    $('#cardform-{{card.id}} .edit li.hide:lt(10)').removeClass('hide');
+  })
+
+
+ </script>

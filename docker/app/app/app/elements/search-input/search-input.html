@@ -1,0 +1,187 @@
+// search-input.html
+// Search capability - input and results in realtime
+<link rel="import" href="../django-ajax/django-ajax.html">
+<dom-module id="search-input">
+    /* Shadow DOM CSS Cheat Sheet */
+    /* http://robdodson.me/blog/2014/04/10/shadow-dom-css-cheat-sheet */
+    <!--<style>
+        :host {
+            display: block;
+        }
+    </style>-->
+  <style is="custom-style">
+    .list {
+      display: none;
+      padding-top: 12px;
+      background-color: white;
+      width: 240px;
+      height: 228px;
+      margin: 12px;
+      @apply(--shadow-elevation-2dp);
+    }
+
+    .short {
+      padding-top: 12px;
+      height: 216px;
+    }
+
+    h4 {
+      margin-left: 24px;
+    }
+
+    .avatar {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ccc;
+    }
+    .show {
+        display: inline-block;
+    }
+    .blue {
+      background-color: var(--paper-light-blue-300);
+    }
+    .red {
+      background-color: var(--paper-red-300);
+    }
+    .orange {
+      background-color: var(--paper-amber-300);
+    }
+    .green {
+      background-color: var(--paper-green-300);
+    }
+    .dropdown-content {
+      /*display: block;*/
+      background-color: white;
+      line-height: 20px;
+      border-radius: 3px;
+      box-shadow: 0px 2px 6px #ccc;
+    }
+
+    [vertical-align="top"] ul {
+      margin-top: 0;
+    }
+
+    [vertical-align="bottom"] ul {
+      margin-bottom: 0;
+    }
+
+    li {
+      display: block;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      position: relative;
+      padding: 1em;
+      text-decoration: none;
+    }
+
+    li:not(:last-of-type) {
+      border-bottom: 1px solid #eee;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      border: 1px solid #ccc;
+      background-color: #eee;
+      padding: 1em;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:focus {
+      outline: none;
+      border-color: blue;
+    }
+
+    iron-image {
+      padding: 1em;
+      background-color: #fff;
+      box-shadow: 0px 2px 6px #ccc;
+      border-radius: 3px;
+    }
+  </style>
+
+    <template>
+        <django-ajax result='{{results}}' url="[[ getURL() ]]" params="[[ createParams(myValue) ]]" ></django-ajax>
+        <!-- Dropdown functionality -->
+        <x-select id="dropd" vertical-align="top" horizontal-align="left" focus-target="{{ focusTarget() }}">
+            <div id="search" class="dropdown-trigger">
+                <iron-icon icon="search"></iron-icon>
+                <input id="query" is="iron-input" value="{{myValue::input}}" placeholder="Search Website"> 
+            </div>
+            <div class="dropdown-content" tabindex="0">
+                <template is="dom-repeat" items="[[results]]">
+                    <paper-icon-item>
+                        <div class="avatar green" item-icon></div>
+                        <paper-item-body>
+                            <a href="[[ getSearchFrontEndURL(item) ]]">[[item]]</a>
+                        </paper-item-body>
+                    </paper-icon-item>
+                </template>
+            </div>
+        </x-select>
+    </template>
+
+    <script>
+        (function () {
+          Polymer({
+            is: 'search-input',
+            properties: {
+                show: {
+                  type: Boolean,
+                  observer: '_showChanged'
+                },
+                myval: { type: String, value: ' ', },
+                results: { type: Array, value: function() { return []; }, },
+            },
+
+            observers: [
+                'resultsAddedOrRemoved(results.*)'
+            ],
+
+            resultsAddedOrRemoved: function() {
+              if (this.results !== null) {
+                if (this.results.length > 0)
+                {
+                    this.$.dropd.open();
+                    this.show = true;
+                }
+                else
+                {
+                    this.show = false;
+                }
+                }
+            },
+            _showChanged: function(newValue, oldValue) {
+                this.toggleClass('show', newValue);
+            },
+            createParams: function(query) {
+              console.log('createParams, q:' + query);
+              return {
+                q: query,
+              }
+            },
+            getSearchFrontEndURL: function(query) { 
+                return '/search/' + query;
+            },
+            getURL: function() { 
+                return 'http://192.168.99.100:8000/search/autosuggest/';
+            },
+            focusTarget: function() {
+              return this.$.search;
+            },
+
+        });
+      })();
+    </script>
+</dom-module>

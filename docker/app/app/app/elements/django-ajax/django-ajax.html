@@ -1,0 +1,90 @@
+// Django Ajax Call 
+// Based of iron-ajax with some django specify modifications to 
+// support CORS
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="django-ajax">
+// debounce-duration="300"
+<template>
+    <django-ajax-spinner id="loading" loading="{{loading}}"></django-ajax-spinner>
+    <iron-ajax
+        auto
+        verbose
+        method="GET"
+        id="ajax" 
+        headers='{"X-Requested-With": "XMLHttpRequest", "Access-Control-Allow-Origin", "*"}' 
+        url="[[url]]" 
+        params="[[params]]" 
+        handle-as="json"
+        on-response="handleResponse"
+        on-request="handleRequest" 
+        on-error="handleError" 
+        last-response="{{result}}"
+
+        loading="{{loading}}"
+
+        timeout="3000"
+        debounce-duration="300"
+        >
+    </iron-ajax>
+</template>
+
+<script>
+    Polymer({
+        is: "django-ajax",
+        properties: {
+            result: { type: Array, notify: true, value: function() { return []; } },
+            url: { type: String, value: " " },
+            loading: { type: Boolean, notify: true },
+            params: { 
+                type: Object, 
+                value: function(){ return { 'q': '',}; },  // When initializing a property to an object or array value, use a function to ensure that each element gets its own copy of the value, rather than having an object or array shared across all instances of the element.
+                },
+        },
+        observers: [
+            'paramsChanged(params.*)'
+        ],
+        paramsChanged: function(params) {
+            if (params !== undefined) {
+                console.log('paramsChanged' + params.value.q);
+                this.params = params.value;
+                console.log(params.value);
+            }
+        },
+        ready: function () {
+            console.log('ready');
+            //this.$.ajax.url = "http://192.168.99.100:8000/blog/";
+            //this.$.ajax.params = {"userId":"1", "X-Requested-With":"XMLHttpRequest", "Access-Control-Allow-Headers": "X-Requested-With"};
+            //this.$.ajax.generateRequest();
+        },
+        handleResponse: function(request) {
+            console.warn('handleResponse   ' + this.loading);
+            console.log(this.url, this.$.ajax.activeRequests, this.$.ajax.lastRequest, this.$.ajax.lastResponse, this.$.ajax.loading, this.$.ajax.lastError);
+            console.log(request);
+
+            console.warn('result: ' + this.result);
+            if (!this.$.ajax.loading) {
+                    console.warn('NO SPINNING PLEASE');
+                    this.$.loading.loading = false;
+            }
+            //this.result = this.$.ajax.lastResponse;
+        },
+        handleLoading: function(request) {
+            console.warn('handleLoading');
+            if (!this.$.ajax.loading) {
+                    console.warn('NO SPINNING PLEASE');
+                    this.$.loading.loading = false;
+            }
+        },
+        handleRequest: function(request) {
+            console.warn('handleRequest, ' + this.url);
+            console.log(request);
+            //this.$.ajax.xhr.abort();
+            //this.result = this.$.ajax.lastResponse;
+        },
+        handleError: function() {
+            console.warn('handleError');
+        }
+    });
+</script>
+</dom-module>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title  %} Blog Posts - Welcome to my blog. {% endblock %}
+
+{% block content %}
+
+
+{% for lang in language_list %}
+sdsa
+  <table class="files" data-pjax="">
+    <tbody id='dirsrc'class="" data-url="{{ current_url }}">
+      <tr>
+        <td class="icon"><i class="fa fa-folder-o"></i></td>
+        <td class="content"><span class="css-truncate css-truncate-target"><a href="{{lang.slug}}/" class="js-directory-link" title="{{lang}}">{{lang}}</a></span>
+        </td>
+        <td class="message">
+          <span class="css-truncate css-truncate-target"><a href="/django/django/commit/8f7276b782e4e10f3e361f9d833f4e415e70bb28" class="message" data-pjax="true" title="Updated Transifex links to the Django project
+
+Translations for the Django framework are now hosted on the
+django-core Transifex project, and the django project is only
+dedicated to a team-only hub project.">Updated Transifex links to the Django project</a></span>
+        </td>
+        <td class="age"><span class="css-truncate css-truncate-target"><time class="js-relative-date" datetime="2013-04-25T01:35:51-07:00" title="2013-04-25 01:35:51">8 months ago</time></span></td>
+      </tr> 
+    </tbody>
+  </table>
+
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+-r base.txt
+tox
+ipython
+Werkzeug
+django_extensions
+django_dynamic_fixture
+django-debug-toolbar
+django_nose
+pytest-django
+pytest-xdist
+pytest-coverage
+nose-progressive
+responses>=0.4.0

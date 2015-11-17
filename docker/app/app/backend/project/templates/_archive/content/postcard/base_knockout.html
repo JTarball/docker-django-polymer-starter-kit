@@ -1,0 +1,38 @@
+
+
+<div class="preview-card" id="card-{{card.id}}">
+  <div class="image" data-slug="{{card.slug}}">
+    <img src="{{STATIC_URL}}/{{card.image}}" alt="{{card.slug}}" />
+  </div>
+  <div class="info">
+    <h4 text="{{card.title}}">{{card.title}}</h4>
+  </div>
+  <div class="actions">
+    <i class="fa fa-exclamation fa-2x broken"></i>
+    <i class="fa fa-pencil fa-2x comments"><span>{{card.comments_pretty}}</span></i>
+    <i class="fa fa-meh-o fa-2x likes" data-slug="{{card.slug}}"></i>
+    <i class="fa fa-times fa-2x delete" data-slug="{{card.slug}}"></i>
+  </div>
+  <div class="edit hide"></div>
+  <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span></span>
+    <i class="fa fa-eye fa-1x"></i><span data-bind="text: views"></span>
+    <i class="fa fa-smile-o fa-1x"></i><span data-bind="text: likes"></span>  </div>
+</div>
+<a href="#" data-bind="click: $parent.removeTask">Delete</a>
+
+
+
+<ul data-bind="foreach: cards, visible: cards().length > 0">
+    <li data-bind="visible: $index() < $parent.show_count()">
+        <!--<input type="checkbox" data-bind="checked: isDone" />-->
+        <!--<input data-bind="value: title, disable: isDone" />-->
+        <div class="stats">
+          <i class="fa fa-clock-o fa-1x"></i><span></span>
+          <i class="fa fa-eye fa-1x"></i><span data-bind="text: views"></span>
+          <i class="fa fa-smile-o fa-1x"></i><span data-bind="text: likes"></span>
+        </div>
+        <a href="#" data-bind="click: $parent.removeTask">Delete</a>
+    </li> 
+</ul>
+

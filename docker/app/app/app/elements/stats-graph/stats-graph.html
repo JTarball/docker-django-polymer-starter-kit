@@ -1,0 +1,33 @@
+// post-detail.html
+// Display a single post
+<link rel="import" href="../django-ajax/django-ajax.html">
+<dom-module id="stats-graph">
+/* Shadow DOM CSS Cheat Sheet */
+/* http://robdodson.me/blog/2014/04/10/shadow-dom-css-cheat-sheet */
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <django-ajax result='{{graph}}' url="http://192.168.99.100:8000/stats/graph/line/?series1=adas&series2=adas0&freq=15min&start=03-11-2015 09:30:00&end=03-11-2015 10:30:00&axisxtitle=sdfsfa&axisytitle=dsfkjhsd&showArea=true"">{{ evalAsJavascript(graph) }}</django-ajax>
+    </template>
+
+    <script>
+        (function () {
+          Polymer({
+            is: 'stats-graph',
+            properties: {
+                post: {
+                  type: Array,
+                  url: { type: String }
+                }
+            },
+            evalAsJavascript: function(content) { 
+                eval(content);
+            }
+        });
+      })();
+    </script>
+</dom-module>

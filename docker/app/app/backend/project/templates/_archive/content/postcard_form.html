@@ -1,0 +1,246 @@
+<!-- Use 4 Spaces as unreadable otherwises -->
+<!-- Use Post action to transfer main_post_id and next if errors -->
+<!-- Hidden inputs should be controlled by a modelform -->
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="maincolumn">
+    <div class='main'>
+        <section class="basic-page">
+            <h1 class="codewheel-font">Add Card Post</h1>
+            <hr>
+            <form action=".?next={{request.GET.next}}&main_post_id={{request.GET.main_post_id}}" method="post" role="form">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <!-- Hidden Fields --> <!-- Manually for now! -->
+                <div class="form-group">
+                    {# Include the hidden fields #}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% if form.errors %}
+                        <h3>Woah! There are some Errors: </h3>
+                        <ol>
+                            {% for error in form.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+
+                    <input id="id_success_url" name="success_url" type="hidden" value="{{request.GET.next}}">
+                    <input id="id_main_post" name="main_post" type="hidden" value="{{request.GET.main_post_id}}">
+                    <label class="form-field-errors">{{form.main_post.errors}}</label>
+                </div>
+                <!-- Title -->
+                <div class="form-group">
+                  <label for="{{form.title.id_for_label}}" class="form-field-help hide">{{form.title.help_text}}</label>
+                  <input type="text" id="{{form.title.id_for_label}}" class="form-control" name="{{form.title.html_name}}" placeholder="{{form.title.label}}" />
+                   <label class="form-field-extra">unchecked</label>
+                  <label class="form-field-errors">{{form.title.errors}}</label>
+                </div>
+                <!-- End of Title -->
+                <!-- HREF switch -->
+                <div class="form-group">
+                    <div id="switch-externalhref"class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-success active">
+                        <input type="radio" name="options" id="id_is_externalhref" value="False">Internal
+                    </label>
+                    <label class="btn btn-success">
+                      <input type="radio" name="options" id="id_is_externalhref" value="True">External Link
+                    </label>
+                    <label class="form-field-help hide">{{form.is_externalhref.help_text}}</label>
+
+                    <label class="form-field-errors">{{form.is_externalhref.errors}}</label>
+                    </div>
+                </div>
+                <!-- End of HREF switch -->
+                <!-- Internal link -->
+                <div id="internalweb-form">
+                    <div class="form-group">
+                        <label for="{{form.content.id_for_label}}" class="form-field-help hide">{{form.content.help_text}}</label>
+                        <textarea placeholder="Add Code or Content..." name="{{form.content.html_name}}" class="form-control" ></textarea>
+                        <label class="form-field-errors">{{form.content.errors}}</label>
+                    </div>
+                </div>
+                <!-- End of Internal Link -->
+                <!-- External Link -->
+                <div id="externalweb-form" class="hide">
+                    <div class="form-group">
+                        <input type="text" id="{{form.href.id_for_label}}" class="form-control" name="{{form.href.html_name}}" placeholder="{{form.href.label}}">
+                        <label for="{{form.href.id_for_label}}" class="form-field-help hide">{{form.href.help_text}}</label>
+                        <label class="form-field-extra">unchecked</label>
+                        <label class="form-field-errors">{{form.href.errors}}</label>
+                    </div>
+                </div>
+                <!-- End of External Link -->
+                <! -- End of Non-Hidden Fields -->
+                <!-- Submit! -->
+                <input class="btn btn-lg btn-info" type="submit" value="{% trans 'Submit' %}" />
+                <hr>
+            </form>
+
+            <!--<span data-bind="text: stringValue"></span>
+  
+            <input data-bind='value: stringValue, valueUpdate: "afterkeydown"' />-->
+
+
+<span data-bind="text:status,css:status">ddd</span>
+<img src="http://0.0.0.0:8080/home/actions/card/create/dsadasdas" width="500px" height="500px" >askdl</im>
+
+
+
+
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    // Enable TextArea wideArea for Internal Code
+    wideArea('#internalweb-form')
+
+    // Find all inputs and display help text when focus'd
+    $('.form-group input,textarea').each(function(){
+        $(this).focusin(function(){
+            $(this).parent().find('label.form-field-help').removeClass('hide');
+        }
+        );
+        $(this).focusout(function(){
+            $(this).parent().find('label.form-field-help').addClass('hide');
+        }
+        );
+    });
+
+    // Switch Between External Link Forms and Internal
+    $("#switch-externalhref").click(function () {
+        console.log('switch fired', $(this).find('.active').find('input')[0].value)
+        if ($(this).find('.active').find('input')[0].value == "False")
+        {
+          console.log('remvoejs')
+          $('#externalweb-form').removeClass('hide');
+          $('#internalweb-form').addClass('hide');
+
+      }
+      else
+      {
+          $('#internalweb-form').removeClass('hide');
+          $('#externalweb-form').addClass('hide');
+      }
+  });
+
+
+
+
+    $("#codeexample-title").click(function () {
+        $('.username-errors').html("Add Title for Code Example.");
+    });
+    $("#codeexample-href").click(function () {
+        $('.username-errors').html("Add Link for External Page.");
+    });
+
+    $("#codeexample-href").bind('keypress', function(e){
+      //e.preventDefault();
+      var code = e.keyCode || e.which;
+      console.log(e.keyCode)
+
+
+      //if(code == 13) { //Enter keycode
+      //       e.preventDefault();
+      
+      //       console.log($(this)[0].value)
+      //       $.ajax({
+      //         type:"POST",
+      //         
+      //         data: {'slug': '{{post.slug}}', 'value': $(this)[0].value},
+      //         success: function(){
+      //           $('#message').html("<h2>Contact Form Submitted!</h2>") 
+      //         }
+      //       });
+});
+
+    $("#reg-email").click(function () {
+        $('.email-errors').html('What’s your email address?');
+    });
+
+    $("#reg-password1").click(function () {
+        $('.password1-errors').html('Please enter a password');
+    });
+
+    $("#reg-password2").click(function () {
+        $('.password2-errors').html('Re-type password please');
+    });
+
+
+
+
+
+
+});
+</script>
+
+<script type="text/javascript">
+
+
+var viewModel = {
+    stringValue: ko.observable("Hello")
+};
+//ko.applyBindings(viewModel);
+
+
+
+
+
+
+
+function ping(ip, callback) {
+
+    if (!this.inUse) {
+        this.status = 'unchecked';
+        this.inUse = true;
+        this.callback = callback;
+        this.ip = ip;
+        var _that = this;
+        this.img = new Image();
+        this.img.onload = function () {
+            _that.inUse = false;
+            console.log('responded');
+            _that.callback('responded');
+
+        };
+        this.img.onerror = function (e) {
+            if (_that.inUse) {
+                _that.inUse = false;
+                _that.callback('responded', e);
+            }
+
+        };
+        this.start = new Date().getTime();
+        this.img.src = "http://" + ip;
+        this.timer = setTimeout(function () {
+            if (_that.inUse) {
+                _that.inUse = false;
+                _that.callback('timeout');
+            }
+        }, 1500);
+    }
+}
+
+
+var s = {
+    name: '0.0.0.0:8080/home/actions/card/create/dsadasdas',
+    status: ko.observable("unchecked")
+};
+
+
+
+
+  var koModel = new ping(s.name, function(status, e){s.status(status)});
+
+  ko.applyBindings(koModel);
+
+
+</script>
+{% endblock %}

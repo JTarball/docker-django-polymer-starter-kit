@@ -1,0 +1,126 @@
+<!-- Start of Modal Content -->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h4 class="modal-title" id="myModalLabel">User Settings - <a style="text-decoration:none; color:blue;">Personalise!</a></h4> 
+</div>
+<div class="modal-body">
+  <form id="testpoo" role="form" method="post">
+    <div class="form-group">
+      <div style="width:50%;">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{ form.email.value }}"><label id="email-error" ></label>
+      <p class="form-control-static">email@example.com</p>
+      </div>
+    </div>
+    
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+
+    <div class="form-group">
+      <div style="width:50%;">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{ form.email.value }}">
+      <p id="email-error" class="form-control-static">email@example.com</p>
+      <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+
+    username
+    first_name
+    last_name
+    is_subscribed
+
+    <input id="#testsu" type="submit" value="Go" />{% csrf_token %}
+    <button type="button submit" id="userSettingsSave" class="btn btn-primary">Save changes</button>
+  </form>
+    {% comment %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    {% endcomment %}
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  
+</div>
+         <script src="{{STATIC_URL}}/js/jquery.cookie.js"></script>
+        <script src="{{STATIC_URL}}/js/csrf.js"></script>
+<script>
+
+ $("#testpoo").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+         type:"POST",
+         url:"{% url 'accounts:update_user_modal' user.pk %}",
+         data: {
+                'form': $('#testpoo').val(), // from form
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+         success: function(data){
+             $('.modal-footer').html("<h2>Contact Form Submitted!</h2>") 
+             console.log(data)
+         },
+         error: function(data){
+                       $('.modal-footer').html("<h2>Contact Form Error!</h2>") 
+             //console.log(data)
+         },
+           statusCode: {
+    400: function(data) {
+        $('#email-error').html(data.responseJSON.email)
+
+      for (a=0; a<data.responseJSON.length; ++a)
+      {
+        console.log(a)
+      }
+    }
+  }
+    });
+    return false;
+});
+
+
+// $(document).ready(function() {
+//        $("#testsu").submit(function(event){
+//             event.preventDefault(); // disable default action 
+//             $.ajax({
+//                  type:"POST",
+//                  url:"{% url 'accounts:update_user_modal' user.pk %}",
+//                  data: {
+//                         'form': $('#testsu').val() // from form
+//                         },
+//                  success: function(){
+//                      $('.modal-footer').html("<h2>Contact Form Submitted!</h2>") 
+//                  }
+//             });
+//             return false; //<---- move it here
+//        });
+
+// });
+
+
+          $('#userSettingsSave').click(function() 
+          {
+            console.log('sdfsfsd')
+          $.post( "{% url 'accounts:update_user_modal' user.pk %}", function( data ) {
+            console.log(data)
+          });
+          });
+
+</script>
+<! -- End of Modal Content -->

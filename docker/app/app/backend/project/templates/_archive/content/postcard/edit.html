@@ -1,0 +1,53 @@
+<ul>
+  <hr>
+  {% for show, comment in comments %}
+    {% if show %}
+        <li class="hide">
+    {% else %}
+        <li>
+    {% endif %}
+    <a>{{comment.author}}:</a> <p class='truncate'>{{comment.comment}}<p>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if load_more %}
+    <div class='loadmorebutton'>
+        <btn class="more" data-loading-text="Loading...">Load More Comments</btn>
+    </div>
+{% endif %}
+
+<form id="cardform-{{card.id}}">
+    <input placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+</form>
+
+<script type="text/javascript">
+  $('#cardform-{{card.id}} input').bind('keypress', function(e){
+    var code = e.keyCode || e.which;
+    if(code == 13) { //Enter keycode
+      e.preventDefault();
+      console.log('enter', {{card.id}}, $(this)[0].value);
+      //  $.ajax({
+      //    type:"POST",
+      //    url:"{% url 'content:card_add_comment' slug=card.slug %}",
+      //    data: {'value': $(this)[0].value},
+      //});
+      $('#card-{{card.id}}').load("{% url 'content:card_add_comment' slug=card.slug %}", {'value': $(this)[0].value});
+
+  }});
+
+
+  $('#card-{{card.id}} .loadmorebutton').click(function(){
+    console.log('click')
+    $('#card-{{card.id}} .edit li.hide:lt(10)').removeClass('hide')
+  })
+   //    $('[data-loading-text]').click(function () {
+   //      var btn = $(this)
+   //      btn.button('loading')
+   // .always(function () {
+   //    btn.button('reset')
+   //  });
+   //    });
+
+
+ </script>

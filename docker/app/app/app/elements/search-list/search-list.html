@@ -1,0 +1,54 @@
+// search-list.html
+// Displays a list of posts from a specific tag
+<link rel="import" href="../django-ajax/django-ajax.html">
+<dom-module id="search-list">
+    /* Shadow DOM CSS Cheat Sheet */
+    /* http://robdodson.me/blog/2014/04/10/shadow-dom-css-cheat-sheet */
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <django-ajax result='{{posts}}' url="{{ getURLSearch() }}" params="[[ createParams(query) ]]"></django-ajax>
+        <ul id="list">
+            <template is="dom-repeat" items="{{posts}}">
+                <li>
+                  <div class="post">
+                        <post-detail slug="[[item.slug]]"></post-detail>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </template>
+
+    <script>
+        (function () {
+          Polymer({
+            is: 'search-list',
+            properties: {
+                query: { type: String, notify: true},
+                posts: { type: Array, }
+            },
+            getURLSearch: function() { 
+                return 'http://192.168.99.100:8000/search/results/';
+            },
+            createParams: function(query) {
+              console.log('createParams, q:' + query);
+              return {
+                q: query,
+              }
+            },
+            attached: function() {
+                console.log(this.query + '#' + ' was attached');
+            },
+              queryChanged: function(name, type) {
+    console.log(this.localName + '#' + this.id + ' attribute ' + name +
+      ' was changed to ' + this.getAttribute(name));
+  },
+
+        });
+      })();
+    </script>
+</dom-module>

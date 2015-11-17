@@ -1,0 +1,1366 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block title %}{{post.title}}{% endblock  %}
+
+<!--
+    {% load pygmentify %}
+    {% pygment %}
+    <pre lang="html">
+
+
+
+  <a class="btn  btn-lg btn-info">Add a Code Example</a>
+
+<div class="grid">
+    </pre>
+    {% endpygment %}
+
+-->
+
+
+
+
+
+
+{% block content %}
+
+
+
+  {# if request.user.is_superuser #}
+    <!--<div class="maincolumn-editor"><div class='main-editor'>-->
+  {# else #}
+    <div class="maincolumn"><div class='main'>
+  {# endif #}
+
+  {% load navbar_tags %}
+
+ <!--
+    <div class="summary-section">
+      <div class="two-section-left">
+      
+            <video id="archive-video" class="video" poster="experiment4.jpg" preload="auto" loop="">>
+              <source src="{{STATIC_URL}}experiment4.mp4" type="video/mp4" />
+              <source src="{{STATIC_URL}}experiment4.ogv" type="video/ogg" />  
+              <img src=""></img>
+            </video>
+  
+
+
+      </div>
+      <div class="two-section-right">
+        <button type="button" class="btn btn-sm btn-warning btn-compact"><i class="fa fa-warning fa-fw" ></i>Add an Issue</button>
+        <button type="button" class="btn btn-sm btn-danger btn-compact">Ask for Help</button>
+        <button type="button" class="btn btn-sm btn-success btn-compact"><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+        <h3>{{post.title }}.</h3>
+          <p>We redesigned the inbox to make email light, fast, and mobile-friendly. Quickly swipe messages to your archive or trash and scan entire conversations in a chat-like view. It's a whole new&nbsp;inbox.</p>
+          <a class="button-read" href="#st-post-title">Read More</a>
+          <p class="button-note">includes Code Examples, Source Code, Demo for iPhone, iPad, Android and OSX coming soon!</p>
+      
+
+
+      </div>
+    </div>
+-->
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+<button data-bind="click: function(){masterVM.Poopy(true)}">Show</button>
+
+<section class="section-title" id="st-post-title">
+  <div class="breaded"> {% render_breadcrumbs "navbar.html" %}</div>
+  <hr>
+  <!--<h2>{{post.title }}.</h2>-->
+  <ul>
+     <li id='clickUpdateTest' class="underline updates active" data-sumtitle="updates"><i class="fa fa-clock-o fa-1x"> </i>5,673<p>Updates</p></li>
+     <li class="underline dependencies" data-sumtitle="dependencies"><i class="fa fa-share-alt fa-1x"></i>5,673<p>Dependencies</p></li>
+     <li class="underline issues" data-sumtitle="issues"><i class="fa fa-warning fa-1x"></i>5,673<p>Issues</p></li>
+     <li class="underline troubleshooting" data-sumtitle="troubleshooting"><i class="fa fa-life-saver fa-1x"></i>5,673<p>Troubleshooting</p></li>
+     <li class="underline comments" data-sumtitle="comments"><i class="fa fa-pencil fa-1x"></i>5,673<p>Comments/Reviews</p></li>
+  </ul>
+</section>
+
+<section class="section-list" data-type="updates" data-bind="with: masterVM.vm_gencomments">
+    <!--<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->
+    <h3 data-bind="fadeVisible: useful_info">Updates</h3>
+    <ul data-bind="foreach: filterItems">
+        <li data-bind="visible: $index() < $parent.show_count()">
+          <div class="box">
+            <i class="fa fa-clock-o fa-2x" data-bind="timeAgoByAuthor: { date: created_at, author: author }"></i>
+            <p class="truncate" data-bind="text: comment"></p> 
+            <span class="badge pull-right">   
+                <i class="fa fa-pencil fa-2x replies" data-bind="text: replies().length, visible: visibleReplies() "></i>
+                <i class="fa fa-chevron-right fa-2x"></i>
+            </span>
+          </div>
+            <div class="actions">
+              {% if request.user.is_staff %}
+                <a class="edit" data-bind="staffClick: $parent.report">edit</a>
+                <a class="delete" data-bind="staffClick: $parent.report">delete</a>
+              {% endif %}
+              <a class="report" data-bind="loginClick: $parent.report">report</a>
+              <a href="dfs" class="reply" data-bind="loginClick: $parent.report">reply</a>
+            </div>
+        </li>
+    </ul>
+    <div  class='loadmorebutton'><a class="btn btn-sm btn-inverse" data-bind="text: load_more_text, click: incrementShowCount"></a></div>
+  
+      {% if input_placeholder %}
+        <hr>
+        <form><input placeholder="{{ input_placeholder }}" maxlength="250" name="{{ input_name }}" type="{{input_type}}"></form>
+      {% endif %}
+    </ul>
+</section>
+
+
+
+
+<hr>
+
+<!--
+  <article class="hero-section device-section feature-section section">
+    <div class="left section-image">
+  
+      <video id="archive-video" class="video" poster="experiment.jpg" preload="auto" loop="" height="455" width="255">
+            <source src="{{STATIC_URL}}experiment.mp4" type="video/mp4" />
+            <source src="{{STATIC_URL}}experiment.ogv" type="video/ogg" />  
+      </video>
+
+
+        <div class='post-summary'>
+
+          <div class='post-summary-sidecol'>
+            <ul>
+               <li class="btn btn-xs btn-underline underline"><i class="fa fa-clock-o fa-2x"> </i>5,673<p>Updates</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-share-alt fa-2x"></i>5,673<p>Dependencies</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-warning fa-2x"></i>5,673<p>Issues</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-life-saver fa-2x"></i>5,673<p>Troubleshooting</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-pencil fa-2x"></i>5,673<p>Comments/Reviews</p></li>
+            </ul>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="section-content">
+      <div class="inner">
+        <img class="section-icon" src="/assets/images/logo-icon.svg">
+     
+                      <button type="button" class="btn btn-sm btn-warning btn-compact"><i class="fa fa-warning fa-fw" ></i>Add an Issue</button>
+              <button type="button" class="btn btn-sm btn-danger btn-compact">Ask for Help</button>
+              <button type="button" class="btn btn-sm btn-success btn-compact"><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+        <h3 class="section-headline">{{post.title }}.</h3>
+        <p class="section-copy">We redesigned the inbox to make email light, fast, and mobile-friendly. Quickly swipe messages to your archive or trash and scan entire conversations in a chat-like view. It's a whole new&nbsp;inbox.</p>
+
+        <div class="download-button-wrapper">
+          <a id="download-button" class="download-button button" href="#download">Read More</a>
+          <p class="button-note">includes Code Examples, Source Code, Demo for iPhone, iPad, Android and OSX coming soon!</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+
+
+        <div class='post-summary'>
+          <div class='post-summary-sidecol'>
+            <ul>
+               <li class="btn btn-xs btn-underline underline"><i class="fa fa-clock-o fa-2x"> </i>5,673<p>Updates</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-share-alt fa-2x"></i>5,673<p>Dependencies</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-warning fa-2x"></i>5,673<p>Issues</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-life-saver fa-2x"></i>5,673<p>Troubleshooting</p></li>
+               <li class="btn btn-xs btn-underline"><i class="fa fa-pencil fa-2x"></i>5,673<p>Comments/Reviews</p></li>
+            </ul>
+          </div>
+          <div class='post-summary-infocol'>
+            <h2>{{post.title }}.            </h2>
+            <ul>
+              <li>Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+              <li>Holy guacamole! Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+              <li> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+              <li>Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+              <li>Holy guacamole! Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+            </ul>
+          </div>
+        </div>
+
+
+     
+
+
+
+  -->
+       {% load editor_tags %}
+
+
+
+<section id="content-main">
+  {{post.content | editor_render | safe}}
+</section>
+
+
+       {% if post.content_codeexamples %}
+          
+<!--<ul data-bind="foreach: cards, visible: cards().length > 0">
+    <li data-bind="visible: $index() < $parent.show_count()">
+        <!--<input type="checkbox" data-bind="checked: isDone" />-->
+        <!--<input data-bind="value: title, disable: isDone" />--><!--
+        <div class="stats">
+          <i class="fa fa-clock-o fa-1x"></i><span></span>
+          <i class="fa fa-eye fa-1x"></i><span data-bind="text: views"></span>
+          <i class="fa fa-smile-o fa-1x"></i><span data-bind="text: likes"></span>
+        </div>
+        <a href="#" data-bind="click: $parent.removeTask">Delete</a>
+    </li> 
+</ul>
+<button data-bind="click: incrementShowCount">show more</button>-->
+
+
+
+
+
+
+
+
+
+          <section id="content-code-examples" data-bind="with: masterVM.vm_cards">
+            <h2>Code Examples.</h2><hr>
+            <a id="addcodeexample" class="btn  btn-lg btn-info" href="{% url 'content:card_create' slug=post.slug %}?next={{request.path}}&main_post_id={{post.id}}">Add a Code Example</a>
+            {{post.content_codeexamples | editor_render | safe}}
+            <div class="grid" data-bind="foreach: cards, visible: cards().length > 0">
+              <div class="preview-card" data-bind="visible: $index() < $parent.show_count()">
+                <div class="image" data-slug="{{card.slug}}">
+                  <a data-bind="href: image_href"><img data-bind="src: {{STATIC_URL}} + image()" /></a>
+                </div>
+                <div class="info">
+                  <h4 data-bind="text: info_label"></h4>
+                </div>
+                <div class="actions">
+                  <i class="fa fa-exclamation fa-2x broken" data-bind="event: {mouseover: changeLabel.bind($data, 'Report broken URL')}"></i>
+                  <i class="fa fa-pencil fa-2x comments" data-bind="event: {mouseover: changeLabel.bind($data, 'Add or View Comments')}, toggle: hideComments"><span ></span></i>
+                  <i class="fa fa-meh-o fa-2x likes" data-bind="css: { 'fa-meh-o': !likeHover(), 'fa-smile-o': likeHover() }, event: { mouseover: hoverLike.bind($data, 'Like this!') }"></i>
+                  <i class="fa fa-times fa-2x delete" data-bind="click: $parent.removeCard, event: {mouseover: changeLabel.bind($data, 'Delete this post!')}"></i>
+                </div>
+                <div class="edit" data-bind="hidden: hideComments">
+                  <ul data-bind="foreach: comments, visible: comments().length > 0">
+                    <hr>
+                    <pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
+
+                    
+                  </ul>
+                  <button data-bind="click: $parent.incrementShowCnt">show more</button>
+                </div>
+                <div class="stats">
+                  <i class="fa fa-clock-o fa-1x"></i><span data-bind="text: updated_at"></span>
+                  <i class="fa fa-eye fa-1x"></i><span data-bind="text: views"></span>
+                  <i class="fa fa-smile-o fa-1x"></i><span data-bind="text: likes"></span>  </div>
+              </div>
+              
+            </div>
+            
+            <button data-bind="click: incrementShowCount">show more</button>
+
+
+
+
+
+            <!--<div class="grid">
+
+              {% for comment, like, card in cards %}
+                {% include "content/postcard/base.html" with card=card %}
+
+                <script>
+                  // Broken
+                    $('#card-{{card.id}}').find('.actions .broken').click(
+                        function(event)
+                        {
+                            event.preventDefault();
+                            $.ajax({
+                            type: "POST",
+                            url: "{% url 'content:card_broken' slug=card.slug %}",
+                            success: function(msg){
+                                $('#card-{{card.id}}').find('.info h4').html('<p>Broken Link Flagged. Thanks.</p>');
+                                }
+                            });
+                        }
+                    ); 
+
+                  // Delete
+                    $('#card-{{card.id}}').find('.actions .delete').click(
+                        function(event)
+                        {
+                            event.preventDefault();
+                            $('#card-{{card.id}}').find('.stats').load(
+                                "{% url 'content:card_delete' slug=card.slug %}", 
+                                {}, 
+                                function( response, status, xhr ) 
+                                {
+                                    //if ( status == "success" ) { $('#card-{{card.id}}').remove(); }
+                                }
+                            );
+                        }
+                    ); 
+                    
+                 
+                  // Likes
+                  $('#card-{{card.id}}').find('.actions .likes').click(function(event){
+                    event.preventDefault();
+                    $('#card-{{card.id}}').find('.stats').load("{% url 'content:card_add_like' slug=card.slug %}", 
+                      {}, 
+                      function( response, status, xhr ) 
+                      {
+                        console.log(response, status, xhr);
+                        if ( status == "notmodified" ) 
+                        {
+                          $('#card-{{card.id}} .info h4').html('<p class="fail">Liked Already.<p>')
+                        }
+                      }
+                      );
+                  });
+                  // Clicks
+                  $('#card-{{card.id}}').find('.image').click(function(event){
+                    event.preventDefault();
+                    $('#card-{{card.id}}').find('.stats').load("{% url 'content:card_add_click' slug=card.slug %}", {});
+                  });
+
+                  $('#card-{{card.id}}').find('.comments').click(function(event){
+                    event.preventDefault();
+                    $('#card-{{card.id}}').find('.edit').toggleClass('hide');
+                    $('#card-{{card.id}}').find('.edit').load("{% url 'content:card_comments' slug=card.slug %}", 
+                      function( response, status, xhr ) 
+                      {
+                        console.log(response, status, xhr);
+                        if ( status == "success" ) 
+                        {
+                            $('#card-{{card.id}}').find('.comments').toggleClass('active');
+                        }
+                      }
+                    );
+                    
+                  });
+
+
+                  //$('#addcodeexample').
+
+
+                </script>
+
+              {% endfor %}
+-->
+
+
+               
+
+
+
+          </section>
+       {% endif %}
+
+        {% if post.content_gotchas %}
+          <h2>Gotchas.</h2><hr>
+          <div id="content-gotchas">
+            {{post.content_gotchas | editor_render | safe}}
+          </div>
+        {% endif %}
+
+        {% if post.content_trickstips %}
+          <h2>Tricks and Tips.</h2><hr>
+          <div id="content-tricks-tips">
+            {{post.content_trickstips | editor_render | safe}}
+          </div>
+        {% endif %}
+
+        {% if post.content_designdecisions %}
+          <h2>Design Decisions.<a class="btn  btn-lg btn-info">Add to Design Decisions</a></h2><hr>
+          <div id="content-design-decisions">
+            {{post.content_designdecisions | editor_render | safe}}
+          </div>
+        {% endif %}
+
+        {% if post.content_furtherlearning %}
+          <h2>Further Learning.<a class="btn  btn-lg btn-info">Add to Further Learning</a></h2><hr>
+          <div id="content-further-learning">
+            {{post.content_furtherlearning | editor_render | safe}}
+          </div>
+        {% endif %}
+
+        {% if post.content_demo %}
+          <h2>Demo.<a class="btn  btn-lg btn-info">Add Demo</a></h2><hr>
+          <div id="content-demo">
+            {{post.content_demo | editor_render | safe}}
+          </div>
+        {% endif %}
+        <hr> <!-- To give a bit of room at bottom-->
+
+    </div>
+    </div>
+      {# if request.user.is_superuser #}
+        <!--<div class='editorcolumn'>
+          {% load editor_tags %}
+          <h1 class="codewheel-font">Editor Mode.</h1>
+          <hr>
+          # have to use paper_hidden for some reason #
+          <div id="app_wrap"><div id="paper_hidden"></div></div>
+        </div>-->
+      {# endif #}
+{% endblock %}
+
+
+
+
+
+
+
+
+    {% block scripts %}
+      <script type="text/javascript" src="{{STATIC_URL}}js/marked.js"></script>
+      <script type="text/javascript" src="{{STATIC_URL}}js/ace.js"></script>
+      <script type="text/javascript" src="{{STATIC_URL}}js/mddeditor.js"></script>
+
+
+
+
+
+    <script type="text/javascript">
+
+      $( document ).ready( function() {
+
+        if(!String.prototype.startsWith){
+            String.prototype.startsWith = function (str) {
+                return !this.indexOf(str);
+            };
+        }
+
+         console.log($('#editor'));
+
+      // Markdown Editor part - ACE 
+      //var editor = ace.edit("editor");
+      //editor.setTheme("ace/theme/monokai");
+      //editor.getSession().setMode("ace/mode/javascript");
+      //
+      //
+      // $.getScript('/test.js', function() {
+      //   alert('Load was performed.');
+      // });
+
+
+    
+
+      // Fill in Updates
+      //$('.section-list').load("{% url 'content:summary' slug=post.slug %}?summary_stats=updates");
+
+
+
+
+      // Post Ability for text input types
+      // $('.section-list').bind("DOMSubtreeModified", function() {
+      //   $(this).find('.loadmorebutton').bind('click', function(){
+      //     $('.section-list li.hide:lt(10)').removeClass('hide')
+      //   })
+
+
+      //   $('.section-list .sumtext').trigger("update");
+
+
+      //   $(this).find('input[type=text]').bind('keypress', function(e){
+      //     console.log(e);
+      //     var code = e.keyCode || e.which;
+      //     if(code == 13) { //Enter keycode
+      //       e.preventDefault();
+      //       console.log("{% url 'content:summary' slug=post.slug %}")
+      //       console.log($(this)[0].value)
+      //       $.ajax({
+      //         type:"POST",
+      //         url:"{% url 'content:summary' slug=post.slug %}",
+      //         data: {'slug': '{{post.slug}}', 'value': $(this)[0].value},
+      //         success: function(){
+      //           $('#message').html("<h2>Contact Form Submitted!</h2>") 
+      //         }
+      //       });
+
+      //     }
+      //   })
+      // });
+
+      // Add Click AJAX changes
+      $('.section-title ul li').each(function( index ) {
+        $(this).click(function(event){
+
+          event.preventDefault();
+          var target = $(this).attr("href");
+          var summary_stats = $(this)[0].dataset.sumtitle
+          // Set background colour through data type
+          $('.section-list')[0].dataset.type = summary_stats;
+          console.log(summary_stats);
+          $(".section-list").load("{% url 'content:summary' slug=post.slug %}?summary_stats=" + encodeURIComponent(summary_stats))
+          console.log( index + ": " + $( this ).text() );
+      })});
+
+
+
+
+
+
+
+
+
+
+    //editor.setValue("the new text here");
+
+            //});
+
+
+
+          var search = $('.mdd-input-editor');
+          console.log('caching search')
+        search.keyup( function() {
+          console.time('keyup');console.log(encodeURIComponent( search .val()) );
+          
+        
+          //search.html('').load("{% url 'accounts:auth_login' %}q=" + encodeURIComponent( search .val()) );
+
+          console.timeEnd('keyup');
+        });
+
+
+
+        $('.section-title ul li').click(function(){
+            $('.section-title ul li').removeClass('active');
+            $(this).toggleClass('active');}
+          );
+
+
+
+
+        $('#mdd-save-button').click(function(){
+
+
+          console.log('clicked')
+                 // $.post({
+       
+                 //        url: "http://0.0.0.0:8080/home/tree/python/data-structures/hello-world",//q=" + encodeURIComponent('this is a test'),
+                 //        csrfmiddlewaretoken: '{{ csrf_token }}'
+                 //    });
+
+
+        
+
+
+        });
+
+
+
+
+      });
+    </script> 
+
+
+
+
+    <script>
+      $(document).ready(function(){
+        /**************   GENERAL  - CARD FOR CODE EXAMPLES, FURTHER LEARNING ETC. ***********************/
+        $('.preview-card').hover(
+          // handlerIn - On Enter
+          function(){
+            //$(this).find('.edit form').toggleClass('hide');
+
+          },
+          // handlerOut - On Exit
+          function(){
+            $(this).find('.info h4').html($(this).find('.info h4').attr('text'))
+        });
+
+        $('.preview-card .broken').hover(function(){
+          $(this).parent().parent().find('.info h4').html("Report broken URL");
+        });
+
+        $('.preview-card .likes').hover(
+          function(){
+            $(this).switchClass('fa-meh-o', 'fa-smile-o');
+            $(this).parent().parent().find('.info h4').html("Like this!");
+          },
+          // On Exit - remove smile
+          function(){
+            $(this).switchClass('fa-smile-o', 'fa-meh-o');
+          }
+        );
+
+        $('.preview-card .delete').hover(function(){
+          $(this).parent().parent().find('.info h4').html("Delete this post!");
+        });
+
+        $('.preview-card .comments').hover(function(){
+          $(this).parent().parent().find('.info h4').html("Add or View comments");
+        });
+
+
+
+
+
+        /************** END CARD FOR CODE EXAMPLES, FURTHER LEARNING ETC. ***********************/
+
+
+//         var v = document.getElementsByTagName("video")[0];
+// v.play();
+// 
+
+
+      
+
+
+
+
+      // $('.likes').hover(function(){
+      //   $(this).removeClass('fa-meh-o').addClass('fa-smile-o');
+      //   $(this).parent.().parent().find('input').attr("placeholder", "Like this!");
+      //   $(this).parent().parent().find('input').css('border-width', '0');
+      //   //$(this).parent().parent().find('input').css("border", "solid 3px #ccc;");
+
+        
+      // },
+      // function(){
+      //   $(this).removeClass('fa-smile-o').addClass('fa-meh-o');
+      //   $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+      //   $(this).parent().parent().find('input').css('border-width', '1px');
+      // }
+      // );
+
+      // $('.broken').hover(function(){
+      //   $(this).parent().parent().find('input').attr("placeholder", "Report broken URL");
+      //   $(this).parent().parent().find('input').css('border-width', '0');
+      // },
+      // function(){
+      //   $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+      //   $(this).parent().parent().find('input').css('border-width', '1px');
+      // });
+
+      // $('.delete').hover(function(){
+      //   $(this).parent().parent().find('input').attr("placeholder", "Delete this post!");
+      //   $(this).parent().parent().find('input').css('border-width', '0');
+      // },
+      // function(){
+      //   $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+      //   $(this).parent().parent().find('input').css('border-width', '1px');
+      // });
+
+      // $('.comments').hover(function(){
+      //   $(this).parent().parent().find('input').attr("placeholder", "View comments");
+      //   $(this).parent().parent().find('input').css('border-width', '0');
+      // },
+      // function(){
+      //   $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+      //   $(this).parent().parent().find('input').css('border-width', '1px');
+      // });
+
+
+
+      $('[data-loading-text]').click(function () {
+        var btn = $(this)
+        btn.button('loading')
+        //$.ajax(...).always(function () {
+        //  btn.button('reset')
+        //});
+      });
+
+      $('.post-card-basic .actions .comments').click(function () {
+        console.log('fired',  $(this).parent().parent().find('.comments-list'));
+        $(this).parent().parent().find('.comments-list').toggleClass('active');
+      });
+
+
+
+
+
+
+
+
+                    // $('.preview-card .actions .likes').click(
+                    //   function(){ console.log('likes click');
+                    //     //$(this).load(" url 'content:like' slug=card.slug ");
+
+                    //     $.ajax({
+                    //         type: "POST",
+                    //         url: " url 'content:like' slug=card.slug ",
+                    //         //data: {'save_id': save_id},   // <== change is here
+                    //          //csrfmiddlewaretoken: '{{ csrf_token }}',
+                    //         success: function(msg){
+                    //             alert('Saved to '+ save_id);
+                    //         }
+                    //     });
+                    //   });
+
+
+
+
+
+
+
+
+
+      // Preview Card
+      // Actions
+     
+      // $('.preview-card').each(function( index ) {
+      //   $(this).find('.actions .likes').click(function(event){
+      //     event.preventDefault();
+      //     var slug = $(this)[0].dataset.slug
+      //     $(this).parent().parent().find('.stats').load("/home/stats/" + slug + "/?q=like", { "slug": slug });
+      //   });
+      //   $(this).find('.image').click(function(event){
+      //     event.preventDefault();
+      //     var slug = $(this)[0].dataset.slug
+      //     $(this).parent().find('.stats').load("/home/stats/" + slug + "/?q=click" , { "slug": slug });
+      //   });
+      //   $(this).find('.actions .comments').click(function(event){
+      //     event.preventDefault();
+      //     $(this).parent().parent().find('.edit').toggleClass("hide");
+      //     $(this).toggleClass("active");
+      //   });
+      //   $(this).find('.actions .delete').click(function(event){
+      //     event.preventDefault();
+      //     console.log('delete');
+      //     var slug = $(this)[0].dataset.slug;
+      //     {% with slug1="pros" %}
+      //       $(this).load({% url 'content:card_delete' slug=slug1 %}, { "slug": slug });
+      //     {% endwith %}
+      //   });
+
+
+
+      //});
+      /**********************************************************************/
+
+
+
+
+
+
+
+
+      });
+  
+
+  function incrementLike(elem, slug)
+  {
+    console.log(elem, slug);
+    //$.ajax({
+    //    type: "POST",
+    //    url: "/home/likes/" + slug + '/',
+    //    data: {'slug': slug},   // <== change is here
+    //});
+    console.log(elem)
+    $('.preview-card .stats').load("/home/likes/" + slug + "/", { "slug": slug });
+
+  };
+
+
+
+
+ko.bindingHandlers.replaceClasssdsads = {
+    init: function(element, valueAccessor) {
+        $(element).hover(function() {
+            var value = valueAccessor();
+            value(true);
+        });
+    },
+
+    update: function(element, valueAccessor) {
+        $(element).replaceClass('fa-meh-o', 'fa-smile-o');
+        ko.bindingHandlers.text.update(element, valueAccessor);
+        //$(element).fadeIn();
+    }
+};
+
+
+ko.bindingHandlers.replaceClass = {
+    init: function(element, valueAccessor) {
+        $(element).hover(function() {
+            var value = valueAccessor();
+            value(true);
+        });
+    },
+
+    update: function(element, valueAccessor) {
+        console.log('replaceClass');
+        var options = valueAccessor();
+        var class1 = ko.utils.unwrapObservable(options.class1);
+        var class2 = ko.utils.unwrapObservable(options.class2);
+        $(element).replaceClass(class1, class2);
+    }
+};
+function toTimeAgo (dt) {
+    var secs = (((new Date()).getTime() - dt.getTime()) / 1000),
+        days = Math.floor(secs / 86400);
+
+    return days === 0 && (
+        secs < 60 && "just now" ||
+            secs < 120 && "a minute ago" ||
+            secs < 3600 && Math.floor(secs / 60) + " minutes ago" ||
+            secs < 7200 && "an hour ago" ||
+            secs < 86400 && Math.floor(secs / 3600) + " hours ago") ||
+        days === 1 && "yesterday" ||
+        days < 31 && days + " days ago" ||
+        days < 60 && "one month ago" ||
+        days < 365 && Math.ceil(days / 30) + " months ago" ||
+        days < 730 && "one year ago" ||
+        Math.ceil(days / 365) + " years ago";
+}
+
+
+/**
+ * [timeAgo description]
+ * @type {Object}
+ */
+ko.bindingHandlers.timeAgo = {
+    update: function (element, valueAccessor) {
+        console.log('You have called the timeAgo custom bindings.')
+        var val = ko.utils.unwrapObservable(valueAccessor()),
+            date = new Date(val), // WARNING: this is not compatibile with IE8
+            timeAgo = toTimeAgo(date);
+        return ko.bindingHandlers.html.update(element, function () {
+            return '<time datetime="' + encodeURIComponent(val) + '">' + timeAgo + '</time>';
+        });
+    }
+};
+
+ko.bindingHandlers.timeAgoByAuthor = {
+    update: function (element, valueAccessor) {
+        console.log('You have called the timeAgo custom bindings.')
+        var val = ko.utils.unwrapObservable(valueAccessor()),
+        date = new Date(val.date()), // WARNING: this is not compatibile with IE8
+        timeAgo = toTimeAgo(date);
+        author = val.author();
+        return ko.bindingHandlers.html.update(element, function () {
+            return '<time datetime="' + encodeURIComponent(val) + '">' + timeAgo + '</time>' + '<p>' + author + '</p>';
+        });
+    }
+};
+
+
+
+
+ko.bindingHandlers.modal = {
+    init: function (element, valueAccessor) {
+        $(element).modal({
+            show: false
+        });
+        
+        var value = valueAccessor();
+        if (typeof value === 'function') {
+            $(element).on('hide.bs.modal', function() {
+               value(false);
+            });
+        }
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+           $(element).modal("destroy");
+        });
+        
+    },
+    update: function (element, valueAccessor) {
+        var value = valueAccessor();
+        if (ko.utils.unwrapObservable(value)) {
+            $(element).modal('show');
+        } else {
+            $(element).modal('hide');
+        }
+    }
+}
+
+
+// function staffAuthorised() {
+//     $.ajax({ 
+//       type: "GET", 
+//       url: "{% url 'accounts:auth_is_staff' %}",
+//       statusCode: {
+//         401: function() {
+//                 alert( "page not found" );
+//               },
+//               200: function() {
+//                 alert("logged in ")
+//               }
+
+//     }
+//     //error:
+
+//     })
+
+// }
+
+
+
+// HACK: using django template for knockout.js 
+// Is staff logged in when page renders
+function isStaffOnRender() {
+  {% if request.user.is_staff %}
+    return true
+  {% else %}
+  return false
+  {% endif %}
+}
+
+
+
+
+
+
+ko.bindingHandlers.yourBindingName = {
+    init: function(element, valueAccessor, allBindings, bindingContext) {
+        // This will be called when the binding is first applied to an element
+        // Set up any initial state, event handlers, etc. here
+    },
+    update: function(element, valueAccessor, allBindings, bindingContext) {
+        // This will be called once when the binding is first applied to an element,
+        // and again whenever any observables/computeds that are accessed change
+        // Update the DOM element based on the supplied values here.
+    }
+};
+
+
+
+
+
+
+
+
+var loggedin = function (){ $.ajax({ type: "GET", url: "{% url 'accounts:auth_loggedin' %}",
+            statusCode: {
+              401: function() {
+                alert( "page not found" );
+              },
+              200: function() {
+                alert("logged in ")
+              }
+
+            }
+
+
+        }); };
+
+
+// Visible for a 10 seconds, fades
+// Removes text
+// how to use
+// fadeVisible: {visible_flag, text }
+ko.bindingHandlers.fadeVisible = {
+    init: function(element, valueAccessor) {
+      $(element).hide();
+      // Start visible/invisible according to initial value
+      //var shouldDisplay = valueAccessor();
+        
+    },
+    update: function(element, valueAccessor) {
+      // On update, fade in/out
+      var value = valueAccessor();
+      console.log('update fadeVisible');
+      $(element).hide();
+      ko.bindingHandlers.text.update(element, valueAccessor);
+      $(element).fadeIn();
+
+
+
+
+        //$(element).text('sada').fadeIn();
+        $(element).delay(5000).fadeOut(400);
+        value("");
+    } 
+};
+
+// Checks logged before click 
+// shows login modal if not
+// else do action
+ko.bindingHandlers.loginClick = {
+    init: function (element, valueAccessor, allBindingsAccessor, data, context) {
+        var originalFunction = valueAccessor();
+        $(element).modal('hide');
+        var newValueAccessor = function() {
+            // Check logged in first
+            return function () {
+              $.ajax({ type: "GET", url: "{% url 'accounts:auth_loggedin' %}", 
+                statusCode: { 
+                  401: function(){ $('.modal').modal('show'); }, 
+                  200: function(){  originalFunction.apply(data); }
+                } })
+            }
+        }
+
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, data, context);
+    }
+
+}
+
+
+
+
+
+    // Knockout MVVM Scripts
+    /*************************************************************************/
+
+    // As all comments, dependencies, issues, troubleshooting, comments/reviews
+    // have the same django model, only need one ko model for now! 
+    
+    /**
+     * [PostGeneralCommentModel A knockout model that describes Comment, Update, Issue, Troubleshooting, Dependency Django Models]
+     * @param {[JSON]} data [ data from server backend to initialise model.]
+     */
+    function PostGeneralCommentModel(data){
+        console.log(data);
+        var self = this;
+        self.pk = ko.observable(data.pk);
+        self.author = ko.observable(data.fields.author_pretty);
+        self.comment = ko.observable(data.fields.comment);
+        self.is_reply = ko.observable(data.fields.is_reply);
+        self.reply_post = ko.observable(data.fields.reply);
+        self.created_at = ko.observable(data.fields.created_at);
+        self.showReplies = ko.observable(false);
+
+        // deletable
+        // reportable   // sub observable requireslogin(value, function)
+        // e.g. requireslogin($parent.loggedin, deletecard)
+
+
+        self.replies = ko.computed(function(){
+            var arrayReplies = ko.utils.arrayFilter(this.gencomments(), function(item){
+                 console.log(self.pk)
+                return item.is_reply() && item.reply_post() == self.pk();
+            })
+            return arrayReplies;
+        }, masterVM.vm_gencomments) // messy but works
+
+        // Should I display replies?
+        self.visibleReplies = function(){
+          if (self.replies().length > 0) { return true; }
+          else { return false; }
+        }
+
+
+    }
+
+
+    function PostGeneralCommentListModel(){
+        var self = this;
+        self.gencomments = ko.observableArray([]);
+        self.show_count = ko.observable(3);
+        self.show_count_incrementing = ko.observable(true);
+        self.load_more_text = ko.observable('Load more from ChangeLOG.')
+        self.loadmoreenable = ko.observable(true);
+        self.deletable = ko.observable(false);
+
+        // Displays useful information
+        self.useful_info = ko.observable('asd');
+        self.useful_visible = ko.observable(false);
+
+        // 
+        self.testAction = function(){
+          console.log('this is a test action.');
+          //self.useful_info('test actions');
+          console.log(self.useful_info());
+          self.useful_info('sds');
+        }
+
+        self.report = function(){
+          self.useful_info('This message will be reported. Thanks');
+        }
+
+
+
+
+
+        // Show more cards-
+        self.incrementShowCount = function(){
+          console.log('incrementShowCount');
+          // doubles show everytime pressed;
+          //console.log('incrementShowCount', self.show_count(), self.cards().length);
+
+
+          // If Count is increases should at 2n pace
+          // If Count is decreasing should also do so at a 2n pace
+          // Should display one comment before changing direction, on decrement -> increment cycle.
+          if (self.show_count_incrementing()) {
+            var new_count = 2*self.show_count();
+          }
+          else {
+            var new_count = self.show_count()/2;
+          }
+          console.log(new_count);
+          console.log('incrementing', self.show_count_incrementing());
+          console.log('length', self.filterItems().length);
+
+          if (new_count >= self.filterItems().length) {
+            self.show_count(self.filterItems().length);
+            self.show_count_incrementing(false);
+            self.load_more_text('Load Less.');
+          }
+          else if (new_count < 1) { // 0.5 so algo display one comment before changes direciont
+            self.show_count_incrementing(true);
+            self.load_more_text('Loaded More.');
+            self.show_count(new_count);
+          }
+          else {
+            self.show_count(new_count);
+          }
+
+        }
+
+        // Only display comments that aren't replies
+        self.filterItems = ko.computed(function(){
+          return ko.utils.arrayFilter(self.gencomments(), function(item){
+            return !item.is_reply()
+          });
+        });
+
+        self.actionIterms = function(){
+          var actions = []
+          if (isStaffOnRender()) {
+
+          }
+
+        }
+
+
+        // Quick Hack for knowing whether a user is logged in
+        // Set a flag
+        var loggedin = function (){$.ajax({
+           type: "GET",
+            url: "{% url 'accounts:auth_loggedin' %}",
+            statusCode: {
+              401: function() {
+                alert( "page not found" );
+              },
+              200: function(){
+                alert("logged in ")
+              }
+
+            }
+            //success : function(content, textStatus, jqXHR) {
+            //    console.log('success')
+            //    console.log(textStatus, content)
+            //}
+
+        });};
+
+
+
+        // Load initial state from server, convert it to PostCard instances, then populate self.cards
+        $.getJSON("{% url 'content:comment_list' slug=post.slug %}", function(allData) {
+            console.log(allData);
+            var mappedCards = $.map(allData, function(item) { return new PostGeneralCommentModel(item) });
+            self.gencomments(mappedCards);
+        });
+        console.log('staff is maybe jdjjd')
+        console.log(isStaffOnRender());
+
+    }
+    /********************************/
+
+
+    /**
+     * [PostCardModel]
+     *   A knockout model representing PostCard Django Model
+     * ]
+     */
+    function PostCardModel(data)
+    {
+
+      this.comments = ko.observable("0"); // NOTE: referring to comments_pretty in django model
+      this.image = ko.observable(data.fields.image);
+      this.image_href = ko.observable(data.fields.href);
+      this.updated_at = ko.observable(data.fields.created_at_pretty);
+      this.views = ko.observable(data.fields.views);
+      this.likes = ko.observable(data.fields.likes);
+      this.likes_text = "jlkfdsjflksjflksdjfjlsjd";
+      this.title = ko.observable(data.fields.title);
+      this.model = ko.observable("card title");
+
+      // report 
+
+
+      // Extra Properties 
+      this.info_label = ko.observable(data.fields.title);
+      this.hideComments = ko.observable(true);
+      this.likeHover = ko.observable(false);
+      
+      // A dirty, quick flag
+      this.loggedInUser = ko.observable(false);
+
+
+
+      // Increment Like
+      this.incrementLike = function(){
+
+      };
+
+
+      this.hoverLike = function(label, data, ev){
+        this.likeHover(!this.likeHover());
+        this.info_label('Like this!'); 
+        ev.currentTarget.onmouseout = function(){ data.likeHover(false); data.info_label(data.title()); };
+      }
+
+      this.changeLabel = function(label, data, ev){
+        // Modify Info label, display something else
+        this.info_label(label);
+        // Debug
+        console.debug(data, ev, this);
+        // Add Mouseout event - Return to displaying title
+        ev.currentTarget.onmouseout = function(){ data.info_label(data.title()); };
+      }
+
+    }
+
+
+    /**
+     * [CommentCardModel]
+     *   A knockout model representing CommentCard Django Model
+     */
+    function CommentCardModel(data){
+        var self = this;
+        self.author = ko.observable(data.fields.author);
+        self.comment = ko.observable(data.fields.comment);
+    }
+
+
+    /**
+     * [CommentCardListModel]
+     *   A knockout model representing list of CommentCards
+     */
+    function CommentCardListModel(){
+        var self = this;
+        self.comments = ko.observableArray([]);
+        self.show_count = ko.observable(5);
+
+        // Show more cards
+        self.incrementShowCnt = function(){
+          // doubles show everytime pressed;
+          //console.log('incrementShowCount', self.show_count(), self.cards().length);
+          var new_count = 2*self.show_count();
+          if (new_count < self.comments().length){
+            self.show_count(new_count);
+          }
+          else {
+            self.show_count(self.comments().length)
+          }
+        }
+
+        // Load initial state from server, convert it to PostCard instances, then populate self.cards
+        $.getJSON("{% url 'content:commentcard_list' slug=post.slug %}", function(allData) {
+          console.log(allData);
+            var mappedComments = $.map(allData, function(item) { return new CommentCardModel(item) });
+            self.comments(mappedComments);
+        });
+    }
+
+
+    function PostCardListModel() {
+        // Data
+        var self = this;
+        self.cards = ko.observableArray([]);
+        self.show_count = ko.observable(3);
+
+        self.newTaskText = ko.observable();
+
+
+
+        //self.incompleteTasks = ko.computed(function() {
+        //    return ko.utils.arrayFilter(self.tasks(), function(task) { return !task.isDone() });
+        //});
+
+        // Show more cards
+        self.incrementShowCount = function(){
+          // doubles show everytime pressed;
+          //console.log('incrementShowCount', self.show_count(), self.cards().length);
+          var new_count = 2*self.show_count();
+          if (new_count < self.cards().length){
+            self.show_count(new_count);
+          }
+          else {
+            self.show_count(self.cards().length)
+          }
+        }
+
+        // Operations - Add a PostCard model
+        self.addCard = function() {
+            self.cards.push(new Task({ title: this.newTaskText() }));
+            self.newTaskText("");
+        };
+
+        // Remove a PostCard model
+        self.removeCard = function(task) { self.cards.remove(task) };
+    
+        // Load initial state from server, convert it to PostCard instances, then populate self.cards
+        $.getJSON("{% url 'content:card_list' slug=post.slug %}", function(allData) {
+          console.log(allData);
+            var mappedCards = $.map(allData, function(item) { return new PostCardModel(item) });
+            self.cards(mappedCards);
+        });
+
+
+
+      // End of PostCardListModel
+    }
+
+    /**
+     * [CommentCardModel 
+     *   A knockout model representing CommentCard Django Model
+     * ]
+     */
+    //function CommentCardModel()
+    //{
+    //  this.author = ko.observable("user");
+    //  this.comment = ko.observable("no comment here.");
+    //}
+    
+    // NOTE: Not sure this is the right thing to do
+    //       but it is quick and dirty solution.
+    masterVM = {
+      Poopy: ko.observable(false),
+      vm_cards: new PostCardListModel(),
+      vm2: new CommentCardListModel(),
+      vm_gencomments: new PostGeneralCommentListModel()
+    }
+
+    // Activate knockout.js
+    ko.applyBindings(masterVM);
+    /*************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+         
+          
+              
+
+
+    <!--<script type="text/javascript">
+     $( document ).ready( function() {
+      console.warn( $('.truncate'));
+        $('.truncate').succinct({
+            size: 10
+        });
+    });
+</script>-->
+    {% endblock %}
+
+  </div> <!-- end of maincolumn or maincolumn-editor -->
+  </div> <!-- end of main-editor or main -->
+
+
+  {% if request.user.is_superuser %}
+    <div class='editorcolumn'>
+      {% load editor_tags %}
+      <h1 class="codewheel-font">Editor Mode.</h1>
+      <hr>
+      <!-- have to use paper_hidden for some reason -->
+      <div id="app_wrap"><div id="paper_hidden"></div></div>
+    </div>
+  {% endif %}

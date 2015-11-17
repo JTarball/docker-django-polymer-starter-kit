@@ -1,0 +1,7 @@
+<div class="preview-card" id="card-{{card.id}}">
+  {% include "content/postcard/image.html" with card=card %}
+  {% include "content/postcard/info.html" with card=card %}
+  {% include "content/postcard/actions.html" with card=card %}
+  <div class="edit hide"></div>
+  {% include "content/postcard/stats.html" with card=card %}
+</div>

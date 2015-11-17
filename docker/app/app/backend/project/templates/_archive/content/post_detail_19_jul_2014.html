@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block title %}{{post.title}}{% endblock  %}
+
+
+
+
+{% block content %}
+  {% load navbar_tags %}
+  <div class="breaded"> {% render_breadcrumbs "navbar.html" %}</div>
+
+
+  
+  <!--<h1> {{post.title}} </h1>-->
+
+
+  <p class="titlehr">SUMMARY                                     <a>home / theory  / python / hello-world</a></p>
+
+       <!-- <div class="summary">
+                        <div class="Grid-cell u-size3of4">
+                          <div class="ProfileCanopy-nav">
+                <div class="ProfileNav" role="navigation" data-user-id="185260477">
+                  <ul class="ProfileNav-list">
+              <li class="ProfileNav-item ProfileNav-item--tweets is-active">
+                        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav" data-nav="tweets" tabindex="0" data-original-title="5,673 Tweets">
+                          <span class="ProfileNav-label">Updates</span>
+                          <span class="ProfileNav-value" data-is-compact="false">5,673</span>
+                        </a>
+                      </li><li class="ProfileNav-item ProfileNav-item--media">
+                      <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor" data-nav="media" href="/BarRefaeli/media" data-original-title="1,013 Photos/Videos">
+                        <span class="ProfileNav-label">Dependencies</span>
+                        <span class="ProfileNav-value" data-is-compact="false">1,013</span>
+                      </a>
+                    </li><li class="ProfileNav-item ProfileNav-item--following">
+                      <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-openSignupDialog js-nonNavigable u-textUserColor" data-nav="following" href="/BarRefaeli/following" data-original-title="227 Following">
+                        <span class="ProfileNav-label">Issues</span>
+                        <span class="ProfileNav-value" data-is-compact="false">227</span>
+                      </a>
+                    </li><li class="ProfileNav-item ProfileNav-item--followers" data-more-item=".ProfileNav-dropdownItem--followers">
+                      <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-openSignupDialog js-nonNavigable u-textUserColor" data-nav="followers" href="/BarRefaeli/followers" data-original-title="596,770 Followers">
+                        <span class="ProfileNav-label">Troubleshooting</span>
+                        <span class="ProfileNav-value" data-is-compact="true">597K</span>
+                      </a>
+                    </li><li class="ProfileNav-item ProfileNav-item--favorites" data-more-item=".ProfileNav-dropdownItem--favorites">
+                      <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-openSignupDialog js-nonNavigable u-textUserColor" data-nav="favorites" href="/BarRefaeli/favorites" data-original-title="35 Favorites">
+                        <span class="ProfileNav-label">Comments/Reviews</span>
+                        <span class="ProfileNav-value" data-is-compact="false">35</span>
+                      </a>
+                    </li> -->
+                                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          <button type="button" class="btn-small btn-warning"><i class="fa fa-warning fa-fw" ></i>Add an Issue</button>
+                          <button type="button" class="btn-small btn-danger">Ask for Help</button>
+                          <button type="button" class="btn-small btn-success"><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+                     -->
+<!--
+                           <ul class="summaryresults">
+
+                            <li>Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+                                    
+                    <li>Holy guacamole!</strong> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+                          <li> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+              <div class='loadmorebutton'>
+                          <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-default">
+                Load More ...
+              </button>
+
+
+
+              </div>
+                          </ul>
+
+
+                  </ul>
+                </div>
+
+
+                          </div>
+                        </div>
+
+                -->
+                            
+                        
+
+              <!-- <hr> -->
+              <!--  -->
+                            <!--     <a class="btn btn-primary btn-large" href="https://github.com/gfranko/jquery.tocify.js" target="_blank"><i class="fa fa-github" ></i> Fork on Github »</a>
+               -->
+
+
+
+</div>
+
+  <p class="titlehr">HELLO WORLD                                     <a>home / theory  / python / hello-world</a></p>
+  {{post.content | linebreaks}}
+
+{% endblock %}
+
+
+
+{% block extracontent %}
+<p class="titlehr">CODE EXAMPLES                                     <a>home / theory  / python / hello-world</a></p>
+<h2>Code Examples</h2>
+<!--
+ <div class="cards-grid">
+    <ul class="threecol small">
+      <li>ff</li>
+         <li>ff</li>
+            <li>ff</li>
+               <li>ff</li>
+                  <li>ff</li>
+    </ul>
+  </div>
+<!--
+
+  <ul class="grid cs-style-3">
+    <li>
+        <figure>
+            <img src="{{STATIC_URL}}/index.png" alt="img03">
+ 
+            
+        </figure>
+                   <figcaption>
+
+              <h3>Settings</h3>
+              <span>Jacob Cummings</span>
+              <a href="http://dribbble.com/shots/1116685-Settings">Take a look</a>
+            
+            </figcaption>
+    </li>
+    <li>
+        <figure>
+         
+        </figure>
+    </li>
+
+</ul>
+-->
+<!--
+      <div class="grid">
+
+        <figure class="effect-milo">
+          <img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/>
+          <figcaption>
+            <h2>The pros and cons of open sourcing your code</h2>
+               <button href="{% url 'accounts:registration_register' %}" class="btn  btn-mdm btn-danger">Report Broken link</button>
+               <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i>
+            <p>Milo went to the woods. He took a fun ride and never came back. from codestack.org</p>
+            <a href="#">View more</a>
+
+          </figcaption> 
+
+        </figure>
+      </div>
+-->
+
+
+<div class="grid">
+
+
+
+
+  <div class="post-card-basic">
+    <div class="image"><img src="{{STATIC_URL}}/bootstrap-thumb.png" alt="img11"/><h4>The pros and cons of open sourcing your code</h4><div class="summary"><i class="fa fa-quote-left fa-2x"></i>&nbsp;Despite starting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard development practices and practically no one questions its value anymore.djalkjda jdlk jalkjdlj alkjdljalk jdlalkjdlka l jsjdjsaadjk alkdjlkajljdlkas jlkdj lsakjdlk jsaklj dlk jsakld as</div></div>
+    
+    <div class="actions">
+      <i class="fa fa-exclamation fa-2x broken"></i>
+      <i class="fa fa-pencil fa-2x comments"><span>100K</span></i>
+      <i class="fa fa-meh-o fa-2x likes"></i>
+      <i class="fa fa-times fa-2x delete"></i>
+    </div>
+    <hr>
+
+    <form id="ember2313" class="ember-view comment">
+      <input id="ember2318" class="ember-view ember-text-field" placeholder="Say something nice/cynical" maxlength="140" name="comment" type="text">
+    </form>
+    <hr>
+    <!--<div class="comments-list">
+      <ul>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.</p></li>
+        <li><span>Admin:</span>
+          <p>Good Article. Well described.arting as a "cancerous" and purportedly "anti-American" blight on the software world, open source has come to be as American (and capitalist) as apple pie. Everyone uses it, big companies like Facebook bake it into their standard dev</p></li>
+      <ul>
+      <i class="fa fa-ellipsis-h fa-2x"><span>LOAD MORE</span></i>
+    </div>-->
+    <div class="stats">
+    <i class="fa fa-clock-o fa-1x"></i><span>31 Jan, 2014</span><i class="fa fa-eye fa-1x"></i><span>100K</span><i class="fa fa-smile-o fa-1x"></i><span>100K</span>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<div class="gridbox"></div><div class="gridbox"></div><div class="gridbox"></div><div class="gridbox"></div><div class='loadmorebutton'>
+            <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-default">
+  Load More ...
+</button>
+
+
+
+</div>
+<p class="titlehr">DESIGN DECISIONS                                     <a>home / theory  / python / hello-world</a></p>
+<h2>Design Decisions</h2>
+<p class="titlehr">FURTHER LEARNING                                     <a>home / theory  / python / hello-world</a></p>
+<h2>Further Learning</h2>
+<hr>
+{% endblock%}
+
+
+
+
+
+{% block scripts %}
+<script>
+  $(document).ready(function(){
+
+  $('.likes').hover(function(){
+    $(this).removeClass('fa-meh-o').addClass('fa-smile-o');
+    $(this).parent().parent().find('input').attr("placeholder", "Like this!");
+    $(this).parent().parent().find('input').css('border-width', '0');
+    //$(this).parent().parent().find('input').css("border", "solid 3px #ccc;");
+
+    
+  },
+  function(){
+    $(this).removeClass('fa-smile-o').addClass('fa-meh-o');
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  }
+  );
+
+  $('.broken').hover(function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Report broken URL");
+    $(this).parent().parent().find('input').css('border-width', '0');
+  },
+  function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  });
+
+  $('.delete').hover(function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Delete this post!");
+    $(this).parent().parent().find('input').css('border-width', '0');
+  },
+  function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  });
+
+  $('.comments').hover(function(){
+    $(this).parent().parent().find('input').attr("placeholder", "View comments");
+    $(this).parent().parent().find('input').css('border-width', '0');
+  },
+  function(){
+    $(this).parent().parent().find('input').attr("placeholder", "Say something nice/cynical");
+    $(this).parent().parent().find('input').css('border-width', '1px');
+  });
+
+
+
+  });
+</script>
+{% endblock %}
+
+
+

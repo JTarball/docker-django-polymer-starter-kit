@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  console.time('Start of JQuery Drop Down Menu')
+  console.log('results');
+  var result = "";
+  var cate = "";
+
+
+if ({{length}} == 0){
+    console.log('lenght is 0');
+    for (i=0;i<10;i++)
+    {
+     $('.lst').html('')
+     $('.lst').data ('search'+i, 'false');
+     $('.lst').data ('res'+i, '');
+    }
+}
+else
+{  
+    
+  if ($('.lst').data ('length') != "{{length}}")
+  {
+      for (i=0;i<10;i++)
+      {
+       $('.lst').html('');
+       $('.lst').data ('search'+i, 'false');
+       $('.lst').data ('res'+i, '');
+      }
+  }    
+
+
+    
+
+  
+
+}  
+$('.lst').data ('length', {{length}});
+console.timeEnd('Start of JQuery Drop Down Menu')
+</script>
+

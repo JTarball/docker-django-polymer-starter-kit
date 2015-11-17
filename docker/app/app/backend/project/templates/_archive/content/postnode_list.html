@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% block title  %} codewheel.io - navigational tree{% endblock %}
+
+{% block content %}
+  {% load navbar_tags %}
+  <div class="breaded"> {% render_breadcrumbs "navbar.html" %}</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+
+  
+
+  <div class="cards-list">
+    <ul>
+      <!-- Folders -->
+      {% for node in postnode_list %}
+          <li onclick="location.href='{{node.slug}}'"><i class="fa fa-folder-o fa-3x"></i><a class="" href="{{ node.slug }}">{{node.name}}</a></li>
+      {% empty %}
+        {{no_post_msg}}
+      {% endfor %}
+      <!-- Files -->
+      {% for post in post_list %}
+        <li class="file" href="{{post.slug }}" onclick="location.href='{{node.slug}}'">
+          <i class="fa fa-file-text-o fa-3x"></i>
+          <a class="title" href="{{post.slug }}">{{post.title}}</a>
+          <div class="summary-card-stats">
+            <ul>
+              <li><a><i class="fa fa-lg fa-clock-o"></i></a> 100</li>
+              <li><a><i class="fa fa-lg fa-pencil"></i></a> 100</li>
+            </ul>
+          </div>
+          <br>
+          <i class="fa fa-clock-o fa-2x"></i><a>Monday, 18th July 2014: Updated to Django version 1.5. </a>
+        </li>
+
+      {% endfor %}
+    </ul>
+</div>
+
+
+
+
+
+
+
+  <div class="wrapper">
+  <h1 class="pageTitle">Card flip</h1>
+  <p>A simple css based card flip animation. Just click on one of the cards!</p>
+</div>
+
+<div class="wrapper cards">
+  <div class="container">
+    <div class="card">
+      <div class="front"><h2>About me</h2></div>
+      <div class="back">
+        <div class="content">
+          <h3 class="cardTitle">Who am I?</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sodales, mi ac vulputate blandit, libero nulla bibendum quam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <div class="container">
+    <div class="card">
+      <div class="front"><h2>Contact me!</h2></div>
+      <div class="back">
+        <div class="content">
+          <h3 class="cardTitle">Send a mail!</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sodales, mi ac vulputate.</p>
+          <form>
+            <div class="formItem">
+              <label>Naam</label>
+              <input type="text" name="Naam" value="Naam" />
+            </div>
+            <div class="formItem">
+              <label>Email</label>
+              <input type="password" name="Password" value="Password" /> 
+            </div>
+            <button class="btnSend">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+    {% for node in postnode_list %}
+        <button class="btn btn-lg btn-info btn-tree" onclick="location.href='{{node.slug}}'"><i class="fa fa-folder-o fa-3x"></i><a href="{{ node.slug }}">{{node.name}}</a>
+        </button>
+    {% empty %}
+    {{no_post_msg}}
+  {% endfor %}
+  {% for post in post_list %}
+     <button class="btn btn-default btn-file" href="#"><i class="fa fa-file-text-o fa-3x"></i><a href="{{post.slug }}">{{post.title}}</a>  <div class="media-body">
+    <h4 class="media-heading">Media heading</h4>
+    ...
+  </div>
+
+  <span class="badge">14</span>
+        </button>
+
+  {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+
+              <div class="btn-group-vertical">
+    {% for node in postnode_list %}
+        <button class="btn btn-default btn-tree" onclick="location.href='{{node.slug}}'"><i class="fa fa-folder-o fa-3x"></i><a href="{{ node.slug }}">{{node.name}}</a>
+        </button>
+    {% empty %}
+    {{no_post_msg}}
+  {% endfor %}
+  {% for post in post_list %}
+
+
+     <button class="btn btn-default btn-file" href="#"><i class="fa fa-file-text-o fa-3x"></i><a href="{{post.slug }}">{{post.title}}</a>  <div class="media-body">
+    <h4 class="media-heading">Media heading</h4>
+    ...
+  </div>
+
+  <span class="badge">14</span>
+        </button>
+
+  {% endfor %}
+    </div>
+
+
+<!-- <div class="btn-group-vertical">
+    {% for node in postnode_list %}
+        <button class="btn btn-default btn-tree" onclick="location.href='{{node.slug}}'"><i class="fa fa-folder-o fa-3x"></i><a href="{{ node.slug }}">{{node.name}}</a>
+        </button>
+    {% empty %}
+    {{no_post_msg}}
+  {% endfor %}
+  {% for post in post_list %}
+
+     <button class="btn btn-default btn-tree" href="#"><i class="fa fa-file-text-o fa-3x"></i><a href="{{post.slug }}">{{post.title}}</a>
+        </button>
+
+  {% endfor %}
+    </div> -->
+
+
+<!--
+   <table data-pjax="">
+    <tbody class="files"  data-url="{{ current_url }}">
+
+
+<a href="{{ node.slug }}">{{node.name}} {{node.description}} </a>
+	{% for node in postnode_list %}
+    
+   <tr class="tdcard tdcard-default" href="{{node.slug}}"><i class="fa fa-folder-o"></i>
+      <a href="{{ node.slug }}">{{node.name}}</a>
+        <td class="message"><button class="tdcard tdcard-tree-description">
+      <a href="{{ node.slug }}">{{node.description}}</a></button></td>
+              <td class="message"><button class="tdcard tdcard-default tdcard-tree-description">
+      <a href="{{ node.slug }}">{{node.description}}</a></button></td>
+    </tr>
+
+		{% empty %}
+		{{no_post_msg}}
+	{% endfor %}
+
+	{% for post in post_list %}
+    <tr>
+      <td class="icon"><i class="fa fa-folder-o"></i></td>
+      <td class="content"><span class="css-truncate css-truncate-target"><a href="{{ post.slug }}">{{post.title}}</a></span></td>
+      <td class="message"><span class="css-truncate css-truncate-target">{{post.updated_at}}</span></td>
+    </tr>
+	{% endfor %}
+
+    </tbody>
+  </table>  
+
+</div>
+
+
+
+</div>-->
+<!-- 
+
+<a href="{{ node.slug }}">{{node.name}} {{node.description}} </a>
+ <div class="row">
+        <div class="col-xs-6 col-md-4">
+  <div class="btn-group-vertical">
+    {% for node in postnode_list %}
+        <button class="btn btn-default btn-tree" href="#"><i class="fa fa-folder-o"></i><a href="{{ node.slug }}">{{node.name}}</a>
+        </button>
+    {% empty %}
+    {{no_post_msg}}
+  {% endfor %}
+  {% for post in post_list %}
+    <tr>
+      <td class="icon"><i class="fa fa-folder-o"></i></td>
+      <td class="content"><span class="css-truncate css-truncate-target"><a href="{{ post.slug }}">{{post.title}}</a></span></td>
+      <td class="message"><span class="css-truncate css-truncate-target">{{post.updated_at}}</span></td>
+    </tr>
+  {% endfor %}
+    </div>
+        </div>
+        <div class="col-xs-12 col-md-8">  
+            <div class="btn-group-vertical">
+                {% for node in postnode_list %}
+                <button class="btn btn-default btn-tree-description" href="#"><a href="{{ node.slug }}">{{node.description}}</a>
+                </button>
+                {% empty %}
+                {{no_post_msg}}
+                {% endfor %}
+                {% for post in post_list %}
+                <tr>
+                  <td class="icon"><i class="fa fa-folder-o"></i></td>
+                  <td class="content"><span class="css-truncate css-truncate-target"><a href="{{ post.slug }}">{{post.title}}</a></span></td>
+                  <td class="message"><span class="css-truncate css-truncate-target">{{post.updated_at}}</span></td>
+              </tr>
+              {% endfor %}
+          </div>
+      </div>
+      <div class="col-xs-12 col-md-8"></div>
+    </div>
+
+
+ -->
+
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+  $(document).ready(function(){
+$('.card').click(function(){
+  $(this).toggleClass('flipped');
+});
+
+$('.cards-list ul li').hover(function(){
+  $( this ).find("a").toggleClass('active');
+});
+
+$('.cards-list ul li a.title').hover(function(){
+  $( this ).toggleClass('active');
+  
+});
+
+  });
+</script>
+{% endblock %}

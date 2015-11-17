@@ -1,0 +1,14 @@
+Django
+django-mptt
+django-taggit
+markdown2
+beautifulsoup4
+Pygments
+redis>=2.10.3
+django-cors-headers
+djangorestframework
+django-rest-swagger
+django-rest-auth
+django-allauth
+schedule
+pandas

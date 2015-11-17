@@ -1,0 +1,71 @@
+<script type="text/javascript">
+  console.time('Start of JQuery Drop Down Menu')
+
+  var result = "";
+  var cate = "";
+
+
+if (({{length}} == 0)){
+    $('.lst').html('')
+    for (i=0;i<10;i++)
+    {
+    
+     $('.lst').data ('search'+i, 'false');
+     $('.lst').data ('res'+i, '');
+    }
+}
+else{  
+  if  ($('.lst').data ('length') != "{{length}}")
+{  $('.lst').html('')
+  for (i=0;i<10;i++)
+  {
+  
+   $('.lst').data ('search'+i, 'false');
+   $('.lst').data ('res'+i, '');
+  }}
+    
+  for (i=0;i<{{length}};i++)
+  {
+  
+    switch(i)
+	  {
+	  case 0:  
+	    result = "{{results.0.title}}"; 
+	    cat = "	{%for cat in results.0.category %}{{cat.name}}{% endfor %}";
+
+	    break;
+	  case 1:  result = "{{results.1.title}}"; url = "/{{results.1.url}}"; cate = "{%for cat in results.0.category %}<a href='/{{cat.url}}'>{{cat.name}}</a>{% endfor %}"; break;
+	  case 2:  result = "{{results.2.title}}"; break;
+    case 3:  result = "{{results.3.title}}"; break;
+	  case 4:  result = "{{results.4.title}}"; break;
+	  case 5:  result = "{{results.5.title}}"; break;
+	  case 6:  result = "{{results.6.title}}"; break;
+	  case 7:  result = "{{results.7.title}}"; break;
+	  case 8:  result = "{{results.8.title}}"; break;
+	  case 9:  result = "{{results.9.title}}"; break;
+	  }
+	  
+    //if css/html exists then 
+    
+  
+    var $spans = $('td');
+
+    if ($('.lst').data ('search'+i) != "true")
+    {
+
+        $('.lst').append("<tr> <td id=\"rst"+i+"\" >"+result+"</td> </tr>").end()
+        $('.lst').data ('search'+i, 'true');
+        $('.lst').data ('res'+i, result);
+    }
+
+    
+
+        
+    
+
+  }
+
+}  
+$('.lst').data ('length', {{length}});
+console.timeEnd('Start of JQuery Drop Down Menu')
+</script>

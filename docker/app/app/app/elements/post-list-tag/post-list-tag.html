@@ -1,0 +1,40 @@
+// post-list-tag.html
+// Displays a list of posts from a specific tag
+<link rel="import" href="../django-ajax/django-ajax.html">
+<dom-module id="post-list-tag">
+    /* Shadow DOM CSS Cheat Sheet */
+    /* http://robdodson.me/blog/2014/04/10/shadow-dom-css-cheat-sheet */
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <django-ajax result='{{posts}}' url="{{ getURLTags(tag) }}"></django-ajax>
+        <ul id="list">
+            <template is="dom-repeat" items="{{posts}}">
+                <li>
+                  <div class="post">
+                        <post-detail slug="[[item.slug]]"></post-detail>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </template>
+
+    <script>
+        (function () {
+          Polymer({
+            is: 'post-list-tag',
+            properties: {
+                tag: { type: String, notify: true},
+                posts: { type: Array, }
+            },
+            getURLTags: function(slug) { 
+                return 'http://192.168.99.100:8000/blog/tag/' + slug + '/';
+            },
+        });
+      })();
+    </script>
+</dom-module>

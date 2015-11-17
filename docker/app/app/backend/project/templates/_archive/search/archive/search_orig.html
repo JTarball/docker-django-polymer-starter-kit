@@ -1,0 +1,33 @@
+{% load url from future %}
+
+<script type="text/javascript">
+
+  $(document ).ready( function() {
+      var search = $('#search');
+      console.log('caching search')
+    search.keyup( function() {
+      console.time('keyup')
+    search.html('').load('{% url 'ajax_search' %}?query=' + encodeURIComponent( search .val()) );
+  
+      console.timeEnd('keyup');
+    });
+  });
+</script> 
+
+<link rel="stylesheet" href="static/redis_search/css/style.css" /> <!-- Have to be explicit with static url -->
+
+<input id="search" type="search" placeholder="Search Questions in Real-Time from the app" autocomplete="off" />
+
+
+<table id="results" >
+</table>
+
+
+
+
+
+
+
+
+
+

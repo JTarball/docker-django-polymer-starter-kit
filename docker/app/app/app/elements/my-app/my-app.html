@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<dom-module id="my-app" out=>
+<style>
+</style>
+<template>
+
+  <iron-ajax
+      method="GET"
+      id="ajax" 
+      headers='{"X-Requested-With": "XMLHttpRequest"}' 
+      url=""
+      handle-as="json"
+      on-response="hresponse"
+      debounce-duration="300"
+      >
+  </iron-ajax>
+
+  <button on-click="setajax">Click me please</button>
+
+</template>
+<script>
+Polymer({
+  is: "my-app",
+  properties: {
+    someProp: {
+      type: String,
+      notify: true,
+      
+    }
+  },
+  setajax: function () {
+    this.$.ajax.url = "http://192.168.99.100:8000/blog/";
+    //this.$.ajax.params = {"userId":"1", "X-Requested-With":"XMLHttpRequest", "Access-Control-Allow-Headers": "X-Requested-With"};
+    this.$.ajax.generateRequest();
+  },
+  hresponse: function(request) {
+    console.log(request);
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+    this.someProp = this.$.ajax.lastResponse;
+  }
+});
+</script>
+</dom-module>

@@ -1,0 +1,50 @@
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %} {% endblock %} {{project_name}}</title>
+
+        <!-- Stylesheets ------------------------------------------------- -->
+        <!-- NOTE: for LESS script as to be straight after link -->
+
+        <!-- Browser should handle omitted 'type' -->
+        
+        <link href="{{STATIC_URL}}/bootstrap-source/dist/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="{{STATIC_URL}}/bootstrap/plugins/bootstrap-jointjs-editor/less/bootstrap-markdown.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}/css/joint.css" rel="stylesheet" media="screen">
+        <!-- Temporary look at compiled less .css file -->
+        <!--<link rel="stylesheet" href="{{STATIC_URL}}/less/style.css">-->
+
+
+            
+
+    </head>
+    <body>
+        <h1> Hello World. </h1>
+        <div id="test" width="100px" height="100px"> This is a div</div>
+
+        <div id="test2">
+        <form>
+            <textarea id="target-editor-with-custom-buttons" data-provide="markdown" data-savable="true" rows="10"></textarea>
+             <div class='paper'></div>
+        </form> 
+    </div>
+
+        <!-- ------------------------------------------------------------- -->
+        <script src="{{STATIC_URL}}/js/jquery-1.10.2.min.js"></script>
+        <script src="{{STATIC_URL}}/js/markdown.js"></script>
+        <!-- <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js"></script>-->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/js/tooltip.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/js/popover.js"></script>
+        <!-- <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script> -->
+        <script src="{{STATIC_URL}}/js/joint.js"></script> 
+        <script src="{{STATIC_URL}}/js/joint.shapes.uml.js"></script>
+        <script src="{{STATIC_URL}}/js/joint.shapes.fsa.min.js"></script>
+        <script src="{{STATIC_URL}}/js/joint.layout.DirectedGraph.min.js"></script>
+        <script src="{{STATIC_URL}}/js/dagre.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-jointjs-editor/js/bootstrap-jointjs-editor.js"></script>
+
+    </body>
+</html>

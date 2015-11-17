@@ -1,0 +1,261 @@
+{% load url from future %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-pjax-version" content="v123">
+        <title>{% block title %} {% endblock %} {{project_name}}</title>
+
+        <!-- Stylesheets ------------------------------------------------- -->
+        <link href="{{STATIC_URL}}/bootstrap-source/dist/css/bootstrap.css" rel="stylesheet"> 
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+        <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap/plugins/tocify/css/jquery.tocify.css" />
+        <link href="{{STATIC_URL}}css/font-awesome.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+        <!-- End of Stylesheets ------------------------------------------ -->
+
+    </head>
+    <body>
+    <!-- Modal Definition -->
+
+ <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+{% load navbar_tags %} <!--   NECESSARY: this is from the content app (templatetags automatically have to take from app) Cant do it from project folder easily! --> 
+<! --  block navbar -->
+ {% render_breadcrumbs "navbar.html" %}
+<! -- endblock navbar --> 
+
+
+
+
+    <div class="alert-sticky alertrt-info"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>@installing ubuntu 12.04 using dowser
+      <div class="page-line"></div>
+      <div id="toc"></div> 
+  </div>
+
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+          <!-- Left Column -->
+            {{path_language}} {{path_category}} {{path_subcategory}}
+              {% block content %}
+         
+          <div class="jumbotron-small jumbotron-ad hidden-print" style="background-image:url('{{STATIC_URL}}/js/python.png');">
+              <!--Updated on 22nd December
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> -->
+              <h1><img href="#" src="{{STATIC_URL}}logo_linux.png" height="50px"></img>  Tutorial on Linux</h1>
+              <p>Lots of ways to get involved with Font Awesome</p>
+              <a class="btn btn-primary btn-large" href="https://github.com/gfranko/jquery.tocify.js" target="_blank"><i class="fa fa-github" ></i> Fork on Github »</a>
+          
+          </div>
+
+
+          <div class="page-header" style="margin-top: 5px;">
+
+            <!-- <h2 id="js-overview">Overview</h2>-->
+            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-warning" ></i><i class="fa fa-bug" ></i> Add an Issue</button>
+            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-warning" ></i><i class="fa fa-bug" ></i> Ask for Help</button>
+            <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+          </div>
+          <div class="alert alert-warning">
+           
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <h2 id="js-overview">Overview</h2>
+              <ul class="nav nav-pills">
+              <li class="active"><a href="#">Update History <span class="badge">42</span></a></li>
+              <li><a href="#">Dependencies <span class="badge">42</span></a></li>
+              <li><a href="#">Warnings</a></li>
+              <li><a href="#">Issues</a></li>
+              <li><a href="#">Troubleshooting <span class="badge">3</span></a></li>
+              <li><a href="#"><strong>Comments/Reviews</strong><span class="badge">5</span></a></li>
+              </ul>
+              <br>
+              
+              <a><i class="fa fa-code-fork"></i> </a><strong>Holy guacamole!</strong> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link">...</a>
+          </div>
+
+
+          <h3 id="js-individual-compiled">Individual or compiled</h3>
+          <p>Plugins can be included individually (using Bootstrap's individual <code>*.js</code> files), or all at once (using <code>bootstrap.js</code> or the minified <code>bootstrap.min.js</code>).</p>
+
+          <div class="bs-callout bs-callout-danger">
+            <h4>Do not attempt to include both.</h4>
+            <p>Both <code>bootstrap.js</code> and <code>bootstrap.min.js</code> contain all plugins in a single file.</p>
+          </div>
+
+          <div class="bs-callout bs-callout-danger">
+            <h4>Plugin dependencies</h4>
+            <p>Some plugins and CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs. Also note that all plugins depend on jQuery (this means jQuery must be included <strong>before</strong> the plugin files). <a href="https://github.com/twbs/bootstrap/blob/v3.0.3/bower.json">Consult our <code>bower.json</code></a> to see which versions of jQuery are supported.</p>
+          </div>
+
+
+
+
+
+
+
+          <h2>Section 2</h2>
+          <h3>Subsection a</h3>
+          <h3>Included CSS and HTML files</h3>
+          <h2>Section 3</h2>
+          <h2>Section 4</h2>
+          <h2>Section 5</h2>
+          <h2>Section 6</h2>
+
+          <h1>Section 7</h1>
+          <h1>Section 8</h1>
+
+
+ {% endblock %}
+
+      
+        </div>
+        <div class="col-xs-6 col-md-4" style="background-color:#e7e7e7;">
+          <!-- Right Column -->
+            <div class="col-lg-12" style="padding:10px;">
+              <div class="form-group">
+                <div class="alert alert-success">
+                  <i class="fa fa-edit fa-lg" id="labeldevtool"> Developer Mode </i> 
+                  <div class="make-switch" data-on="success" data-off="danger" data-on-label="<i class='fa fa-edit fa-lg'></i>" >
+                    <input type="checkbox" checked>
+                  </div>
+                </div>
+              </div>
+                                
+          <div class="form-group">
+            <form role="search">
+            <input id="searchinput" type="text" class="alert-danger form-control" placeholder="Real-Time Search">
+            <button type="submit" class="btn btn-default">Submit</button>
+            </form>  
+          </div>
+          
+            <div class="form-group" style="min-width:100px;">
+              {% if user.is_authenticated %}
+              <!--- Login -->
+              <div class="btn-group open">
+                <a class="btn btn-primary" data-toggle="dropdown" href="#"><i class="fa fa-user fa-fw"></i>{{ user.username }}</a>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="fa fa-caret-down"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+                  <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+                  <li><a href="#"><i class="fa fa-ban fa-fw"></i> Ban</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><i class="i"></i> Make admin</a></li>
+                  <li><a href="#"><i class="i"></i> Logout</a></li>
+                </ul>
+              </div>
+              <a class="btn btn-danger" href="#"><i class="fa fa-trash-o fa-lg"></i> Delete Post</a>
+              <a id="userSettings" class="btn btn-default"  data-toggle="tooltip" data-placement="auto" title="This is your personal saved settings. Change view settings etc."> <i class="fa fa-cog" ></i> Settings</a>
+              </div>
+              
+
+              <!-- End of Login -->
+              {% else %}
+                <div class="form-group">
+                  <div class="input-group margin-bottom-sm">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                    <input class="form-control" type="text" placeholder="Email address">
+                  </div>
+
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                    <input class="form-control" type="password" placeholder="Password">
+                  </div>
+                </div>
+                <div class="page-header"><h2 id="js-overview">Why Log In?</h2></div>
+                Not logged in
+              {% endif %}
+            </div>
+
+                                             
+
+                     <!-- <div id="toc"></div> -->
+                     <!--/.well -->
+        </div>
+      </div>
+    </div> <!-- /container -->
+
+
+
+        <!-- Javascripts ------------------------------------------------- -->
+        <script src="{{STATIC_URL}}/js/jquery-2.0.3.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery.pjax.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery-ui.js"></script>
+        <script src="{{STATIC_URL}}/bootstrap-source/dist/js/bootstrap.js"></script>
+        <script src="{{STATIC_URL}}/js/markdown.js"></script>
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+         <script src="{{STATIC_URL}}/js/jquery.cookie.js"></script>
+        <script src="{{STATIC_URL}}/js/csrf.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/tocify/js/jquery.tocify.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/js/bootstrap-switch.js"></script> 
+        <script>
+            $(function() {
+
+                var toc = $("#toc").tocify({
+                  selectors: "h2,h3,h4,h5"
+                }).data("toc-tocify");
+
+                $(".optionName").popover({ trigger: "hover" });
+
+            });
+        </script>
+             <script>
+$(document).ready(function(){
+    $("[data-toggle=tooltip]").tooltip({ placement: 'right'});
+    
+});
+    </script>
+        <script>
+
+
+
+      $( document ).ready(function() {
+         $(".js-directory-link").attr("href", function(){ return $("tbody").data('url') + $(this).attr("href")})
+         $(document).pjax('a', '[data-pjax]')
+         console.log('ready')
+      });
+
+
+
+
+
+          $('#userSettings').click(function() 
+          {
+            //console.log('clicked')
+            //q = $('#q').val();
+            $('.modal-content').load("{% url 'accounts:update_user_modal' user.pk %}");
+            $("#myModal").modal('toggle');
+          });
+
+
+
+
+        function toggleSettings(){
+            $("#myModal").modal('toggle');
+        }          
+
+
+            function toggleNavbar()
+            {
+                console.log('toggling NavBar')
+                $('.navbar').toggle()
+                $('.navbar').toggleClass("navbar-fixed-top navbar-static-top")
+                $('.navbar').toggle()
+                //$('#navbartoggle').html('poo')
+            }
+        </script>
+        <!-- End of Javascripts ------------------------------------------ -->
+    </body>
+</html>

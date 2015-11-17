@@ -1,0 +1,205 @@
+{% extends "codewheel.html" %}
+{% block contentheader %}
+  {% include "blog/contentheader.html" %}  
+{% endblock contentheader %}
+{% block content %}
+
+        <span flex>
+          <div horizontal layout center center-justified>
+              
+<div class="device-screen">
+    <div id="hitarea" class="animate"></div>
+</div>
+          </div>
+        </span>
+
+
+<!-- <div id="pageselector">
+    <paper-shadow>
+        <core-selector id="pageMenu" selected="1">
+            <paper-item tabindex="0" class="">Item 1</paper-item>
+            <paper-item tabindex="0" class="core-selected" active="">Item 2</paper-item>
+            <paper-item tabindex="0" class="">Item 3</paper-item>
+            <paper-item tabindex="0" class="center"> + <input is="core-input" name="special"></paper-item>
+
+        </core-selector>
+
+    </paper-shadow>
+</div>
+ -->
+
+
+
+
+<paper-action-dialog id="addPage" backdrop="" autoclosedisabled="" layered="false" role="dialog" layout="" vertical="" tabindex="-1" style="position: fixed; outline: none; display: none;">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <paper-button affirmative="" autofocus="" role="button" tabindex="0">Tap me to close</paper-button>
+</paper-action-dialog>
+
+
+ <core-tooltip id="addnote-tip" class="fancyLeft"  label="I'm a tooltip to the right" position="left">
+    <paper-fab id="addnote" icon="fa:plus" class="blue" role="button" tabindex="0" aria-label="fa:plus" onClick="addNote()"></paper-fab>
+    <div tip="">
+        Add a Note
+    </div>
+</core-tooltip> 
+
+
+ <core-tooltip id="addlink-tip" class="fancyLeft" label="I'm a tooltip to the right" position="left">
+    <paper-fab id="addlink" icon="fa:tag" role="button" tabindex="0" aria-label="fa:tag" onClick="addNote()"></paper-fab>
+    <div tip="">
+        Add a Link / Image
+    </div>
+</core-tooltip> 
+
+
+<!-- 
+{% verbatim %}
+<button on-click="openDialog">
+{% endverbatim %}        
+        Ask It
+
+        <paper-action-dialog id="questionDialog" heading="Ask Question" transition="core-transition-bottom">
+          <form>
+            <paper-input id="title" label="Title"></paper-input>
+            <paper-autogrow-textarea id="contentArea">
+              <textarea id="content" placeholder="Type your question here..."></textarea>
+            </paper-autogrow-textarea>
+          </form>
+          <paper-button affirmative autofocus on-click="{{submitQuestion}}">Ask</paper-button>
+        </paper-action-dialog>
+      </button> -->
+
+{% verbatim %}
+<polymer-element name="name-tag" attributes="items">
+    <template>
+        <div id="pageselector">
+            <paper-shadow>
+                <core-selector id="pageMenu" selected="1">
+                    <template repeat="{{item, index for items}}">
+                        <paper-item tabindex="{{index}}" class=""><core-tooltip id="inputtooltip" class="fancyLeft" label="" position="right"><input is="core-input" name="special" value={{item}} committedValue="{{inputVal}}" ></core-tooltip></core-tooltip></paper-item>
+                    </template>
+                    <paper-item tabindex="0" class="center"> + <core-tooltip id="inputtooltip" class="fancyLeft" label="" position="right"><input is="core-input" name="special" value={{inVal}} committedValue="{{inputVal}}" ></core-tooltip> </paper-item>
+
+                </core-selector>
+
+            </paper-shadow>
+        </div>
+        This is <b>{{owner}}</b>'s name-tag element.
+    </template>
+  <script>
+    Polymer('name-tag', {
+      // initialize the element's model
+      ready: function() {
+        this.owner = 'Rafael';
+        this.inputVal = ''
+      },
+      observe: {
+        'inputVal': 'modelUpdated',
+        'item': 'modUpdated'
+      },
+
+      // need editMode
+
+      modUpdated: function(oldValue, newValue) {
+        console.log('modUpdated');
+        if (this.items.indexOf(newValue) >= 0 ) {
+           this.$.inputtooltip.label = 'Sorry you cant'
+           this.$.inputtooltip.show = true;
+        }
+      },
+      modelUpdated: function(oldValue, newValue) {
+        console.log(oldValue, newValue);
+        console.log('modelUpdated');
+        if (this.items.indexOf(newValue) >= 0 ) {
+       this.$.inputtooltip.label = 'Sorry you cant'
+       this.$.inputtooltip.show = true;
+   } else {
+        //this.$.core-tooltip.label = "dsfdsf";
+        this.items.push(newValue);
+        this.$.inputtooltip.label = ''
+        }
+      },
+      created: function() {
+        // hint that items is an array
+        this.items = ['item 1', 'item 22'];
+      },
+      isInvalid: function(value) { console.log('isInvalid'); return false; }
+    });
+  </script>
+</polymer-element>
+{% endverbatim %}
+
+
+
+<name-tag id="pageselector"></name-tag>
+
+
+
+
+
+ <script>
+// Polymer("input", {
+//     valueChanged: function() {
+//         console.log("valueChanged");
+//         console.log(this.value);
+//     }
+// });
+
+
+//  (function () {
+//       'use strict';
+//       Polymer({
+//         openDialog: function() {
+//             console.log('openDialog');
+//           this.$.questionDialog.toggle();
+//         },
+//                 openDialog2: function() {
+//             console.log('openDialog2');
+//           this.$.pageMenu.toggle();
+//         },
+
+
+        // submitQuestion: function() {
+        //   if (!this.$.title.value.length) {
+        //     alert('Please write a title.');
+        //     return;
+        //   }
+        //   if (!this.$.content.value.length) {
+        //     alert('Please write a question.');
+        //     return;
+        //   }
+        //   var question = this.$.base.push({
+        //     title: this.$.title.value,
+        //     content: this.$.content.value,
+        //     user: {
+        //       uid: this.globals.currentUser.uid,
+        //       username: this.globals.currentUser.github.username,
+        //       avatar_url: this.globals.currentUser.github.cachedUserProfile.avatar_url,
+        //       html_url: this.globals.currentUser.github.cachedUserProfile.html_url
+        //     },
+        //     timestamp: new Date().getTime()
+        //   });
+        //   this.$.title.value = '';
+        //   this.$.content.value = '';
+        // },
+        // viewQuestion: function(e) {
+        //   var id = e.target.getAttribute('question-id');
+        //   document.location.href = '/#/questions/' + id;
+        // }
+    //   });
+    // })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

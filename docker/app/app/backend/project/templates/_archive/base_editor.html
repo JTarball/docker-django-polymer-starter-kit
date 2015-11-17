@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %} {% endblock %} {{project_name}}</title>
+
+        <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+        <!--<link rel="stylesheet" href="{{STATIC_URL}}css/print.css" media="print"/>->
+        <!--[if lt IE 8]><link rel="stylesheet" href="{{STATIC_URL}}css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
+        <!--<link rel="stylesheet" href="{{STATIC_URL}}css/screen.css" media="screen, projection"/>-->
+
+
+        <!--<script src="{{STATIC_URL}}js/jquery-1.9.0.min.js"></script>-->
+
+        <!--<link href="{{STATIC_URL}}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+        <link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown/less/bootstrap-markdown.less" rel="stylesheet/less" media="screen">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}/css/joint.css" rel="stylesheet" media="screen">
+        <link href="{{STATIC_URL}}/css/development.css" rel="stylesheet" media="screen">
+
+
+
+        <link rel="{{STATIC_URL}}/less" type="text/css" href="styles.less">
+        <script src="{{STATIC_URL}}js/less-1.5.0.min.js" type="text/javascript"></script>
+
+        <!---<link rel="stylesheet" href="{{STATIC_URL}}js/highlight.js-line-numbers/src/styles/default.css">-->
+        <!---<script src="{{STATIC_URL}}js/highlight.js-line-numbers/src/highlight.js"></script>-->
+        <!--<script type="text/javascript">hljs.tabReplace='<span class="indent"></span>'; hljs.initHighlightingOnLoad();</script>-->
+        <!--<script>hljs.initHighlightingOnLoad();</script>-->
+
+
+        
+        <script>
+            function allowDrop(ev)
+            {
+                ev.preventDefault();
+            }
+
+            function drag(ev)
+            {
+                ev.dataTransfer.setData("Text",ev.target.id);
+            }
+
+            function drop(ev)
+            {
+                ev.preventDefault();
+                var data=ev.dataTransfer.getData("Text");
+
+                ev.target.appendChild(document.getElementById(data));
+            }
+        </script>
+
+        <script>
+
+        </script>
+
+<style type="text/css">
+#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+
+         <!--[if (gte IE 6)&(lte IE 8)]>
+                <script type="text/javascript" src="{{STATIC_URL}}js/selectivizr-min.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/respond.min.js"></script>
+        <![endif]-->
+
+        <!--<script src="{{STATIC_URL}}js/modernizr.custom.74326.js"></script>-->
+
+        {% comment %} 
+            Link site specific js and css here
+        {% endcomment %}
+        {% block extra_head %}{% endblock%}
+    </head>
+    <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+        <script src="{{STATIC_URL}}/js/jquery-1.10.2.min.js"></script>
+        <script src="{{STATIC_URL}}/js/markdown.js"></script>
+        <!-- <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js"></script>-->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/js/tooltip.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/js/popover.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+        <script src="{{STATIC_URL}}/js/joint.js"></script>
+        <script src="{{STATIC_URL}}/js/joint.shapes.uml.min.js"></script>
+        <script src="{{STATIC_URL}}/js/joint.shapes.fsa.min.js"></script>
+        <script src="{{STATIC_URL}}/js/joint.layout.DirectedGraph.min.js"></script>
+        <script src="{{STATIC_URL}}/js/dagre.min.js"></script>
+        <!--<link href="{{STATIC_URL}}bootstrap/plugins/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        -->
+
+
+<div id="main">
+
+    <form height="500px" width="1000px">
+        <input name="title" type="text" placeholder="Title?" />
+        <textarea id="target-editor-with-custom-buttons" data-provide="markdown" rows="10"></textarea>
+        <div class='paper' ondragover='allowDropElement(event)' ondrop='dropElement(event)'></div>
+        <div class="inspector" onChange="updateCell">
+            <div class="inspector-group">
+                <div class="inspector-property inspector-text">Text</div>
+                <div class="inspector-control"><input type="text" class="form-control" placeholder="Enter label for Element."></div>
+            </div>
+            <div class="inspector-group">
+                <div class="inspector-property inspector-text">heighsdhhdfhksj</div>
+                <div class="inspector-control"><input type="text" class="form-control" placeholder="Enter label for Element." /></div>
+            </div>
+            <div class="inspector-group">
+                <div class="inspector-property inspector-text">heighsdhhdfhksj</div>
+                <div class="inspector-control">
+                    <input type="range" id="diacellfontsize" name="diacellfontsize" min="8" max="100">
+                    <outputname="amount" for="diacellfontsize">16</output>
+                </div>
+            </div>
+        </div>   
+                
+      
+
+
+
+
+    </form> 
+
+</div>
+<br><br>
+
+
+
+        <textarea id="adjacency-list">{
+          'This is\nan element': ['b', 'c'],
+          'b': ['f'],
+          'c': ['e', 'd'],
+          'd': [],
+          'e': [],
+          'f': ['g'],
+          'g': []
+        }</textarea>
+
+
+
+        <button id="btn-save">Save</button>
+
+    
+
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+
+
+
+
+
+<script>// Helpers.
+// --------
+
+function buildGraphFromAdjacencyList(adjacencyList) {
+
+    var elements = [];
+    var links = [];
+    
+    _.each(adjacencyList, function(edges, parentElementLabel) {
+        elements.push(makeElement(parentElementLabel));
+
+        _.each(edges, function(childElementLabel) {
+            links.push(makeLink(parentElementLabel, childElementLabel));
+        });
+    });
+
+    // Links must be added after all the elements. This is because when the links
+    // are added to the graph, link source/target
+    // elements must be in the graph already.
+    return elements.concat(links);
+}
+
+function makeLink(parentElementLabel, childElementLabel) {
+
+    return new joint.dia.Link({
+        source: { id: parentElementLabel },
+        target: { id: childElementLabel },
+        attrs: { '.marker-target': { d: 'M 4 0 L 0 2 L 4 4 z' } },
+        smooth: true
+    });
+}
+
+function makeElement(label) {
+
+    var maxLineLength = _.max(label.split('\n'), function(l) { return l.length; }).length;
+
+    // Compute width/height of the rectangle based on the number
+    // of lines in the label and the letter size. 0.6 * letterSize is
+    // an approximation of the monospace font letter width.
+    var letterSize = 8;
+    var width = 2 * (letterSize * (0.6 * maxLineLength + 1));
+    var height = 2 * ((label.split('\n').length + 1) * letterSize);
+
+    return new joint.shapes.basic.Rect({
+        id: label,
+        size: { width: width, height: height },
+        attrs: {
+            text: { text: label, 'font-size': letterSize, 'font-family': 'monospace' },
+            rect: {
+                width: width, height: height,
+                rx: 5, ry: 5,
+                stroke: '#555'
+            }
+        }
+    });
+}
+
+function displayElementAttributes(attributes) {
+
+    console.log(attributes);
+    $( "#username" ).html(attributes.text.text);
+
+
+   // _.each(attributes, function (item) { console.log(item); });
+}
+
+
+
+// Main.
+// -----
+
+var stencilgraph = new joint.dia.Graph;
+
+
+
+
+var stencil = new joint.dia.Paper({
+
+    el: $('#stencil'),
+    width: 2000,
+    height: 2000,
+    gridSize: 1,
+    model: stencilgraph
+});
+    var graph = new joint.dia.Graph;
+var paper = new joint.dia.Paper({
+    el: $('.paper'),
+    gridSize: 1,
+    model: graph
+});
+V(paper.viewport).translate(20, 20);
+
+function layout() {
+
+// Just give the viewport a little padding.
+
+    console.log('layout')
+    try {
+        var adjacencyList = eval('adjacencyList = ' + $('#adjacency-list').val());
+    } catch (e) { alert(e); }
+     
+    var cells = buildGraphFromAdjacencyList(adjacencyList);
+    graph.resetCells(cells);
+    joint.layout.DirectedGraph.layout(graph, { setLinkVertices: false });
+
+}
+layout();
+$('.paper').hide();
+$('#btn-save').on('click', createStencil2);
+
+
+
+
+
+
+function createStencilElement(element, dom_id){
+    var view = stencil.createViewForModel(element);
+    V(stencil.viewport).append(view.el);
+    view.paper = paper;
+    view.render(); 
+    // Insert into DOM
+    console.log(view.el)
+    if ( $(dom_id).length ) {
+ 
+        console.log('found length')
+ 
+    }
+    $(dom_id).html(view.el);
+}
+var umlclass = new joint.shapes.uml.Class({ 
+    position: { x: 0, y: 0 },
+    size: { width: 70, height: 30 },
+    attrs: { text: { text: 'my rectangle' } }
+});
+
+function createStencil2(){
+console.log('tried showing..')
+    var umlstate = new joint.shapes.uml.State({
+        attrs: {
+            rect: { 'width': 50, 'height': 50, 'fill': '#ecf0f1', 'stroke': '#bdc3c7', 'stroke-width': 3, 'rx': 10, 'ry': 10 },
+            path: { 'd': 'M 0 20 L 200 20', 'stroke': '#bdc3c7', 'stroke-width': 2 },
+            '.uml-state-name': {
+                'ref': 'rect', 'ref-x': 15, 'ref-y': 15, 'text-anchor': 'middle',
+                'font-family': 'Courier New', 'font-size': 8, fill: '#000000'
+            },
+            '.uml-state-events': {
+                'ref': 'path', 'ref-x': 5, 'ref-y': 5,
+                'font-family': 'Courier New', 'font-size': 14, fill: '#000000'
+            }
+        }
+    });
+    createStencilElement(umlstate,"#stencil-umlstate");
+
+};
+
+//createStencil2();
+
+
+
+
+
+
+function createStencil(){
+    //$('.stencilbar').show();
+    console.log('tried showing..')
+    // Create 
+
+    var view = stencil.createViewForModel(new joint.shapes.basic.Rect({
+        markup: '<div id="rect" draggable="true" ondragstart="dragStencilElement(event)"><g class="rotatable"><g class="scalable"><rect/></g><text/></g></div>',
+        id: 'ad',
+        size: { width: 50, height: 30 },
+        attrs: {
+            text: { text: 'ad', 'font-size': 10, 'font-family': 'monospace' },
+            rect: {
+                width: 50, height: 30,
+                rx: 5, ry: 5,
+                stroke: '#555'
+            }
+        }}));
+    V(stencil.viewport).append(view.el);
+
+    console.log('view: ', view);
+    view.paper = stencil;
+    console.log(view.el);
+    view.render();
+    console.log(view.el);
+
+    stencil.undelegateEvents();
+    var markup = '<g class="rotatable"><g class="scalable"><rect/></g><text/></g>';
+    var nodes = V(markup);
+    console.log('nodes:', nodes)
+    //console.log(view, view.render());
+    $('#stencil-rect').html(view.el);
+
+    // Creates Default UML Class
+
+
+    var view = stencil.createViewForModel(umlclass);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+
+    $('#stencil-umlclass').html(view.el);
+
+
+    // Create UML Interface
+    var umlinterface = new joint.shapes.uml.Interface({ 
+        size: { width: 70, height: 30 },
+        attrs: { text: { text: 'my rectangle' } }
+    });
+    var view = stencil.createViewForModel(umlinterface);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+    // Insert into DOM
+    $('#stencil-umlinterface').html(view.el);  
+
+    // Create UML Abstract
+    var umlabstract = new joint.shapes.uml.Abstract({ 
+        size: { width: 70, height: 30 },
+        attrs: { text: { text: 'my rectangle' } }
+    });
+    var view = stencil.createViewForModel(umlabstract);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+    // Insert into DOM
+    $('#stencil-umlabstract').html(view.el);    
+
+    // Create UML Link Generalization
+    var umlgeneralization = new joint.shapes.uml.Generalization({ 
+        attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+    });
+    createStencilElement(umlgeneralization,'#stencil-umlgeneralization');
+
+    // Create UML Link Implementation
+    var umlimplementation = new joint.shapes.uml.Implementation({ 
+        attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+    });
+    createStencilElement(umlimplementation,'#stencil-umlimplementation');
+
+    // Create UML Link Aggregation
+    var umlaggregation = new joint.shapes.uml.Aggregation({ 
+        attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+    });
+    createStencilElement(umlaggregation,'#stencil-umlaggregation');
+
+    // Create UML Link Composition
+    var umlcomposition = new joint.shapes.uml.Composition({ 
+        attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+    });
+    createStencilElement(umlcomposition,'#stencil-umlcomposition');
+
+    // Create UML Link Association
+    var umlassociation = new joint.shapes.uml.Composition({ 
+        attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+    });
+    createStencilElement(umlassociation,'#stencil-umlassociation');
+
+
+    //
+    // StateCharts
+    //
+
+    // Create UML State
+    var umlstate = new joint.shapes.uml.State({
+        attrs: {
+            rect: { 'width': 50, 'height': 50, 'fill': '#ecf0f1', 'stroke': '#bdc3c7', 'stroke-width': 3, 'rx': 10, 'ry': 10 },
+            path: { 'd': 'M 0 20 L 200 20', 'stroke': '#bdc3c7', 'stroke-width': 2 },
+            '.uml-state-name': {
+                'ref': 'rect', 'ref-x': 15, 'ref-y': 15, 'text-anchor': 'middle',
+                'font-family': 'Courier New', 'font-size': 8, fill: '#000000'
+            },
+            '.uml-state-events': {
+                'ref': 'path', 'ref-x': 5, 'ref-y': 5,
+                'font-family': 'Courier New', 'font-size': 14, fill: '#000000'
+            }
+        }
+    });
+    createStencilElement(umlstate,'#stencil-umlstate');
+
+    // Create UML Start State
+    var umlstartstate = new joint.shapes.uml.StartState();
+    createStencilElement(umlstartstate,'#stencil-umlstartstate');
+
+    // Create UML Start State
+    var umlendstate = new joint.shapes.uml.EndState();
+    createStencilElement(umlendstate,'#stencil-umlendstate');
+
+    // Create UML State Link Transition
+    var umlstatetransition = new joint.shapes.uml.Transition({ 
+        attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+    });
+    createStencilElement(umlstatetransition,'#stencil-umlstatetransition');
+
+
+    //
+    // Finite State Machines
+    //
+
+    // Create Start State Diagram
+    var startstate = new joint.shapes.fsa.StartState();
+    var view = stencil.createViewForModel(startstate);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+    // Insert into DOM
+    $('#stencil-startstate').html(view.el);
+
+    // Create End State Diagram
+    var endstate = new joint.shapes.fsa.EndState();
+    var view = stencil.createViewForModel(endstate);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+    // Insert into DOM
+    $('#stencil-endstate').html(view.el);
+
+    // Create State Diagram
+    var state = new joint.shapes.fsa.State({ attrs: { text: { text: 'state' } }});
+    var view = stencil.createViewForModel(state);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+    // Insert into DOM
+    $('#stencil-state').html(view.el);
+
+    // Create State Diagram
+    var arrowstate = new joint.shapes.fsa.Arrow({
+                attrs: { '.connection': { stroke: 'blue' },
+        '.marker-source': { fill: 'red', d: 'M 0 0 L 10 10 L 10 -10 z' },
+        '.marker-target': { fill: 'yellow', d: 'M 0 0 L 10 10 L 10 -10 z' }
+        },
+        source : { x:25, y:10 }, 
+        target : { x:25, y:50},
+        smooth : true 
+        });
+    var view = stencil.createViewForModel(arrowstate);
+    V(stencil.viewport).append(view.el);
+    view.paper = stencil;
+    view.render(); 
+    // Insert into DOM
+    $('#stencil-arrowstate').html(view.el);
+    console.log('tried showing..end')
+    };
+
+    function allowDropElement(ev)
+    {
+        console.log('allowDropElement');
+        ev.preventDefault();
+    }
+
+    function dragStencilElement(ev)
+    {
+        console.info("This is some debug info.", ev);
+        ev.dataTransfer.setData("Text",ev.target.id);
+    }
+
+    function dropElement(ev)
+    {
+        console.log(ev);
+              console.log('umlclass: ',umlclass, ev.target_id);
+        ev.preventDefault();
+        var data=ev.dataTransfer.getData("Text");
+        console.log(data)
+        
+        //console.log(umlclass)
+        umlclass2 = umlclass.clone({ position: { x: 400, y: 400 }})
+        console.log(umlclass2)
+
+        graph.addCell(umlclass2);
+        //ev.target.appendChild(document.getElementById(data));
+    }
+//createStencil();
+ function updateCell(){}
+</script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+	jlkjdsfl
+{% block content %}
+
+<div>
+
+	
+	
+	<form action="/sc/" method="GET">
+		<input type="text" name="query"/>
+		<input type="submit">
+	</form>
+
+	{% if stories %}
+		<p>Your search for &ldquo;<strong>{{ query }}</strong>&rdquo; had <strong>{{ search_meta.total_found }}</strong> results.</p>
+		<p>search_meta object dump: {{ search_meta }}</p>
+	{% endif %}
+	<hr/>
+	{% for s in stories %}
+			<h3><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></h3>
+			<p>(weight: {{ s.sphinx.weight }})</p>
+			<p>story.sphinx object dump: {{ s.sphinx }}</p>
+	{% empty %}
+		<p>YOU HAVEN'T SEARCHED YET.</p>
+	{% endfor %}
+</div>
+
+{% endblock %}

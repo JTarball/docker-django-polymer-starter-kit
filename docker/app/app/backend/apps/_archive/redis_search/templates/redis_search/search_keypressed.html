@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+	jlkjdsfl
+{% block content %}
+
+<div>
+
+
+
+	{% block extra_js %}
+	<script type="text/javascript">
+	$( document ).ready( function() {
+		$( '#searchSubmit' ).click( function() {
+			q = $( '#q' ).val();
+			$( '#results' ).html( '&nbsp;' ).load( '{% url demo_user_search %}?q=' + q );
+		});
+	});
+
+	$( document ).ajaxStart( function() {
+		$( '#spinner' ).show();
+	}).ajaxStop( function() {
+		$( '#spinner' ).hide();
+	});
+	</script>
+	{% endblock %}
+
+	{% block main %}
+
+	<div>
+		<input id="q" type="text"/>
+		<input id="searchSubmit" type="submit" value="Search"/>
+		<br/>
+		<span class="hint">Type in a query string to search for users</span>
+		<div class="margin">
+			<span id="spinner"><img src="{{ MEDIA_URL }}spinner.gif"/></span>
+			<div id="results"></div>
+		</div>
+	</div>
+	{% endblock %}
+	
+	
+	
+	<input type="text" id="txtSearch" onkeypress="searchKeyPress(event);" />
+	
+
+
+
+	
+	
+	<form action="/sc/"  method="GET">
+		<input type="text" name="query"/>
+		<input type="submit">
+	</form>
+
+	{% if stories %}
+		<p>Your search for &ldquo;<strong>{{ query }}</strong>&rdquo; had <strong>{{ search_meta.total_found }}</strong> results.</p>
+		<p>search_meta object dump: {{ search_meta }}</p>
+	{% endif %}
+	<hr/>
+	{% for s in stories %}
+			<h3><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></h3>
+			<p>(weight: {{ s.sphinx.weight }})</p>
+			<p>story.sphinx object dump: {{ s.sphinx }}</p>
+	{% empty %}
+		<p>YOU HAVEN'T SEARCHED YET.</p>
+	{% endfor %}
+</div>
+
+{% endblock %}

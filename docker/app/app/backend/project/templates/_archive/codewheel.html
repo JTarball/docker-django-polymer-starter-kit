@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<html>
+<head>
+  <!-- Title and Icon in Title -->
+  <title>codewheel.io</title>
+  <link rel="icon" type="image/png" href="{% static 'sass/static/img/icon-blue-40@2x.png' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <script type="text/javascript" src="http://localhost:48626/takana.js"></script>
+  <script type="text/javascript">takanaClient.run({host: 'localhost:48626'});</script>
+
+  <!-- Stylesheets ------------------------------------------------- -->
+  <!--<link href="{% static "sass/static/css/font-awesome.min.css" %}" rel="stylesheet">-->
+  <link rel="stylesheet" href="{% static "app.css" %}">
+
+
+    <script src="{% static "sass/static/js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{% static "sass/static/js/hammer.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "sass/static/js/hammer_functions.js" %}"></script>
+
+  <script src="{% static "bower_components/webcomponentsjs/webcomponents.js" %}"></script>
+  <!-- All the Polymer Element Imports in one file-->
+  <link rel="import" href="{% static "elements.html" %}"> 
+  
+</head>
+
+  <body fullbleed layout vertical>
+    <core-scroll-header-panel flex>
+      <!-- Core ToolBar -->
+      <core-toolbar>
+        <core-image src="{% static "sass/static/img/codewheel-logo.png" %}"></core-image>
+        <span flex>
+          <div horizontal layout center center-justified>
+            <form id="search" method="get" action="http://www.codewheel.io/">
+              <input type="text" name="s" placeholder="Search codewheel.io " /> 
+              <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </span>
+        <input id="active-coding-switch" type="checkbox">
+        <label for="active-coding-switch"></label>
+        <input id="bg-switch" type="checkbox">
+        <label for="bg-switch"><i></i></label>
+      </core-toolbar>
+      <!-- End of CoreToolBar -->
+      <!-- Main Content -->
+      <div class="content">
+        {% block contentheader %}{% endblock contentheader %}
+        {% block content %}{% endblock content %}
+      </div>
+      <!-- End of Main Content -->
+    </core-scroll-header-panel>
+  {% block scripts %} 
+      <!--<script>
+          $( document ).ready(function() {
+              $(document).pjax('[data-pjax]', '#pjax-container')
+          });
+      </script>-->
+  {% endblock %}
+  </body>
+
+</html>

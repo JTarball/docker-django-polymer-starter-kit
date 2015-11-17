@@ -1,0 +1,118 @@
+auto tagging
+
+
+- on save should reverse up the tree and add postnodes
+- should add any tags already exist and add them if in content
+- auto tags any uses (if in uses sections ) or that have been manually added through editor
+
+
+http://devthought.com/wp-content/projects/mootools/textboxlist/Demo/
+
+
+
+http://devthought.com/wp-content/projects/mootools/textboxlist/Demo/
+
+
+Add Bookmark or Save to Personal Page (need switch also)
+any card or secton is savable 
+
+/home/personal etc. (choose by language)
+
+add note in card also 
+also mantras
+
+
+did you mean?? -- 
+
+
+NEED TO SAVE SEARCH QUERIES TO LOG SO CAN ANALYSE AND EVENTUALLY IMPROVE
+
+
+
+
+
+increasing rank by views???
+
+
+
+- STEP ONE IS AUTO-TAG AND MANUAL USES
+- + SAVE SEARCH QUERY TO ADMIN LOG
+- AUTOCOMPLETE SHOULD BE IF POSTNODE - LOOK IN THERORY PYTHON?
+
+
+
+STEP TWO 
+- improve search
+- analyse queries
+- do you mean?
+    code examples
+    design decisions
+    further learning
+    demo
+    gotchas
+    tricks and tips
+    uses
+
+
+
+
+
+
+
+
+
+
+ - PJAX FOR SEARCH QUERY - done
+ - CREATE A BIGGER DATASET FOR TESTING
+ - TIDY UP UTILS / MODELS.PY
+  
+
+ - WORKOUT WHAT IS NEEDED ON THE DETAIL PAGE (IN TERM OF VIEWS)
+ - save comment (reply and to what content is frontend)
+
+
+
+
+
+
+
+ - COMMENT ACCOUNT REGISTRATION OR GOOGLE / GITHUB ETC
+ - BACKUP DATABASE HOW TO 
+ - COMMENTS FOR ANOYMOUS USER POSSIBLE UP TO 5
+
+
+ - FRONTEND
+  - TIDY UP 
+ - DEPLOY
+ - INDIVIDUAL PAGE 
+
+
+
+
+
+
+
+
+
+
+
+
+ICONS
+_____________
+
+
+
+
+Power Button - for dimming the background (toggling light / dark) (toast nofication when done)
+Application Note - pencil on clipboard icon
+
+Issue/Warning -  If present "1 issue" (exclamation icon)
+Troubleshooting - button ? icon
+
+Code Example - </> icon or number + icon
+
+Comment  - Quote icon with bubble with number
+
+Bookmark - bookmark icon with toast
+
+Hint - Bulb (Only one)

@@ -1,0 +1,84 @@
+
+
+
+# Want to be able to switch from dev to production 
+# 
+ENV_TYPE=prod
+
+# =============================
+# Main Project Env - Dockerfile
+# =============================
+APP_DIR=/app
+CIRCLE_TEST_REPORTS=/app/backend/circle-junit
+BACKEND_DIR=/app/backend
+
+
+# =============================
+# Django - Environment Vars
+#
+# REMEMBER TO CHANGE SUPERUSER
+# NAME AND PASSWORD WITH FIRST
+# USE
+#
+# =============================
+#NEED TO REVERT THIS CODE!!!!!!
+
+SUPERUSER_NAME=administrator
+SUPERUSER_PASSWORD=password12
+SUPERUSER_EMAIL=james.tarball@gmail.com
+
+DB_ENGINE=<%- db_engine %>
+DB_NAME=<%- db_name %>
+DB_USER=<%- db_user %>
+DB_PASS=<%- db_password %>
+DB_HOST=<%- db_host %>
+DB_PORT=<%- db_port %>
+
+DJ_DEV_SETTINGS=True
+DJ_LOG_LEVEL=DEBUG 
+ADMIN_NAME=James Tarball 
+ADMIN_EMAIL=james.tarball@gmail.com 
+
+
+
+# Postgresql Docker Service
+# =========================
+POSTGRES_DB=<%- db_name %>
+POSTGRES_USER=<%- db_user %>
+POSTGRES_PASSWORD=<%- db_password %>
+
+
+
+
+
+#####
+# Django
+#####
+
+# The name of the Django project, this is used in the files django-uwsgi.ini
+# and setup.sh
+DJANGO_PROJECT_NAME=starter
+
+
+#####
+# Nginx
+#####
+
+# Server name used in nginx.j2
+NGINX_SERVER_NAME=localhost
+
+# Here you can specify the location of your SSL/TLS certificate and key.
+# This will be specified in the nginx.j2 When empty it uses the default 
+# self-signed certificate provided by this project
+NGINX_CRT_NAME
+NGINX_KEY_NAME
+
+
+
+
+
+
+
+
+
+

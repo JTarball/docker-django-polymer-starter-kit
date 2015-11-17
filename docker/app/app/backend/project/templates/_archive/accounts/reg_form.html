@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h1 class="codewheel-font">Login</h1>
+    <div class="form-login">
+      <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+      <div class="input-group input-group-lg">
+        <!-- ugly hack for width because I suck at css -->
+        <input type="text" id="reg-username" class="form-control" style="width:280px;" placeholder="{{form.username.label}}">
+        <div class="register-err  username-errors">{{form.email.errors}}</div>
+      </div>
+      <div class="input-group input-group-lg">
+        <!-- ugly hack for width because I suck at css -->
+        <input type="text" id="reg-email" class="form-control" style="width:280px;" placeholder="{{form.email.label}}">
+        <div class="register-err  email-errors">{{form.email.errors}}</div>
+      </div>
+      <div class="input-group input-group-lg">
+        <!-- ugly hack for width because I suck at css -->
+        <input type="text" id="reg-password1" class="form-control" style="width:280px;" placeholder="{{form.password1.label}}">
+        <div class="register-err password1-errors">{{form.password1.errors}}</div>
+      </div>
+      <div class="input-group input-group-lg">
+        <!-- ugly hack for width because I suck at css -->
+        <input type="text" id="reg-password2" class="form-control" style="width:280px;" placeholder="{{form.password2.label}}">
+        <div class="register-err  password2-errors">{{form.password2.errors}}</div>
+      </div>
+
+      <div class="input-group input-group-lg">
+      <div class="register-tos">
+        <input  type="checkbox"  id="slideThree" name="vehicle" value="Bike"></input>
+        <label for="slideThree"></label>
+      </div>
+      <div class="register-err">By clicking the button, you agree to the terms below.</div>
+      </div>
+      <hr>
+      <input class="btn btn-lg btn-info" type="submit" value="{% trans 'Submit' %}" />
+      <input type="hidden" name="next" value="{{ next }}" />
+      <hr>
+      <p class="login-help"><a class="btn btn-lg btn-notice-danger" href="url "auth_password_reset" ">{% trans "Terms of Use" %}</a></p>
+      <p class="login-help"><a class="btn btn-lg btn-noticeable" href="url "auth_password_reset" ">{% trans "Privacy Policy" %}</a></p>
+
+    </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(document).ready(function(){
+    $("#reg-username").click(function () {
+        $('.username-errors').html("Select a username. Don't worry you can change it later.");
+    });
+    
+    $("#reg-email").click(function () {
+        $('.email-errors').html('What’s your email address?');
+    });
+
+    $("#reg-password1").click(function () {
+        $('.password1-errors').html('Please enter a password');
+    });
+
+    $("#reg-password2").click(function () {
+        $('.password2-errors').html('Re-type password please');
+    });
+
+  });
+</script>
+{% endblock %}

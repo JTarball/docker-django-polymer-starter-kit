@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block contentheader %}
+  {% include "blog/contentheader.html" %}  
+{% endblock contentheader %}
+{% block title  %} Search {% endblock %}
+{% block content %}
+	<h1>Search</h1>
+	{% include "search/pjax/search.html" %}
+{% endblock content %}

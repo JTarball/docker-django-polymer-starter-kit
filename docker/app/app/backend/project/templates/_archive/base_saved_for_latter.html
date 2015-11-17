@@ -1,0 +1,461 @@
+{% load url from future %}
+<!-- load compress -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-pjax-version" content="v123">
+        <title>{% block title %} {% endblock %} {{project_name}}</title>
+
+        <!-- Stylesheets ------------------------------------------------- -->
+        <!--<link href="{{STATIC_URL}}/bootstrap-source/dist/css/bootstrap.css" rel="stylesheet">-->
+        <link href="{{STATIC_URL}}/bootstrap_sass/stylesheets/main.css" rel="stylesheet">
+         <link href="{{STATIC_URL}}bootstrap_sass/stylesheets/css/font-awesome.min.css" rel="stylesheet">
+        <script type="text/javascript" src="http://localhost:48626/takana.js"></script>
+        
+
+        <!-- NOTE: JQUERY IN HEADER instead of footer IN CASE OF PARTIAL SCRIPTS/TEMPLATES -->
+        <!-- Allows scripts in body without problems -->
+        <script src="{{STATIC_URL}}/js/jquery-2.0.3.js"></script>
+        <script src="{{STATIC_URL}}/js/jQuery.succinct.min.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery.pjax.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery-ui.js"></script>
+
+        <!--<link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown2/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">-->
+        <!--<link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap/plugins/tocify/css/jquery.tocify.css" />-->
+        <!--<link href="{{STATIC_URL}}css/slidemenu/stylesheets/slidemenu.css" rel="stylesheet">-->
+       
+        <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">-->
+        <!--<link rel="stylesheet" type="text/ttf" href="{{STATIC_URL}}/bootstrap_sass/stylesheets/Droid_Sans/DroidSans.ttf">-->
+       <!--<script type="text/javascript" src="http://typecast.com/project_css/kpCR697q6N/2041874a006ede.js"></script>-->
+       <!--<script type="text/javascript" src="http://typecast.com/project_css/kpCR697q6N/2047128db64391.js"></script>-->
+        <!--<link href="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">-->
+
+        <link href="{{STATIC_URL}}css/vs.css" media="screen" rel="stylesheet" type="text/css" />
+
+<link href="{{STATIC_URL}}bootstrap_sass/stylesheets/pygments.css" rel="stylesheet">
+<link href="{{STATIC_URL}}bootstrap_sass/stylesheets/widearea.css" rel="stylesheet">
+        <!-- End of Stylesheets ------------------------------------------ -->
+
+
+
+    </head>
+    <body>
+    <!-- Modal Definition -->
+    <!-- Note: has to be here as positive relative or fixed will cause modal under background -->
+    <!-- Best Place is just after body tag -->
+    <div class="modal fade bs-example-modal-lg" data-bind="modal: masterVM.Poopy" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                {% include "accounts/login_form.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Modal Definition>
+
+
+
+
+
+
+<!-- load navbar_tags -->
+<!-- Navigation -->
+<nav id="slide-menu">
+  <ul>
+    <li class="timeline">Timeline</li>
+    <li class="events">Events</li>
+    <li class="calendar">Calendar</li>
+    <li class="sep settings">Settings</li>
+    <li class="logout">Logout</li>
+  </ul>
+</nav>
+
+
+<!-- Content panel -->
+<div id="content">
+    
+   <!-- <header>
+   
+      <a class="mainlogo" href=".">codewheel.io</a>
+      <a class="mainlogoname">codewheel.io</a>
+      <div class="navbuttons">
+        <ul>
+          <li><a class="btn btn-underline btn-lg">What is codewheel.io?</a></li>
+        </ul>
+      </div>
+      <div class="navbuttons">
+        <ul>
+          <li><a href="https://github.com/twbs/bootstrap" class="btn btn-outline btn-lg">Register</a></li>
+          <li><a href="/" class="btn btn-outline-reverse btn-lg">Login</a></li>
+        </ul>
+      </div>
+    </header>
+    -->
+
+    <div class="navbar navbar-fixed-top" role="navigation">
+      
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="menu-trigger"></div>  
+            <a class="navbar-brand" href="/">codewheel.io</a>
+            
+            <!--<a class="navbar-brand" href="#">codewheel.io</a>-->
+        </div>
+        
+        <a href="/" class="btn  btn-mdm btn-underline navbar-what">what is codewheel.io?</a>
+
+        <div class="navbar-buttons">
+          <a href="{% url 'accounts:registration_register' %}" class="btn  btn-mdm btn-info">Sign up now</a>
+          <a href="{% url 'accounts:auth_login' %}" class="btn  btn-mdm btn-border">Login</a>  
+        </div><!--/.nav-buttons -->
+
+        <!--<a href="/" class="btn  btn-sm btn-primary">Primary 3</a>
+        <a href="/" class="btn  btn-sm btn-primary disabled">Primary disabled 3</a>
+        <a href="/" class="btn btn-xs btn-inverse">Login 2</a>
+        <a href="/" class="btn  btn-xs btn-primary">Primary 3</a>
+        <a href="/" class="btn  btn-xs btn-primary disabled">Primary disabled 3</a>
+        <a href="/" class="btn  btn-xs btn-warning">Warning 4</a>
+         <a href="/" class="btn  btn-xs btn-warning disabled">Warning disabled 4</a>
+        <a href="/" class="btn  btn-xs btn-info">Info 5</a>
+         <a href="/" class="btn  btn-xs btn-info disabled">Info disabled 5</a>
+        <a href="/" class="btn  btn-xs btn-danger">Danger 6</a>
+        <a href="/" class="btn  btn-xs btn-danger disabled">Danger disabled 6</a>
+        <a href="/" class="btn  btn-xs btn-success">Success 7</a>
+        <a href="/" class="btn  btn-xs btn-success disabled">Success disabled 7</a>
+        <a href="/" class="btn  btn-xs btn-default">Default 8</a>
+        <a href="/" class="btn  btn-xs btn-default disabled">Default disabled 8</a>
+        <a href="/" class="btn  btn-xs btn-link">Link 9</a>
+        <a href="/" class="btn  btn-xs btn-link disabled">Link disabled 9</a>
+
+        <a href="/" class="btn btn-sm btn-inverse">Login 2</a>
+        <a href="/" class="btn  btn-sm btn-primary">Primary 3</a>
+        <a href="/" class="btn  btn-sm btn-primary disabled">Primary disabled 3</a>
+        <a href="/" class="btn  btn-sm btn-warning">Warning 4</a>
+         <a href="/" class="btn  btn-sm btn-warning disabled">Warning disabled 4</a>
+        <a href="/" class="btn  btn-sm btn-info">Info 5</a>
+         <a href="/" class="btn  btn-sm btn-info disabled">Info disabled 5</a>
+        <a href="/" class="btn  btn-sm btn-danger">Danger 6</a>
+        <a href="/" class="btn  btn-sm btn-danger disabled">Danger disabled 6</a>
+        <a href="/" class="btn  btn-sm btn-success">Success 7</a>
+        <a href="/" class="btn  btn-sm btn-success disabled">Success disabled 7</a>
+        <a href="/" class="btn  btn-sm btn-default">Default 8</a>
+        <a href="/" class="btn  btn-sm btn-default disabled">Default disabled 8</a>
+        <a href="/" class="btn  btn-sm btn-link">Link 9</a>
+        <a href="/" class="btn  btn-sm btn-link disabled">Link disabled 9</a>
+
+        <a href="/" class="btn btn-mdm btn-inverse">Login 2</a>
+        <a href="/" class="btn  btn-mdm btn-primary">Primary 3</a>
+        <a href="/" class="btn  btn-mdm btn-primary disabled">Primary disabled 3</a>
+        <a href="/" class="btn  btn-mdm btn-warning">Warning 4</a>
+         <a href="/" class="btn  btn-mdm btn-warning disabled">Warning disabled 4</a>
+        <a href="/" class="btn  btn-mdm btn-info">Info 5</a>
+         <a href="/" class="btn  btn-mdm btn-info disabled">Info disabled 5</a>
+        <a href="/" class="btn  btn-mdm btn-danger">Danger 6</a>
+        <a href="/" class="btn  btn-mdm btn-danger disabled">Danger disabled 6</a>
+        <a href="/" class="btn  btn-mdm btn-success">Success 7</a>
+        <a href="/" class="btn  btn-mdm btn-success disabled">Success disabled 7</a>
+        <a href="/" class="btn  btn-mdm btn-default">Default 8</a>
+        <a href="/" class="btn  btn-mdm btn-default disabled">Default disabled 8</a>
+        <a href="/" class="btn  btn-mdm btn-link">Link 9</a>
+        <a href="/" class="btn  btn-mdm btn-link disabled">Link disabled 9</a>
+
+
+        <a href="/" class="btn btn-lg btn-inverse">Login 2</a>
+        <a href="/" class="btn  btn-lg btn-primary">Primary 3</a>
+        <a href="/" class="btn  btn-lg btn-primary disabled">Primary disabled 3</a>
+        <a href="/" class="btn  btn-lg btn-warning">Warning 4</a>
+         <a href="/" class="btn  btn-lg btn-warning disabled">Warning disabled 4</a>
+        <a href="/" class="btn  btn-lg btn-info">Info 5</a>
+         <a href="/" class="btn  btn-lg btn-info disabled">Info disabled 5</a>
+        <a href="/" class="btn  btn-lg btn-danger">Danger 6</a>
+        <a href="/" class="btn  btn-lg btn-danger disabled">Danger disabled 6</a>
+        <a href="/" class="btn  btn-lg btn-success">Success 7</a>
+        <a href="/" class="btn  btn-lg btn-success disabled">Success disabled 7</a>
+        <a href="/" class="btn  btn-lg btn-default">Default 8</a>
+        <a href="/" class="btn  btn-lg btn-default disabled">Default disabled 8</a>
+        <a href="/" class="btn  btn-lg btn-link">Link 9</a>
+        <a href="/" class="btn  btn-lg btn-link disabled">Link disabled 9</a>-->
+    </div>
+
+<!--
+      <div class="secondarynav">
+                 <div class="navbar-collapse collapse">
+           <div class="breaded"><!--  render_breadcrumbs "navbar.html" --></div></div>
+        <div class="btn-group">
+                                  <button type="button" class="btn-small btn-warning"><i class="fa fa-warning fa-fw" ></i>Add an Issue</button>
+                                  <button type="button" class="btn-small btn-danger">Ask for Help</button>
+                                  <button type="button" class="btn-small btn-success"><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+        </div>
+      </div>
+
+-->
+
+<!--
+      <div class="thirdnav">
+        <ul class="nav-summary">
+          <li class="updates active">
+            <a href="#/projects/1159951/screens">Updates <span data-is-compact="true">8.5K</span></a>
+            
+          </li>
+          <li class="dependencies"><a href="#/projects/1159951/screens">Dependencies</a></li>
+          <li class="issues"><a href="#/projects/1159951/screens">Issues</a></li>
+          <li class="troubleshooting"><a href="#/projects/1159951/screens">Troubleshooting</a></li>
+          <li class="comments-reviews"><a href="#/projects/1159951/screens">Comments/Reviews</a></li>
+        </ul>
+      </div>
+-->
+
+<!--       <div class="fourthnav">
+        <ul>
+          <li>Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+          <li>Holy guacamole!</strong> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+          <li> Best check yo self, you're not looking too good. <a href="#js-programmatic-api" class="alert-link bigclick">...</a></li>
+          <div class='loadmorebutton'>
+            <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-default">Load More ...</button>
+          </div>
+
+
+
+
+        </ul>
+      </div> -->
+
+
+<!--    <article>
+    <nav class="toolbar">
+                 <div class="navbar-collapse collapse">
+           <div class="breaded"> <!-- render_breadcrumbs "navbar.html" --></div></div>
+        <div class="btn-group">
+                                  <button type="button" class="btn-small btn-warning"><i class="fa fa-warning fa-fw" ></i>Add an Issue</button>
+                                  <button type="button" class="btn-small btn-danger">Ask for Help</button>
+                                  <button type="button" class="btn-small btn-success"><i class="fa fa-pencil fa-fw"></i>Post a Comment/Review</button>
+        </div>
+      </nav>
+
+
+
+        <header>        
+          <ul class="nav-summary">
+            <li class="updates active">
+              <a href="#/projects/1159951/screens">Updates <span data-is-compact="true">8.5K</span></a>
+              
+            </li>
+            <li class="dependencies"><a href="#/projects/1159951/screens">Dependencies</a></li>
+            <li class="issues"><a href="#/projects/1159951/screens">Issues</a></li>
+            <li class="troubleshooting"><a href="#/projects/1159951/screens">Troubleshooting</a></li>
+            <li class="comments-reviews"><a href="#/projects/1159951/screens">Comments/Reviews</a></li>
+          </ul>
+
+        </header>
+        <div class="separator"> <ul><li>This is the first commit</li><li>This is the second commit</li></ul>     <div class='loadmorebutton'>
+                          <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-default">
+                Load More ...
+              </button></div></div>
+      </article> --> 
+    <main id="content" role="main">
+
+        {% block content %}{% endblock content %}
+
+    </main>
+
+
+</div> 
+<!-- End of content -->
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Javascripts ------------------------------------------------- -->
+        <!--<script src="{{STATIC_URL}}/js/jquery-2.0.3.js"></script>
+        <script src="{{STATIC_URL}}/js/jQuery.succinct.min.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery.pjax.js"></script>
+        <script src="{{STATIC_URL}}/js/jquery-ui.js"></script>-->
+
+        <script src="{{STATIC_URL}}/bootstrap-source/dist/js/bootstrap.js"></script>
+        <!--<script src="{{STATIC_URL}}/js/markdown.js"></script>-->
+        <!--<script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-markdown2/js/bootstrap-markdown.js"></script>-->
+         <script src="{{STATIC_URL}}/js/jquery.cookie.js"></script>
+        <script src="{{STATIC_URL}}/js/csrf.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/tocify/js/jquery.tocify.min.js"></script>
+        <script src="{{STATIC_URL}}bootstrap/plugins/bootstrap-switch/js/bootstrap-switch.js"></script> 
+        <script src="{{STATIC_URL}}js/widearea.js"></script> 
+        <script type='text/javascript' src='{{STATIC_URL}}js/knockout-3.2.0.js'></script>
+        <script type='text/javascript' src='{{STATIC_URL}}js/knockout_custom_binds.js'></script>
+
+
+        <script>
+            $(function() {
+
+                var toc = $("#toc").tocify({
+                  selectors: "h2,h3,h4,h5"
+                }).data("toc-tocify");
+
+                $(".optionName").popover({ trigger: "hover" });
+
+            });
+        </script>
+             <script>
+$(document).ready(function(){
+    $("[data-toggle=tooltip]").tooltip({ placement: 'right'});
+    
+});
+
+
+
+$(document).ready(function(){
+
+    function showToggle(){
+
+ $("#userMen").slideToggle(10, function() { $('#userMenuCaret').toggleClass('fa-caret-up')});
+
+}
+
+
+   // $("[data-toggle=hideShowToggle]").showToggle();
+
+
+// $("#target-editor").markdown({  
+//     editable: true,
+//     savable: true,
+//     onSave: function(e) {
+//         console.log('onsave', e.getContent());
+//         $( "#mainSave" ).append('<input id="id_title" maxlength="255" name="title" type="text" value="'+ e.getContent() + '">');
+//         $( "#mainSave" ).submit();
+//         //e.hidePrevi();
+     
+//   }
+  
+// })
+
+
+    
+    
+});
+    
+
+
+
+    </script>
+
+
+
+        <script>
+
+/*
+  Slidemenu
+*/
+(function() {
+  var $body = document.body
+  , $menu_trigger = $body.getElementsByClassName('menu-trigger')[0];
+
+  if ( typeof $menu_trigger !== 'undefined' ) {
+    $menu_trigger.addEventListener('click', function() {
+      $body.className = ( $body.className == 'menu-active' )? '' : 'menu-active';
+
+
+      if($body.className == 'menu-active'){
+        $('#content[role="main"]').css( "width", '83%');
+      }
+      else{
+        $('#content[role="main"]').css( "width", '100%');
+      };
+
+    });
+  }
+
+}).call(this);
+
+
+
+
+
+
+  $('#loading-example-btn').click(function () {
+    var btn = $(this)
+    btn.button('loading')
+    //$.ajax(...).always(function () {
+    //  btn.button('reset')
+    //});
+  });
+
+          
+
+      $( document ).ready(function() {
+         $(".js-directory-link").attr("href", function(){ return $("tbody").data('url') + $(this).attr("href")})
+         $(document).pjax('a', '[data-pjax]')
+         console.log('ready')
+
+
+
+
+
+            $(".menu-trigger").on('click', function(){
+                   $(".menu-trigger").toggleClass("active")
+            })
+
+
+           $(".underline-sidecol").on('click', function(){
+                   $(this).toggleClass("active")
+            })
+           
+
+      });
+
+
+
+
+
+          $('#userSettings').click(function() 
+          {
+            //console.log('clicked')
+            //q = $('#q').val();
+            
+            $("#myModal").modal('toggle');
+          });
+
+
+
+
+        function toggleSettings(){
+            $("#myModal").modal('toggle');
+        }          
+
+
+            function toggleNavbar()
+            {
+                console.log('toggling NavBar')
+                $('.navbar').toggle()
+                $('.navbar').toggleClass("navbar-fixed-top navbar-static-top")
+                $('.navbar').toggle()
+                //$('#navbartoggle').html('poo')
+            }
+        </script>
+
+        {% block scripts %} {% endblock %}
+
+        <!-- End of Javascripts ------------------------------------------ -->
+    </body>
+</html>

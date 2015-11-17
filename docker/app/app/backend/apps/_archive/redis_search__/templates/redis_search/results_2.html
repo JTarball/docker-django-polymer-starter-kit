@@ -1,0 +1,91 @@
+/*  
+  for (i=0;i<{{length}};i++)
+  {
+	  console.log(i)
+	  switch(i)
+	  {
+	  case 0:  
+	    result = "{{results.0.title}}"; 
+	    cat = "	{%for cat in results.0.category %}{{cat.name}}{% endfor %}";
+	    console.log('cat')
+	    console.log(cat); 
+	    break;
+	  case 1:  result = "{{results.1.title}}"; url = "/{{results.1.url}}"; cate = "{%for cat in results.0.category %}<a href='/{{cat.url}}'>{{cat.name}}</a>{% endfor %}"; break;
+	  case 2:  result = "{{results.2.title}}"; break;
+      case 3:  result = "{{results.3.title}}"; break;
+	  case 4:  result = "{{results.4.title}}"; break;
+	  case 5:  result = "{{results.5.title}}"; break;
+	  case 6:  result = "{{results.6.title}}"; break;
+	  case 7:  result = "{{results.7.title}}"; break;
+	  case 8:  result = "{{results.8.title}}"; break;
+	  case 9:  result = "{{results.9.title}}"; break;
+	  }
+      console.log(result);
+      console.log(cate);
+      if (result != $('#rst'+i).text())
+      { 
+	    $('#rst'+i).text(result); 
+	    $('#rst'+i).css('href', url); 
+	    $('#cat'+i).html(cate);
+	    
+	    console.log($('#cat'+i).text())   
+      }
+	
+      if($('#rst'+i).css('visibility') == 'hidden')
+	  {
+		console.log("hidden");
+	    $( '#rst'+i).css('visibility', 'visible');
+	    console.log(url)	
+	    $( '#rst'+i).css('href', url);	
+	    $( '#cat'+i).css('visibility', 'visible');
+	  }
+	  
+  }
+  for (i={{length}};i<10;i++)
+  {
+
+	$( '#rst'+i).css('visibility', 'hidden');	
+	$( '#cat'+i).css('visibility', 'hidden');
+	    
+	
+  }
+  */
+</script>
+
+
+
+
+
+  <!--
+<tr> <td id="rst0" /><td id="cat0" /> </tr>
+<tr> <td id="rst1" /><td id="cat1" /> </tr> 
+<tr> <td id="rst2" /><td id="cat2" /> </tr> 
+<tr> <td id="rst3" /><td id="cat3" /> </tr>
+<tr> <td id="rst4" /><td id="cat4" /> </tr>
+<tr> <td id="rst5" /><td id="cat5" /> </tr>
+<tr> <td id="rst6" /><td id="cat6" /> </tr>
+<tr> <td id="rst7" /><td id="cat7" /> </tr>
+<tr> <td id="rst8" /><td id="cat8" /> </tr>
+<tr> <td id="rst9" /><td id="cat9" /> </tr>
+-->
+
+
+<!--
+{% if results %}
+  {% for result in results %}
+    
+
+
+    <a class="searchbox" href="/{{result.url}}">{{result.title}}
+
+	{%for cat in result.category %}
+	
+	<small>{{cat.name}}</small>
+    {% endfor %}
+{{result.url}}</a>
+  {% endfor%}
+{% else %}
+  <a class="searchbox" href="/{{result.url}}">no results found try again.</a>
+{% endif %}
+
+-->

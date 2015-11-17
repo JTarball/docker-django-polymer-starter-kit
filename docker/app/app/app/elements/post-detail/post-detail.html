@@ -1,0 +1,85 @@
+// post-detail.html
+// Display a single post
+<link rel="import" href="../django-ajax/django-ajax.html">
+<dom-module id="post-detail">
+    /* Shadow DOM CSS Cheat Sheet */
+    /* http://robdodson.me/blog/2014/04/10/shadow-dom-css-cheat-sheet */
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <django-ajax result='{{post}}' url="[[url]]" params="{}"></django-ajax>
+        <div class="post">
+        Detail
+            <header class="header">
+                <h1 id="title">{{ getTitle(titleHref, post.title) }}</h1>
+                <small>
+                    <a>{{post.author_name}}</a>&nbsp;|&nbsp;
+                    <a>{{post.updated_at_beautified}}</a>
+                    <template is="dom-repeat" items="{{post.tags}}">
+                        &nbsp; &nbsp;<a href="{{ getHREFTag(item) }}">{{item}}</a>
+                    </template>
+                </small>
+            </header>
+            <article id="content">{{ injectMarkup(post.content_markup) }}</article>
+        </div>
+    </template>
+
+    <script>
+        (function () {
+          Polymer({
+            is: 'post-detail',
+
+            properties: {
+                slug: { type: String, notify: true},
+                url: { computed: 'getURLDetail(slug)' },
+                titleHref: { type: String, value: true},
+                post: {
+                  type: Array,
+                  url: { type: String },
+                  value: function() { return {}; },
+                }
+            },
+            getTitle: function(href, title) {
+                if (this.post !== null) {
+                    this.$.title.innerHTML = '';
+                    var hd = document.createElement("a"); 
+                    console.log(href);
+                    if (href !== 'false')
+                    {
+                        hd.href = this.getHREFDetail(this.slug);
+                    }
+                    hd.innerHTML = title;
+                    Polymer.dom.flush();
+                    Polymer.dom(this.$.title).appendChild(hd);
+                }
+            },
+            getURLDetail: function(slug) { 
+                console.warn('getURLDetail, slug:' + slug);
+                return 'http://192.168.99.100:8000/blog/post/' + slug + '/';
+            },
+            slugChanged: function()
+            { console.error('asdsa');},
+
+            // Detail URL
+            getHREFDetail: function(slug) { 
+                return '/blog/post/' + slug;
+            },
+
+            // Tag Posts URL 
+            getHREFTag: function(tag) { 
+                return '/blog/tag/' + tag;
+            },
+
+            // Inject as HTML 
+            injectMarkup: function(content) { 
+                this.$.content.innerHTML = content;
+            },
+
+        });
+      })();
+    </script>
+</dom-module>

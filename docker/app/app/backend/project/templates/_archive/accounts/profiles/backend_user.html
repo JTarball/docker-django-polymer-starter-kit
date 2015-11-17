@@ -1,0 +1,15 @@
+ {% extends "base.html" %}
+ {# templates/flavors/_flavor_search.html #}
+  {% comment %}
+      Usage: {% include "flavors/_flavor_search.html" %}
+  {% endcomment %}
+
+{% load i18n %}
+
+{% block content %}
+<form method="post" action=".">
+  {{ form }}
+
+  <input type="submit" value="{% trans 'Submit' %}" />
+</form>
+{% endblock %}
