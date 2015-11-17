@@ -19,6 +19,7 @@ dependencies:
         - docker info
         - sudo pip install docker-compose
         - git clone https://github.com/docker-library/official-images.git ~/official-images
+        - cd docker/app/app && sudo npm install -g gulp bower && npm install && bower install
 
 
 # Run django tests, polymer tests

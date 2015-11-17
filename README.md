@@ -45,6 +45,7 @@ npm install -g gulp bower && npm install && bower install
 
 ### How to deploy to Amazon Web Services
 
+1. Ensure environment variables are set 
 To deploy this project to AWS you must set the following environment variables:
 
 * DOCKERHUB_USER
@@ -59,9 +60,16 @@ export AWS_SECRET_ACCESS_KEY=xxxxxx
 export AWS_VPC_ID=xxxx
 ```
 
+2. Get AWS Access Key, AWS Secret Access Key & AWS VPC IPD
 
- run `create-docker-machine-aws.sh  <MACHINE_NAME>` where MACHINE_NAME is the name for the machine you want created 
- run `python build-tag-push.py` which will build the docker app, push it to docker hub and a new compose yml file (you will need to be logged in  `docker login`)
+
+2. Create Docker Machine  (Only if needs to be created - so only once)
+`create-docker-machine-aws.sh  <MACHINE_NAME>` 
+where MACHINE_NAME is the name for the machine you want created 
+ 
+3.
+`python build-tag-push.py` 
+which will build the docker app, push it to docker hub and a new compose yml file (you will need to be logged in  `docker login`)
 
 
 
