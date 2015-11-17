@@ -69,7 +69,8 @@ if [ "$1" = 'app' ]; then
 	checkLastCommand "collecting static files ... "
 
 	if [ "$ENV_TYPE" = 'dev' ]; then
-		python $APP_DIR/backend/manage.py runserver_plus 0.0.0.0:8000 &
+		cd $APP_DIR/backend
+		python manage.py runserver_plus 0.0.0.0:8000 &
 		checkLastCommand "running django development server ... "
 		gulp serve
 		checkLastCommand "running frontend polymer server ... "

@@ -33,7 +33,7 @@ test:
       - sudo cp -r docker/app/tests/* ~/official-images/test/tests
       - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - docker-compose ps
-      - docker tag app_app "$APP_TEST_IMAGE"
+      - docker tag dockerdjangopolymerstarterkit_app "$APP_TEST_IMAGE"
       - docker push "$APP_TEST_IMAGE"
       - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config docker/app/config.sh "$APP_TEST_IMAGE"
       # TODO: Deployment test
