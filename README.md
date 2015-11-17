@@ -1,5 +1,12 @@
 [![Circle CI](https://circleci.com/gh/JTarball/docker-django-polymer-starter-kit.svg?style=svg)](https://circleci.com/gh/JTarball/docker-django-polymer-starter-kit)
 
+
+<a href="http://www.djangoproject.com/" ><img src="https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif" border="0" alt="A Django project." title="A Django project." style="float: right;" /></a>
+
+<img src="https://www.polymer-project.org/images/logos/lockup.svg" />
+## Yeoman generator for Django Polymer projects
+
+<img src="http://yeoman.io/assets/img/tool-yo.3dcc.png" />
 # docker-django-polymer
 This is a docker file for django polymer web project.
 
@@ -10,21 +17,17 @@ This is a docker file for django polymer web project.
 
 
 ### Useful Commands
-
-> docker login
+`docker login`
   - you will need to login into docker hub (set up an account if you dont have one)
-> docker build -t "<IMAGE>" .
+`docker build -t "<IMAGE>" .`
   - this will build the Dockerfile in the current directory and tag it with "jtarball/docker-base:latest"
-> docker push "<IMAGE>"
+`docker push "<IMAGE>"`
   - push to docker hub
-
-> docker-compose up 
+`docker-compose up`
  - this command will create and start containers
-
-> docker rm $(docker ps -a -q); docker rmi $(docker images -q);
+`docker rm $(docker ps -a -q); docker rmi $(docker images -q);`
  - kill and remove all docker images and containers
-
-> docker rmi $(docker images -q --filter "dangling=true")
+`docker rmi $(docker images -q --filter "dangling=true")`
  - Ckean up un-tagged docker images
 
 
@@ -232,12 +235,7 @@ https://realpython.com/blog/python/deploying-a-django-app-to-aws-elastic-beansta
 [![Build Status](http://img.shields.io/travis/JTarball/generator-django-polymer/master.svg?style=flat)](https://travis-ci.org/JTarball/generator-django-polymer)
 [![Dependency Status](http://img.shields.io/david/JTarball/generator-django-polymer.svg?style=flat)](https://david-dm.org/JTarball/generator-django-polymer)
 
-<a href="http://www.djangoproject.com/" ><img src="https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif" border="0" alt="A Django project." title="A Django project." style="float: right;" /></a>
 
-<img src="https://www.polymer-project.org/images/logos/lockup.svg" />
-## Yeoman generator for Django Polymer projects
-
-<img src="http://yeoman.io/assets/img/tool-yo.3dcc.png" />
 
 ### Introduction to generator-django-polymer
 
