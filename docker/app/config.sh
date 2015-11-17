@@ -17,7 +17,7 @@ testAlias+=(
 )
 
 imageTests+=(
-	[jtarball/docker-generator-app-test:latest]='
+	[$APP_TEST_IMAGE]='
 		python-imports
 		python-pip-requests-ssl
 		python-sqlite3
@@ -26,5 +26,5 @@ imageTests+=(
 
 globalExcludeTests+=(
 	# single-binary images
-	[jtarball/docker-generator-app-test:latest_utc]=1
+	[${APP_TEST_IMAGE}_utc]=1
 )
