@@ -15,6 +15,8 @@
 ## Intro
 This is a quick fire starter kit for getting a Docker Web project up and running. Django web framework is used for the backend essentially making it a  REST API. Google Polymer is used for the frontend.
 
+This project integrates **generator-polymer** project with a dockerized django app.
+
 ## Cheatsheet
 ### Rebuild and Upload base image 
 
