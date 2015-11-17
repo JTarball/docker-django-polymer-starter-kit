@@ -39,6 +39,10 @@ This project integrates **generator-polymer** project with a dockerized django a
 
 
 ## How to use
+1. Install Polymer FrontEnd Components
+npm install -g gulp bower && npm install && bower install
+
+
 ### How to deploy to Amazon Web Services
 
 To deploy this project to AWS you must set the following environment variables:
