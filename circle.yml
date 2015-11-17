@@ -23,30 +23,22 @@ dependencies:
         - sudo mkdir /app
         - cd /app && which yes > /dev/null; if [ $? -eq 0 ]; then yes | yo dockerized-django-polymer; fi
 
-
 # Run django tests
-# Run polymer tests
+# Run polymer tests (TODO)
 # Deployment test (build and tag / run / destroy)
-
 test:
+    pre:
+      - cd /app && docker-compose up -d
+      # Copy all tests into official folder and combine configs
+      - sudo cp -r /app/docker/app/tests/* ~/official-images/test/tests
+      - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
+      - docker tag app_app "$APP_TEST_IMAGE"
+      - docker push "$APP_TEST_IMAGE"
+      - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config /app/docker/app/config.sh "$APP_TEST_IMAGE"
     override:
-      - cd /app
-      - build-tag-push.py
-      - docker-compose up -d
-      - 
-
-
-# test:
-#   override:
-#     - docker-compose up -d 
-    # # APP_DIR START
-    # # need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
-    # - docker-compose run app sh -c "cd backend/ && mkdir -p _auto_circle-junit/django && py.test --junitxml=_auto_circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
-    # - mkdir -p $CIRCLE_TEST_REPORTS/django
-    # - mv /home/ubuntu/docker-django-polymer/docker/app/app/backend/_auto_circle-junit/django $CIRCLE_TEST_REPORTS/
-
-
-
+      # Django Tests for Blog, Search & Accounts (Need to manually add to the end of this command)
+      - cd /app && docker-compose run app sh -c "cd backend/ && mkdir -p _auto_circle-junit/django && py.test --junitxml=_auto_circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
+      - mv /app/docker/app/app/backend/_auto_circle-junit/django $CIRCLE_TEST_REPORTS/
 
 #run.sh --config /path/to/official-images/test/config.sh --config ./my-config.sh myimage
 
