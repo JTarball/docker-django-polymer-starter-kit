@@ -13,11 +13,6 @@ CIRCLE_TEST_REPORTS=/app/backend/circle-junit
 BACKEND_DIR=/app/backend
 
 
-# Testing Only
-# =============
-# image for running docker-like tests
-APP_TEST_IMAGE=jtarball/jtarball/docker-djpolymer-starter-app-test:latest
-
 
 # =============================
 # Django - Environment Vars

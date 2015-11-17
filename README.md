@@ -45,7 +45,12 @@ npm install -g gulp bower && npm install && bower install
 
 ### How to deploy to Amazon Web Services
 
-1. Ensure environment variables are set 
+
+1. Get AWS Access Key, AWS Secret Access Key & AWS VPC IPD
+* [Get AWS Access Key & AWS Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
+* To get AWS VPC ID: Go to your IAM console, select Create VPC -> VPC ID should visible in one of the columns 
+
+2. Ensure environment variables are set 
 To deploy this project to AWS you must set the following environment variables:
 
 * DOCKERHUB_USER
@@ -60,7 +65,7 @@ export AWS_SECRET_ACCESS_KEY=xxxxxx
 export AWS_VPC_ID=xxxx
 ```
 
-2. Get AWS Access Key, AWS Secret Access Key & AWS VPC IPD
+
 
 
 2. Create Docker Machine  (Only if needs to be created - so only once)

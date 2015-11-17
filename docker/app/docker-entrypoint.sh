@@ -19,7 +19,7 @@ function checkLastCommand
 if [ "$1" = 'app' ]; then
 	# Change ownership
 	#sudo chown -R app $APP_DIR
-	sudo chown -R app:app /usr/local/bin/gosu
+	#sudo chown -R app:app /usr/local/bin/gosu
 
 	STRLOG="basic check of required environment variables ... "
 

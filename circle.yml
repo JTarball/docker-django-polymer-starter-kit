@@ -21,7 +21,7 @@ dependencies:
         - git clone https://github.com/docker-library/official-images.git ~/official-images
         - npm install -g npm
         - sudo apt-get install nodejs
-        - cd docker/app/app && sudo npm install -g gulp bower && npm install && bower install
+        - cd docker/app/app && npm install -g gulp bower && npm install && bower install
 
 
 # Run django tests, polymer tests
