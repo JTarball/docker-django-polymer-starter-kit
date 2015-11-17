@@ -4,13 +4,16 @@
 <a href="http://www.djangoproject.com/" ><img src="https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif" border="0" alt="A Django project." title="A Django project." style="float: right;" /></a>
 
 <img src="https://www.polymer-project.org/images/logos/lockup.svg" />
-## Yeoman generator for Django Polymer projects
 
-<img src="http://yeoman.io/assets/img/tool-yo.3dcc.png" />
-# docker-django-polymer
-This is a docker file for django polymer web project.
 
+#### Current Integrated Version/s 
+
+-	[`v1.2.6`, `generator-polymer`](https://github.com/yeoman/generator-polymer.git)
+-	[`1.8.6`, `Django`](https://www.djangoproject.com/download/)
+
+## Django Polymer start project using Docker
 ## Intro
+This is a quick fire starter kit for getting a Docker Web project up and running. Django web framework is used for the backend essentially making it a  REST API. Google Polymer is used for the frontend.
 
 ## Cheatsheet
 ### Rebuild and Upload base image 
