@@ -39,6 +39,7 @@ test:
       # TODO: Deployment test
     override:
       # Django Tests for Blog, Search & Accounts (Need to manually add to the end of this command)
+      - gulp test:local
       - docker-compose run app sh -c "cd backend/ && mkdir -p _auto_circle-junit/django && py.test --junitxml=_auto_circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
       - mv docker/app/app/backend/_auto_circle-junit/django $CIRCLE_TEST_REPORTS/
 

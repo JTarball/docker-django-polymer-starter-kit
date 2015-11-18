@@ -41,7 +41,9 @@ This project integrates **generator-polymer** project with a dockerized django a
 ## How to use
 1. Install Polymer FrontEnd Components
 npm install -g gulp bower && npm install && bower install
-
+`docker-compose run app --create`
+set up databases / initial migrations / ...
+`docker-compose up -d`
 
 ### How to deploy to Amazon Web Services
 
